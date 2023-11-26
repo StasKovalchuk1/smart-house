@@ -1,6 +1,6 @@
 package org.example.houses;
 
-import org.example.components.Floor;
+import org.example.houseComponents.Floor;
 
 import java.util.List;
 

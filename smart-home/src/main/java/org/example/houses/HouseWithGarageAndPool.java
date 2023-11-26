@@ -1,8 +1,8 @@
 package org.example.houses;
 
-import org.example.components.Floor;
-import org.example.components.Garage;
-import org.example.components.Pool;
+import org.example.houseComponents.Floor;
+import org.example.houseComponents.Garage;
+import org.example.houseComponents.Pool;
 
 import java.util.List;
 

@@ -1,14 +1,12 @@
 package org.example;
 
-import org.example.builders.HouseBuilder;
 import org.example.builders.HouseWithGarageAndPoolBuilder;
-import org.example.components.Floor;
-import org.example.components.vehicle.Car;
+import org.example.houseComponents.Floor;
+import org.example.houseComponents.vehicle.Car;
 import org.example.director.Director;
 import org.example.houses.HouseWithGarageAndPool;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 public class Main {

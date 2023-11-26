@@ -1,6 +1,6 @@
-package org.example.components;
+package org.example.houseComponents;
 
-import org.example.components.vehicle.Vehicle;
+import org.example.houseComponents.vehicle.Vehicle;
 
 import java.util.ArrayList;
 import java.util.List;
