@@ -10,13 +10,10 @@ import org.example.devices.Shelter;
 @Slf4j
 @Data
 @NoArgsConstructor
-public abstract class BaseShelterDecorator implements Shelter{
+public abstract class BaseShelterDecorator implements ShelterInterface{
 
     private Integer id;
     private Shelter wrapper;
-    private int waterAmount;
-    private int foodAmount;
-    private boolean isHeaterWorking = false;
 
     public BaseShelterDecorator(Shelter shelter) {
         this.wrapper = shelter;

@@ -1,13 +1,24 @@
 package org.example.devices;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
+import org.example.decorators.ShelterInterface;
 
+@Data
+@AllArgsConstructor
+public class Shelter implements ShelterInterface {
 
-public interface Shelter {
+    private int waterAmount;
+    private int foodAmount;
+    private boolean heaterIsWorking;
 
-    void shelterOn();
+    @Override
+    public void shelterOn(){
+        heaterIsWorking = true;
+    }
 
-    void shelterOff();
+    @Override
+    public void shelterOff(){
+        heaterIsWorking = false;
+    }
 }

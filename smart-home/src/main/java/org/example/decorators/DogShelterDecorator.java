@@ -1,13 +1,16 @@
 package org.example.decorators;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.example.devices.Shelter;
 
+
 @Slf4j
 @Data
 @NoArgsConstructor
+@EqualsAndHashCode(callSuper = true)
 public class DogShelterDecorator extends BaseShelterDecorator {
 
     private boolean lightsAreWorking = false;
@@ -27,12 +30,12 @@ public class DogShelterDecorator extends BaseShelterDecorator {
     }
 
     public void lightsOn(){
-        lightsAreWorking =true;
+        lightsAreWorking = true;
         log.info("Lights were turned on");
     }
 
     public void lightsOff(){
-        lightsAreWorking =false;
+        lightsAreWorking = false;
         log.info("Lights were turned off");
     }
 }
