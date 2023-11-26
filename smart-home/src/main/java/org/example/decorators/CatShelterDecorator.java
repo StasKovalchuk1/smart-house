@@ -1,13 +1,16 @@
 package org.example.decorators;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.example.devices.Shelter;
 
+
 @Slf4j
 @Data
 @NoArgsConstructor
+@EqualsAndHashCode(callSuper = true)
 public class CatShelterDecorator extends BaseShelterDecorator {
 
     private boolean brushIsWorking = false;
