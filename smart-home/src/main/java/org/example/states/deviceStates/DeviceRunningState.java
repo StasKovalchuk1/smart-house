@@ -14,9 +14,8 @@ public class DeviceRunningState extends DeviceState{
     }
 
     @Override
-    public void turnOn() throws DeviceStateException {
-        log.info("Device is already turned on");
-        throw new DeviceStateException("Sorry, device is already turned on");
+    public void turnOn() {
+        log.info("Device is already running");
     }
 
     @Override
@@ -26,12 +25,7 @@ public class DeviceRunningState extends DeviceState{
     }
 
     @Override
-    public void run() throws DeviceStateException {
-        if (device.isTurnedOn()){
-            device.changeState(new DeviceRunningState(device));
-            log.info("Device state changed running");
-        } else {
-            throw new DeviceStateException("Sorry, you can not tun device because it is turned off");
-        }
+    public void run() {
+        log.error("Device is already turned on");
     }
 }

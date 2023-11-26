@@ -9,7 +9,6 @@ public class DeviceOffState extends DeviceState{
 
     public DeviceOffState(Device device){
         super(device);
-        device.setTurnedOn(false);
     }
 
     @Override
@@ -19,19 +18,12 @@ public class DeviceOffState extends DeviceState{
     }
 
     @Override
-    public void turnOff() throws DeviceStateException {
-        if (device.isTurnedOn()){
-            device.changeState(new DeviceOffState(device));
-            log.info("Device was turned off");
-        } else {
-            log.error("Device is already turned off");
-            throw new DeviceStateException("Sorry, device is already turned off");
-        }
+    public void turnOff() {
+        log.error("Device is already turned off");
     }
 
     @Override
-    public void run() throws DeviceStateException {
+    public void run(){
         log.error("Device can not change state to running");
-        throw new DeviceStateException("Sorry, you can not change device state to running");
     }
 }

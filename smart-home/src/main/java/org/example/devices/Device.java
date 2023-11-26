@@ -11,14 +11,12 @@ public abstract class Device {
 
     private String documentation;
     private DeviceState state;
-    private boolean isTurnedOn;
     private int waterConsumption;
     private int gasConsumption;
     private int electricityConsumption;
 
     public Device() {
         this.state = new DeviceOffState(this);
-        setTurnedOn(false);
     }
 
     public void changeState(DeviceState state){
