@@ -1,21 +1,19 @@
 package org.example.houseComponents;
 
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.example.houseComponents.vehicle.Vehicle;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Data
+@NoArgsConstructor
 public class Garage {
 
+    private Integer id;
+
     private List<Vehicle> vehicles;
-
-    public Garage() {
-        vehicles = new ArrayList<>();
-    }
-
-    public void addVehicle(Vehicle vehicle) {
-        vehicles.add(vehicle);
-    }
 
     @Override
     public String toString() {

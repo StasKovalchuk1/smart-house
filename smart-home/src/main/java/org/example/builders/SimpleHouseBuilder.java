@@ -9,6 +9,8 @@ import java.util.List;
 
 public class SimpleHouseBuilder implements HouseBuilder{
 
+    private Integer id;
+
     private List<Floor> floors;
 
     @Override

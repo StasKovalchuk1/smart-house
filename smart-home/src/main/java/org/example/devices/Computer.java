@@ -1,11 +1,9 @@
-package org.example.houseComponents;
+package org.example.devices;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
-public class Pool {
-
-    private Integer id;
+public class Computer {
 }

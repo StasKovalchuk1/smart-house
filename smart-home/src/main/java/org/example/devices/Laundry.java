@@ -1,11 +1,11 @@
-package org.example.houseComponents;
+package org.example.devices;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
-public class Pool {
+public class Laundry {
 
-    private Integer id;
+    private int powderAmount;
 }

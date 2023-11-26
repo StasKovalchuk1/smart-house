@@ -9,6 +9,8 @@ import java.util.List;
 
 public class Director {
 
+    private Integer id;
+
     public void constructSimpleHouse(HouseBuilder builder, List<Floor> floors) {
         builder.setFloors(floors);
     }

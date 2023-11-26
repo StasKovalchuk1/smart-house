@@ -9,6 +9,8 @@ import java.util.List;
 
 public class HouseWithGarageBuilder implements HouseBuilder{
 
+    private Integer id;
+
     private List<Floor> floors;
 
     private Garage garage;
