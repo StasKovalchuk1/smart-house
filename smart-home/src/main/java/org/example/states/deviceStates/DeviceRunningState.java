@@ -15,7 +15,7 @@ public class DeviceRunningState extends DeviceState{
 
     @Override
     public void turnOn() {
-        log.info("Device is already running");
+        log.error("Device is already turned on");
     }
 
     @Override
@@ -26,6 +26,6 @@ public class DeviceRunningState extends DeviceState{
 
     @Override
     public void run() {
-        log.error("Device is already turned on");
+        log.info("Device is already running");
     }
 }
