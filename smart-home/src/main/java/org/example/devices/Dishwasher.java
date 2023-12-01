@@ -5,7 +5,7 @@ import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
-public class Dishwasher {
+public class Dishwasher extends Device{
 
     private int detergentAmount;
 }

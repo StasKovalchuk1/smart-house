@@ -5,7 +5,7 @@ import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
-public class Grill {
+public class Grill extends Device{
 
     private int coalAmount;
 }

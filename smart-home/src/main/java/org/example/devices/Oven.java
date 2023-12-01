@@ -5,7 +5,7 @@ import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
-public class Oven {
+public class Oven extends Device{
 
     private int timer;
     private int temperature;

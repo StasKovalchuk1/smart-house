@@ -5,7 +5,7 @@ import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
-public class Microwave {
+public class Microwave extends Device{
 
     private int power;
     private int timer;

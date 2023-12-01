@@ -6,7 +6,7 @@ import org.example.decorators.ShelterInterface;
 
 @Data
 @AllArgsConstructor
-public class Shelter implements ShelterInterface {
+public class Shelter extends Device implements ShelterInterface {
 
     private int waterAmount;
     private int foodAmount;

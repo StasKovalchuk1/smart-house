@@ -5,7 +5,7 @@ import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
-public class CoffeeMachine {
+public class CoffeeMachine extends Device{
 
     private int capsulesAmount;
 }
