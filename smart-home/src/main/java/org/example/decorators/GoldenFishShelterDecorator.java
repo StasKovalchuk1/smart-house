@@ -20,13 +20,13 @@ public class GoldenFishShelterDecorator extends BaseShelterDecorator {
         super(shelter);
     }
 
-    @Override
     public void shelterOn(){
+        super.shelterOn();
         bubbleMakerOn();
     }
 
-    @Override
     public void shelterOff(){
+        super.shelterOff();
         bubbleMakerOff();
     }
 

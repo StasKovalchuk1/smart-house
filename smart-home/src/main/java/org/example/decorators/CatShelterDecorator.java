@@ -19,13 +19,13 @@ public class CatShelterDecorator extends BaseShelterDecorator {
         super(shelter);
     }
 
-    @Override
     public void shelterOn(){
+        super.shelterOn();
         brushOn();
     }
 
-    @Override
     public void shelterOff(){
+        super.shelterOff();
         brushOff();
     }
 

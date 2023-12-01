@@ -19,13 +19,13 @@ public class DogShelterDecorator extends BaseShelterDecorator {
         super(shelter);
     }
 
-    @Override
     public void shelterOn(){
+        super.shelterOn();
         lightsOn();
     }
 
-    @Override
     public void shelterOff(){
+        super.shelterOff();
         lightsOff();
     }
 
