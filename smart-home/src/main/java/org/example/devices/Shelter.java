@@ -21,4 +21,10 @@ public class Shelter extends Device implements ShelterInterface {
     public void shelterOff(){
         heaterIsWorking = false;
     }
+
+    // TODO
+    @Override
+    public String somethingToFix() {
+        return null;
+    }
 }

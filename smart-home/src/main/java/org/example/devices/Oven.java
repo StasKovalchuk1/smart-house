@@ -9,4 +9,9 @@ public class Oven extends Device{
 
     private int timer;
     private int temperature;
+
+    @Override
+    public String somethingToFix() {
+        return null;
+    }
 }

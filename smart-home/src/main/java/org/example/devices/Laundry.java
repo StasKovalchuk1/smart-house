@@ -8,4 +8,10 @@ import lombok.NoArgsConstructor;
 public class Laundry extends Device{
 
     private int powderAmount;
+
+    @Override
+    public String somethingToFix() {
+        if (powderAmount < 5) return "Small reserves of laundry powder";
+        return null;
+    }
 }

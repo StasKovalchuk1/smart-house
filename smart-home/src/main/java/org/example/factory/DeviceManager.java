@@ -1,7 +1,7 @@
 package org.example.factory;
 
 import org.example.devices.Device;
-import org.example.houseResidents.persons.Subscriber;
+import org.example.persons.Subscriber;
 
 import java.util.List;
 

@@ -23,4 +23,6 @@ public abstract class Device {
     public void changeState(DeviceState state){
         this.state=state;
     }
+
+    public abstract String somethingToFix();
 }

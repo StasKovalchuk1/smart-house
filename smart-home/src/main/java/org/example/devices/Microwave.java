@@ -9,4 +9,9 @@ public class Microwave extends Device{
 
     private int power;
     private int timer;
+
+    @Override
+    public String somethingToFix() {
+        return null;
+    }
 }
