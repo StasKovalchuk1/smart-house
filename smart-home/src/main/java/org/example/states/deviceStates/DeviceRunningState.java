@@ -10,7 +10,7 @@ public class DeviceRunningState extends DeviceState{
 
 
     public DeviceRunningState(Device device) {
-        super(device);
+        super(device, "Running");
     }
 
     @Override

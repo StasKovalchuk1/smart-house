@@ -10,6 +10,7 @@ import org.example.exceptions.deviceExceptions.DeviceStateException;
 public abstract class DeviceState {
 
     protected final Device device;
+    private final String name;
 
     public abstract void turnOn();
 

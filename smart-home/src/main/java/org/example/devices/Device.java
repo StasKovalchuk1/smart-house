@@ -9,6 +9,7 @@ public abstract class Device {
 
     private Integer id;
 
+    private String name;
     private String documentation;
     private DeviceState state;
     private int waterConsumption;

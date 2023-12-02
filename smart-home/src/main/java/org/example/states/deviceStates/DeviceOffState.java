@@ -8,7 +8,7 @@ import org.example.exceptions.deviceExceptions.DeviceStateException;
 public class DeviceOffState extends DeviceState{
 
     public DeviceOffState(Device device){
-        super(device);
+        super(device, "Off");
     }
 
     @Override

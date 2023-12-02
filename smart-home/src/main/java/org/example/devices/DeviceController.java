@@ -1,9 +1,11 @@
 package org.example.devices;
 
+import lombok.Data;
 import org.example.generators.events.EventToHandle;
 
 import java.util.List;
 
+@Data
 public class DeviceController {
 
     private List<Device> devices;
@@ -21,4 +23,13 @@ public class DeviceController {
     }
 
     public void handleEvent(EventToHandle event) {}
+
+    public Device getDeviceByName(String name){
+        for (Device device : devices){
+            if (device.getName().equals(name)){
+                return device;
+            }
+        }
+        return null;
+    }
 }
