@@ -14,17 +14,16 @@ public abstract class DeviceManager {
     private int deviceElectricityConsumption;
     private int deviceWaterConsumption;
 
-
     private List<Subscriber> subscribers;
 
     public abstract Device createDevice();
 
+        // метод будет вызываться к примеру каждый месяц
     public Device collectData() {
         if (device == null) device = createDevice();
         deviceGasConsumption = device.getGasConsumption();
         deviceElectricityConsumption = device.getElectricityConsumption();
         deviceWaterConsumption = device.getWaterConsumption();
-
         // какая-то логика обработки данных с девайса
         if (highWaterConsumption()) {
             notifySubscribers("High water consumption. Check " + device.toString());
@@ -39,7 +38,7 @@ public abstract class DeviceManager {
         if (device.somethingToFix() != null) {
             notifySubscribers(device.somethingToFix());
         }
-            return device;
+        return device;
     }
 
     private boolean highWaterConsumption() {
@@ -58,7 +57,6 @@ public abstract class DeviceManager {
         if (deviceElectricityConsumption > 50) return true;
         return false;
     }
-
 
 
     public void addSubscriber(Subscriber subscriber) {
