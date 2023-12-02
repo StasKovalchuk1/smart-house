@@ -1,8 +1,7 @@
 package org.example.generators.events;
 
-import org.example.devices.Device;
 import org.example.devices.DeviceController;
-import org.example.persons.Person;
+import org.example.houseResidents.persons.Person;
 
 import java.util.List;
 import java.util.Random;

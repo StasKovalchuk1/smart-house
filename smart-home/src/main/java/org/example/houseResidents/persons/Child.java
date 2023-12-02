@@ -1,4 +1,4 @@
-package org.example.persons;
+package org.example.houseResidents.persons;
 
 import org.example.devices.DeviceController;
 import org.example.generators.events.EventToHandle;
@@ -11,11 +11,6 @@ public class Child extends Person{
 
     @Override
     public void handleEvent(EventToHandle event) {
-
-    }
-
-    @Override
-    public void doActivity() {
 
     }
 

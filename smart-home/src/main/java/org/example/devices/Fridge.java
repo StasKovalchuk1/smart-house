@@ -8,7 +8,7 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 public class Fridge extends Device{
-    private Food food;
+
     private List<Food> foodInside;
 
     @Override

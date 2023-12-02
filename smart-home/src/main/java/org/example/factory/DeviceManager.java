@@ -1,19 +1,24 @@
 package org.example.factory;
 
-import org.example.devices.*;
-import org.example.persons.Subscriber;
+import org.example.devices.CoffeeMachine;
+import org.example.devices.Device;
+import org.example.devices.Grill;
+import org.example.devices.Oven;
+import org.example.houseResidents.persons.Subscriber;
 
 import java.util.List;
 
 public abstract class DeviceManager {
-    private List<Subscriber> subscribers;
     private Device device;
     private int deviceGasConsumption;
     private int deviceElectricityConsumption;
     private int deviceWaterConsumption;
+
+
+    private List<Subscriber> subscribers;
+
     public abstract Device createDevice();
 
-    // метод будет вызываться к примеру каждый месяц
     public Device collectData() {
         if (device == null) device = createDevice();
         deviceGasConsumption = device.getGasConsumption();
@@ -30,13 +35,11 @@ public abstract class DeviceManager {
         if (highElectricityConsumption()) {
             notifySubscribers("High electricity consumption. Check " + device.toString());
         }
-
         // check device needs
         if (device.somethingToFix() != null) {
             notifySubscribers(device.somethingToFix());
         }
-
-        return device;
+            return device;
     }
 
     private boolean highWaterConsumption() {
@@ -55,6 +58,8 @@ public abstract class DeviceManager {
         if (deviceElectricityConsumption > 50) return true;
         return false;
     }
+
+
 
     public void addSubscriber(Subscriber subscriber) {
         subscribers.add(subscriber);

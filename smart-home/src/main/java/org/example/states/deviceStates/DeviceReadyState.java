@@ -8,7 +8,7 @@ import org.example.exceptions.deviceExceptions.DeviceStateException;
 public class DeviceReadyState extends DeviceState{
 
     public DeviceReadyState(Device device) {
-        super(device);
+        super(device, "Ready");
     }
 
     @Override
