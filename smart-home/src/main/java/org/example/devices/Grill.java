@@ -14,4 +14,10 @@ public class Grill extends Device{
         if (coalAmount < 2) return "Small reserves of coal";
         return null;
     }
+
+    @Override
+    public void performDeviceAction() {
+        coalAmount--;
+        System.out.println("Grill has grilled food");
+    }
 }

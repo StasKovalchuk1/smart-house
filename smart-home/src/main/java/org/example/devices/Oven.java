@@ -14,4 +14,9 @@ public class Oven extends Device{
     public String somethingToFix() {
         return null;
     }
+
+    @Override
+    public void performDeviceAction() {
+        System.out.println("Oven has baked food");
+    }
 }

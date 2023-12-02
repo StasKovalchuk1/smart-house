@@ -25,4 +25,6 @@ public abstract class Device {
     }
 
     public abstract String somethingToFix();
+
+    public abstract void performDeviceAction();
 }

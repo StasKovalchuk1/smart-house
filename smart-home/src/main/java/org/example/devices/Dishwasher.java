@@ -14,4 +14,10 @@ public class Dishwasher extends Device{
         if (detergentAmount < 2) return "Small reserves of detergent";
         return null;
     }
+
+    @Override
+    public void performDeviceAction() {
+        detergentAmount--;
+        System.out.println("Dishwasher has washed dishes");
+    }
 }

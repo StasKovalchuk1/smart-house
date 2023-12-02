@@ -10,4 +10,9 @@ public class Computer extends Device{
     public String somethingToFix() {
         return null;
     }
+
+    @Override
+    public void performDeviceAction() {
+        System.out.println("Computer was used");
+    }
 }

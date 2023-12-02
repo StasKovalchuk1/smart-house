@@ -25,6 +25,7 @@ public class DeviceReadyState extends DeviceState{
     @Override
     public void run() {
         device.changeState(new DeviceRunningState(device));
+        device.performDeviceAction();
         log.info("Device is running");
     }
 }

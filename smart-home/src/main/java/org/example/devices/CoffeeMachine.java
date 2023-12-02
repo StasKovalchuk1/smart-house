@@ -14,4 +14,10 @@ public class CoffeeMachine extends Device{
         if (capsulesAmount < 2) return "Small reserves of capsules";
         return null;
     }
+
+    @Override
+    public void performDeviceAction() {
+        capsulesAmount--;
+        System.out.println("CoffeeMachine has made coffee");
+    }
 }

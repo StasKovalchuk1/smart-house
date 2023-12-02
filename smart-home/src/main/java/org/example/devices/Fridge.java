@@ -16,4 +16,9 @@ public class Fridge extends Device{
         if (foodInside.size() < 10) return "Not enough food";
         return null;
     }
+
+    @Override
+    public void performDeviceAction() {
+        System.out.println("Fridge was used");
+    }
 }

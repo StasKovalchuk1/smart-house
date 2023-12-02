@@ -4,11 +4,20 @@ public enum PersonActivity implements Activity{
 
     GetFoodFromFridge,
     AddFoodToFridge,
-    DoLaundry,
-    WashDishes,
-    GrillMeet,
-    MakeCoffee,
-    HeatFood,
-    BakeFood,
-    UseComputer
+
+    StartDoingLaundry,
+    StartWashingDishes,
+    StartGrillingMeet,
+    StartMakingCoffee,
+    StartHeatingFood,
+    StartBakingFood,
+    StartUsingComputer,
+
+    FinishDoingLaundry,
+    FinishWashingDishes,
+    FinishGrillingMeet,
+    FinishMakingCoffee,
+    FinishHeatingFood,
+    FinishBakingFood,
+    FinishUsingComputer,
 }

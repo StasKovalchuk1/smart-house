@@ -27,4 +27,9 @@ public class Shelter extends Device implements ShelterInterface {
     public String somethingToFix() {
         return null;
     }
+
+    @Override
+    public void performDeviceAction() {
+
+    }
 }

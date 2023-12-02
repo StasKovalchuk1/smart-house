@@ -14,4 +14,10 @@ public class Microwave extends Device{
     public String somethingToFix() {
         return null;
     }
+
+    @Override
+    public void performDeviceAction() {
+        System.out.println("Microwave has heated food");
+
+    }
 }
