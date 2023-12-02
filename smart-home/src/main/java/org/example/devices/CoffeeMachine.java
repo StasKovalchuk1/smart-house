@@ -8,4 +8,10 @@ import lombok.NoArgsConstructor;
 public class CoffeeMachine extends Device{
 
     private int capsulesAmount;
+
+    @Override
+    public String somethingToFix() {
+        if (capsulesAmount < 2) return "Small reserves of capsules";
+        return null;
+    }
 }

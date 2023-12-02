@@ -10,4 +10,10 @@ import java.util.List;
 public class Fridge extends Device{
     private Food food;
     private List<Food> foodInside;
+
+    @Override
+    public String somethingToFix() {
+        if (foodInside.size() < 10) return "Not enough food";
+        return null;
+    }
 }

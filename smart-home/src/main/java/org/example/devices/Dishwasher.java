@@ -8,4 +8,10 @@ import lombok.NoArgsConstructor;
 public class Dishwasher extends Device{
 
     private int detergentAmount;
+
+    @Override
+    public String somethingToFix() {
+        if (detergentAmount < 2) return "Small reserves of detergent";
+        return null;
+    }
 }

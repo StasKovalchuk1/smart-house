@@ -8,4 +8,10 @@ import lombok.NoArgsConstructor;
 public class Grill extends Device{
 
     private int coalAmount;
+
+    @Override
+    public String somethingToFix() {
+        if (coalAmount < 2) return "Small reserves of coal";
+        return null;
+    }
 }

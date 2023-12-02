@@ -1,28 +1,59 @@
 package org.example.factory;
 
-import org.example.devices.Device;
+import org.example.devices.*;
 import org.example.persons.Subscriber;
 
 import java.util.List;
 
 public abstract class DeviceManager {
-
-    private String message;
-
     private List<Subscriber> subscribers;
-
+    private Device device;
+    private int deviceGasConsumption;
+    private int deviceElectricityConsumption;
+    private int deviceWaterConsumption;
     public abstract Device createDevice();
 
-    public void collectData() {
-        Device device = createDevice();
-        int gasConsumption = device.getGasConsumption();
-        int electricityConsumption = device.getElectricityConsumption();
-        int waterConsumption = device.getWaterConsumption();
+    // метод будет вызываться к примеру каждый месяц
+    public Device collectData() {
+        if (device == null) device = createDevice();
+        deviceGasConsumption = device.getGasConsumption();
+        deviceElectricityConsumption = device.getElectricityConsumption();
+        deviceWaterConsumption = device.getWaterConsumption();
 
         // какая-то логика обработки данных с девайса
-        if (true) {
-            notifySubscribers("Something to fix");
+        if (highWaterConsumption()) {
+            notifySubscribers("High water consumption. Check " + device.toString());
         }
+        if (highGasConsumption()) {
+            notifySubscribers("High gas consumption. Check " + device.toString());
+        }
+        if (highElectricityConsumption()) {
+            notifySubscribers("High electricity consumption. Check " + device.toString());
+        }
+
+        // check device needs
+        if (device.somethingToFix() != null) {
+            notifySubscribers(device.somethingToFix());
+        }
+
+        return device;
+    }
+
+    private boolean highWaterConsumption() {
+        if (deviceWaterConsumption > 20 && device instanceof CoffeeMachine) return true;
+        if (deviceWaterConsumption > 100) return true;
+        return false;
+    }
+
+    private boolean highGasConsumption() {
+        if (deviceGasConsumption > 10 && device instanceof Grill) return true;
+        if (deviceGasConsumption > 15 && device instanceof Oven) return true;
+        return false;
+    }
+
+    private boolean highElectricityConsumption() {
+        if (deviceElectricityConsumption > 50) return true;
+        return false;
     }
 
     public void addSubscriber(Subscriber subscriber) {
@@ -34,9 +65,8 @@ public abstract class DeviceManager {
     }
 
     public void notifySubscribers(String message) {
-        this.message = message;
         for (Subscriber subscriber : subscribers) {
-            subscriber.update(this.message);
+            subscriber.update(message);
         }
     }
 
