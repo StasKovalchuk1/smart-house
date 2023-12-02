@@ -1,6 +1,7 @@
 package org.example.persons;
 
 import org.example.devices.DeviceController;
+import org.example.generators.events.EventToHandle;
 
 public class Father extends Person{
 
@@ -9,7 +10,7 @@ public class Father extends Person{
     }
 
     @Override
-    public void handleEvent() {
+    public void handleEvent(EventToHandle event) {
 
     }
 

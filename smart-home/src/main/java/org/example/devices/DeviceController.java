@@ -1,5 +1,7 @@
 package org.example.devices;
 
+import org.example.generators.events.EventToHandle;
+
 import java.util.List;
 
 public class DeviceController {
@@ -18,5 +20,5 @@ public class DeviceController {
         device.getState().run();
     }
 
-    public void handleEvent() {}
+    public void handleEvent(EventToHandle event) {}
 }

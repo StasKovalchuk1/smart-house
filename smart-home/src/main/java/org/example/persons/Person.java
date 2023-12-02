@@ -1,6 +1,7 @@
 package org.example.persons;
 
 import org.example.devices.DeviceController;
+import org.example.generators.events.EventToHandle;
 
 public abstract class Person implements Subscriber{
 
@@ -14,7 +15,7 @@ public abstract class Person implements Subscriber{
         this.deviceController = deviceController;
     }
 
-    public abstract void handleEvent();
+    public abstract void handleEvent(EventToHandle event);
 
     public abstract void doActivity();
 
