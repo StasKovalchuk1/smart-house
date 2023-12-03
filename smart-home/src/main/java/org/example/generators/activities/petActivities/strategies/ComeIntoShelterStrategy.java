@@ -6,7 +6,7 @@ import org.example.devices.DeviceController;
 import org.example.generators.activities.ActivityStrategy;
 
 @Data
-public class GoToShelterStrategy implements ActivityStrategy {
+public class ComeIntoShelterStrategy implements ActivityStrategy {
     @Override
     public void performActivity(DeviceController deviceController, Device device, String entityName) throws Exception {
         if (device != null) {

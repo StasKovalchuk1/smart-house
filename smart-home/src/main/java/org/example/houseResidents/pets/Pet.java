@@ -9,7 +9,7 @@ import org.example.generators.activities.petActivities.PetActivity;
 import org.example.generators.activities.petActivities.strategies.ComeOutOfShelterStrategy;
 import org.example.generators.activities.petActivities.strategies.DrinkWaterStrategy;
 import org.example.generators.activities.petActivities.strategies.EatFoodStrategy;
-import org.example.generators.activities.petActivities.strategies.GoToShelterStrategy;
+import org.example.generators.activities.petActivities.strategies.ComeIntoShelterStrategy;
 import org.example.houseResidents.HouseResident;
 
 
@@ -36,7 +36,7 @@ public abstract class Pet extends HouseResident {
         return switch ((PetActivity)activity){
             case EatFood -> new EatFoodStrategy();
             case DrinkWater -> new DrinkWaterStrategy();
-            case GoToShelter -> new GoToShelterStrategy();
+            case GoToShelter -> new ComeIntoShelterStrategy();
             case ComeOutShelter -> new ComeOutOfShelterStrategy();
         };
     }
