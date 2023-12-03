@@ -1,4 +1,4 @@
-package org.example.houseResidents.persons;
+package org.example.houseResidents.people;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -6,8 +6,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.example.devices.Device;
 import org.example.devices.DeviceController;
 import org.example.generators.activities.Activity;
-import org.example.generators.activities.PersonActivity;
-import org.example.generators.activities.strategies.*;
+import org.example.generators.activities.personActivities.PersonActivity;
+import org.example.generators.activities.personActivities.strategies.*;
 import org.example.generators.events.EventToHandle;
 import org.example.generators.events.strategies.forPerson.EventHandleByPersonStrategy;
 import org.example.houseResidents.HouseResident;
@@ -47,7 +47,7 @@ public abstract class Person extends HouseResident implements Subscriber{
         };
     }
 
-    private ActivityStrategy getStrategyByActivity(Activity activity) {
+    private PersonActivityStrategy getStrategyByActivity(Activity activity) {
         return switch ((PersonActivity) activity) {
             case GetFoodFromFridge -> new GetFoodFromFridgeStrategy();
             case AddFoodToFridge -> new AddFoodToFridgeStrategy();

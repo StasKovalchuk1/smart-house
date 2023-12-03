@@ -1,4 +1,4 @@
-package org.example.generators.activities.strategies;
+package org.example.generators.activities.personActivities.strategies;
 
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
@@ -11,14 +11,19 @@ import java.util.Random;
 
 @Data
 @Slf4j
-public class AddFoodToFridgeStrategy implements ActivityStrategy{
+public class GetFoodFromFridgeStrategy implements PersonActivityStrategy {
+
     @Override
-    public void performActivity(DeviceController deviceController, Device device, String personName){
+    public void performActivity(DeviceController deviceController, Device device, String personName) throws Exception {
         Fridge fridge = (Fridge) deviceController.getDeviceByName("Fridge");
         Food food = pickFood(deviceController);
-        fridge.getFoodInside().add(food);
-        System.out.printf("%s has put %s to fridge%n", personName, food.toString());
-        log.info("Food was added to fridge");
+        if (fridge.getFoodInside().contains(food)) {
+            fridge.getFoodInside().remove(food);
+            System.out.printf("%s has took %s from fridge%n", personName, food.toString());
+            log.info("Person took food from fridge");
+        } else {
+            throw new Exception("There is not enough " + food.toString() + " in the fridge");
+        }
     }
 
     private Food pickFood(DeviceController deviceController){
@@ -28,3 +33,4 @@ public class AddFoodToFridgeStrategy implements ActivityStrategy{
         return fridge.getFoodInside().get(randomFoodIndex);
     }
 }
+

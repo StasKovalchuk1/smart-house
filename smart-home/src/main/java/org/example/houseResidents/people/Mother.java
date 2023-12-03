@@ -1,4 +1,4 @@
-package org.example.houseResidents.persons;
+package org.example.houseResidents.people;
 
 import org.example.devices.DeviceController;
 import org.example.generators.events.EventToHandle;

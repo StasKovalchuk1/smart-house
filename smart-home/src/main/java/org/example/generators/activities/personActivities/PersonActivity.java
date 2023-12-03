@@ -1,6 +1,8 @@
-package org.example.generators.activities;
+package org.example.generators.activities.personActivities;
 
-public enum PersonActivity implements Activity{
+import org.example.generators.activities.Activity;
+
+public enum PersonActivity implements Activity {
 
     GetFoodFromFridge,
     AddFoodToFridge,
@@ -20,4 +22,7 @@ public enum PersonActivity implements Activity{
     FinishHeatingFood,
     FinishBakingFood,
     FinishUsingComputer,
+
+    //todo add: sport activities, went from house:
+
 }

@@ -1,14 +1,16 @@
-package org.example.generators.activities;
+package org.example.generators.activities.personActivities;
 
 import lombok.Data;
+import org.example.generators.activities.Activity;
+import org.example.generators.activities.ActivityGenerator;
 import org.example.houseResidents.HouseResident;
-import org.example.houseResidents.persons.Person;
+import org.example.houseResidents.people.Person;
 
 import java.util.List;
 import java.util.Random;
 
 @Data
-public class PersonActivityGenerator implements ActivityGenerator{
+public class PersonActivityGenerator implements ActivityGenerator {
 
     private final List<PersonActivity> activities;
     private final List<Person> people;

@@ -4,7 +4,7 @@ import org.example.devices.CoffeeMachine;
 import org.example.devices.Device;
 import org.example.devices.Grill;
 import org.example.devices.Oven;
-import org.example.houseResidents.persons.Subscriber;
+import org.example.houseResidents.people.Subscriber;
 
 import java.util.List;
 

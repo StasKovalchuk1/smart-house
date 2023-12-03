@@ -1,10 +1,10 @@
 package org.example.houseResidents;
 
 import lombok.Data;
-import org.example.generators.activities.strategies.ActivityStrategy;
+import org.example.generators.activities.personActivities.strategies.PersonActivityStrategy;
 
 @Data
 public abstract class HouseResident {
 
-    protected ActivityStrategy strategy;
+    protected PersonActivityStrategy strategy;
 }

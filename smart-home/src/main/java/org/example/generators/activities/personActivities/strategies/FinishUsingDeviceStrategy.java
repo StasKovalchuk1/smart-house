@@ -1,11 +1,11 @@
-package org.example.generators.activities.strategies;
+package org.example.generators.activities.personActivities.strategies;
 
 import lombok.Data;
 import org.example.devices.Device;
 import org.example.devices.DeviceController;
 
 @Data
-public class FinishUsingDeviceStrategy implements ActivityStrategy{
+public class FinishUsingDeviceStrategy implements PersonActivityStrategy {
     @Override
     public void performActivity(DeviceController deviceController, Device device, String personName){
         if (device != null) {
