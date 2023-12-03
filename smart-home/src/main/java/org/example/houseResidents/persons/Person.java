@@ -9,6 +9,7 @@ import org.example.generators.activities.Activity;
 import org.example.generators.activities.PersonActivity;
 import org.example.generators.activities.strategies.*;
 import org.example.generators.events.EventToHandle;
+import org.example.generators.events.strategies.forPerson.EventHandleByPersonStrategy;
 import org.example.houseResidents.HouseResident;
 
 @Slf4j
@@ -19,6 +20,7 @@ public abstract class Person extends HouseResident implements Subscriber{
     private String name;
     private boolean atHome;
     private final DeviceController deviceController;
+    private EventHandleByPersonStrategy eventStrategy;
 
     public Person(DeviceController deviceController) {
         this.deviceController = deviceController;
