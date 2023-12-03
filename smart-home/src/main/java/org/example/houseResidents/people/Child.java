@@ -23,8 +23,8 @@ public class Child extends Person{
                 father.handleEvent(event);
                 break;
             case BAD_FOOD:
-                setEventStrategy(new BadFoodStrategy());
-                getEventStrategy().handle();
+                setEventStrategy(new ExpiredFoodStrategy());
+                getEventStrategy().handle(getDeviceController());
             case CHILD_GOT_HURT:
                 mother.handleEvent(event);
             default:

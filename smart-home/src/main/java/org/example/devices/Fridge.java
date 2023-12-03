@@ -21,4 +21,8 @@ public class Fridge extends Device{
     public void performDeviceAction() {
         System.out.println("Fridge was used");
     }
+
+    public void removeFoodFromFridge(Food food) {
+        foodInside.remove(food);
+    }
 }

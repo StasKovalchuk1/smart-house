@@ -14,13 +14,13 @@ public class Mother extends Person{
     @Override
     public void handleEvent(EventToHandle event) {
         setEventStrategy(getStrategyByEvent(event));
-        getEventStrategy().handle();
+        getEventStrategy().handle(getDeviceController());
     }
 
     public EventHandleByPersonStrategy getStrategyByEvent(EventToHandle event) {
         return switch ((EventToHandleByPerson) event) {
             case BREAK_DEVICE -> new BreakDeviceStrategy();
-            case BAD_FOOD -> new BadFoodStrategy();
+            case BAD_FOOD -> new ExpiredFoodStrategy();
             case CHILD_GOT_HURT -> new ChildGotHurtStrategy();
             case GUEST_ARRIVAL -> new GuestArrivalStrategy();
             case FIRE_ALARM -> new FireAlarmStrategy();

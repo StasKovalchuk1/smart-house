@@ -18,6 +18,12 @@ public class DeviceController {
         device.getState().turnOff();
     }
 
+    public void turnOffAllDevices() {
+        for (Device device : devices) {
+            turnOffDevice(device);
+        }
+    }
+
     public void runDevice(Device device) {
         device.getState().run();
     }
@@ -32,4 +38,6 @@ public class DeviceController {
         }
         return null;
     }
+
+
 }
