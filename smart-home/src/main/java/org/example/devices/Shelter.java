@@ -30,6 +30,6 @@ public class Shelter extends Device implements ShelterInterface {
 
     @Override
     public void performDeviceAction() {
-
+        shelterOn();
     }
 }

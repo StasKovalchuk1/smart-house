@@ -13,33 +13,21 @@ import java.util.Random;
 @Data
 public class PetActivityGenerator implements ActivityGenerator {
 
-    private List<LandAnimalActivity> landAnimalActivities;
-    private List<WaterAnimalActivity> waterAnimalActivities;
+    private List<PetActivity> activities;
     private List<Pet> pets;
     Random randomNumberGenerator = new Random();
 
     @Override
-    public void generateActivity() {
+    public void generateActivity() throws Exception {
         Pet pet = (Pet)pickEntity();
-        Activity activity;
-
-        if (pet instanceof GoldenFish){
-            activity = pickWaterAnimalActivity();
-        } else {
-            activity = pickActivity();
-        }
+        Activity activity = pickActivity();
         pet.doActivity(activity);
     }
 
     @Override
     public Activity pickActivity() {
-        int randomActivityIndex = randomNumberGenerator.nextInt(landAnimalActivities.size()+1);
-        return landAnimalActivities.get(randomActivityIndex);
-    }
-
-    public Activity pickWaterAnimalActivity(){
-        int randomActivityIndex = randomNumberGenerator.nextInt(waterAnimalActivities.size()+1);
-        return waterAnimalActivities.get(randomActivityIndex);
+        int randomActivityIndex = randomNumberGenerator.nextInt(activities.size()+1);
+        return activities.get(randomActivityIndex);
     }
 
     @Override
