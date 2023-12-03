@@ -11,8 +11,11 @@ public class BreakDeviceStrategy implements EventHandleByPersonStrategy{
     @Override
     public void handle(DeviceController controller) {
         Device device = getBrokenDevice(controller);
-        if (isPossibleRepair(device)) sendToRepair();
-        else purchaseNewDevice();
+        if (isPossibleRepair(device)) sendToRepair(device);
+        else {
+            log.info("{} cannot be repaired", device.getName());
+            purchaseNewDevice();
+        }
     }
 
     public Device getBrokenDevice(DeviceController controller) {
@@ -20,16 +23,17 @@ public class BreakDeviceStrategy implements EventHandleByPersonStrategy{
     }
 
     private boolean isPossibleRepair(Device device) {
-        readDeviceDocumentation(device.getDocumentation());
+        readDeviceDocumentation(device);
         return new Random().nextBoolean();
     }
 
-    private void readDeviceDocumentation(String documentation) {
-        log.info("Device documentation has been read");
+    private void readDeviceDocumentation(Device device) {
+        device.getDocumentation();
+        log.info("{} documentation has been read", device.getName());
     }
 
-    private void sendToRepair() {
-        log.info("Device has been sent to repair");
+    private void sendToRepair(Device device) {
+        log.info("{} has been sent to repair", device.getName());
     }
 
     private void purchaseNewDevice() {

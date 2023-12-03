@@ -1,5 +1,7 @@
 package org.example.generators.events.strategies.forController;
 
+import org.example.devices.DeviceController;
+
 public interface EventHandleByControllerStrategy {
-    void handleEvent();
+    void handle(DeviceController controller);
 }

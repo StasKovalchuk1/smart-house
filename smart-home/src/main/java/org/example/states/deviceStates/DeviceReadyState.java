@@ -13,19 +13,19 @@ public class DeviceReadyState extends DeviceState{
 
     @Override
     public void turnOn() {
-        log.error("Device is already turned on");
+        log.error("{} is already turned on", device.getName());
     }
 
     @Override
     public void turnOff() {
         device.changeState(new DeviceOffState(device));
-        log.info("Device is turned off");
+        log.info("{} is turned off", device.getName());
     }
 
     @Override
     public void run() {
         device.changeState(new DeviceRunningState(device));
         device.performDeviceAction();
-        log.info("Device is running");
+        log.info("{} is running", device.getName());
     }
 }
