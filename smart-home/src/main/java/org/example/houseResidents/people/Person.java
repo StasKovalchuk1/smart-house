@@ -28,6 +28,7 @@ public abstract class Person extends HouseResident implements Subscriber{
 
     public abstract void handleEvent(EventToHandle event);
 
+    @Override
     public void doActivity(Activity activity) throws Exception {
         Device device = getDeviceByActivity(activity);
         setStrategy(getStrategyByActivity(activity));

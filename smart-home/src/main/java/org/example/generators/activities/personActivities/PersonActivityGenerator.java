@@ -12,8 +12,8 @@ import java.util.Random;
 @Data
 public class PersonActivityGenerator implements ActivityGenerator {
 
-    private final List<PersonActivity> activities;
-    private final List<Person> people;
+    private List<PersonActivity> activities;
+    private List<Person> people;
     Random randomNumberGenerator = new Random();
 
 
