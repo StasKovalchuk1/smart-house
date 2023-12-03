@@ -1,13 +1,12 @@
 package org.example.houseResidents.pets;
 
 import lombok.Data;
-import org.example.devices.Device;
 import org.example.devices.DeviceController;
 import org.example.devices.Shelter;
 import org.example.generators.activities.Activity;
 import org.example.generators.activities.ActivityStrategy;
 import org.example.generators.activities.petActivities.PetActivity;
-import org.example.generators.activities.petActivities.strategies.ComeOutShelterStrategy;
+import org.example.generators.activities.petActivities.strategies.ComeOutOfShelterStrategy;
 import org.example.generators.activities.petActivities.strategies.DrinkWaterStrategy;
 import org.example.generators.activities.petActivities.strategies.EatFoodStrategy;
 import org.example.generators.activities.petActivities.strategies.GoToShelterStrategy;
@@ -38,7 +37,7 @@ public abstract class Pet extends HouseResident {
             case EatFood -> new EatFoodStrategy();
             case DrinkWater -> new DrinkWaterStrategy();
             case GoToShelter -> new GoToShelterStrategy();
-            case ComeOutShelter -> new ComeOutShelterStrategy();
+            case ComeOutShelter -> new ComeOutOfShelterStrategy();
         };
     }
 }
