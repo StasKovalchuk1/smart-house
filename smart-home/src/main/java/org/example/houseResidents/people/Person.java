@@ -6,6 +6,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.example.devices.Device;
 import org.example.devices.DeviceController;
 import org.example.generators.activities.Activity;
+import org.example.generators.activities.ActivityStrategy;
 import org.example.generators.activities.personActivities.PersonActivity;
 import org.example.generators.activities.personActivities.strategies.*;
 import org.example.generators.events.EventToHandle;
@@ -35,7 +36,8 @@ public abstract class Person extends HouseResident implements Subscriber{
         strategy.performActivity(deviceController, device, name);
     }
 
-    private Device getDeviceByActivity(Activity activity) {
+    @Override
+    protected Device getDeviceByActivity(Activity activity) {
         return switch ((PersonActivity) activity) {
             case GetFoodFromFridge, AddFoodToFridge -> deviceController.getDeviceByName("Fridge");
             case StartDoingLaundry, FinishDoingLaundry -> deviceController.getDeviceByName("Washing machine");
@@ -48,7 +50,8 @@ public abstract class Person extends HouseResident implements Subscriber{
         };
     }
 
-    private PersonActivityStrategy getStrategyByActivity(Activity activity) {
+    @Override
+    protected ActivityStrategy getStrategyByActivity(Activity activity) {
         return switch ((PersonActivity) activity) {
             case GetFoodFromFridge -> new GetFoodFromFridgeStrategy();
             case AddFoodToFridge -> new AddFoodToFridgeStrategy();

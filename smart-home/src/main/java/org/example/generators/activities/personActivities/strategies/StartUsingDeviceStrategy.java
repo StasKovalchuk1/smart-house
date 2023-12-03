@@ -3,9 +3,10 @@ package org.example.generators.activities.personActivities.strategies;
 import lombok.Data;
 import org.example.devices.Device;
 import org.example.devices.DeviceController;
+import org.example.generators.activities.ActivityStrategy;
 
 @Data
-public class StartUsingDeviceStrategy implements PersonActivityStrategy {
+public class StartUsingDeviceStrategy implements ActivityStrategy {
     @Override
     public void performActivity(DeviceController deviceController, Device device, String personName){
         if (device != null) {

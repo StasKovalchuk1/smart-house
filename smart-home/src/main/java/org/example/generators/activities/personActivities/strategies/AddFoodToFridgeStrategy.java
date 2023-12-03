@@ -6,12 +6,13 @@ import org.example.devices.Device;
 import org.example.devices.DeviceController;
 import org.example.devices.Food;
 import org.example.devices.Fridge;
+import org.example.generators.activities.ActivityStrategy;
 
 import java.util.Random;
 
 @Data
 @Slf4j
-public class AddFoodToFridgeStrategy implements PersonActivityStrategy {
+public class AddFoodToFridgeStrategy implements ActivityStrategy {
     @Override
     public void performActivity(DeviceController deviceController, Device device, String personName){
         Fridge fridge = (Fridge) deviceController.getDeviceByName("Fridge");
