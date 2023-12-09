@@ -9,21 +9,22 @@ public class Father extends Person{
 
     public Father(DeviceController deviceController) {
         super(deviceController);
+        setName("father");
     }
 
     @Override
     public void handleEvent(EventToHandle event) {
-        setEventStrategy(getStrategyByEvent(event));
+        setStrategyByEvent(event);
         getEventStrategy().handle(getDeviceController());
     }
 
-    public EventHandleByPersonStrategy getStrategyByEvent(EventToHandle event) {
-        return switch ((EventToHandleByPerson) event) {
-            case BREAK_DEVICE -> new BreakDeviceStrategy();
-            case BAD_FOOD -> new ExpiredFoodStrategy();
-            case CHILD_GOT_HURT -> new ChildGotHurtStrategy();
-            case GUEST_ARRIVAL -> new GuestArrivalStrategy();
-            case FIRE_ALARM -> new FireAlarmStrategy();
+    public void setStrategyByEvent(EventToHandle event) {
+         switch ((EventToHandleByPerson) event) {
+            case BREAK_DEVICE -> setEventStrategy(new BreakDeviceStrategy());
+            case BAD_FOOD -> setEventStrategy(new ExpiredFoodStrategy());
+            case CHILD_GOT_HURT -> setEventStrategy(new ChildGotHurtStrategy());
+            case GUEST_ARRIVAL -> setEventStrategy(new GuestArrivalStrategy());
+            case FIRE_ALARM -> setEventStrategy(new FireAlarmStrategy());
         };
     }
 

@@ -6,6 +6,7 @@ import org.example.devices.Grill;
 import org.example.devices.Oven;
 import org.example.houseResidents.people.Subscriber;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public abstract class DeviceManager {
@@ -14,7 +15,7 @@ public abstract class DeviceManager {
     private int deviceElectricityConsumption;
     private int deviceWaterConsumption;
 
-    private List<Subscriber> subscribers;
+    private final List<Subscriber> subscribers = new ArrayList<>();
 
     public abstract Device createDevice();
 

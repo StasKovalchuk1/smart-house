@@ -11,6 +11,6 @@ public abstract class HouseResident {
     protected ActivityStrategy strategy;
 
     protected abstract void doActivity(Activity activity) throws Exception;
-    protected abstract Device getDeviceByActivity(Activity activity);
+//    protected abstract Device getDeviceByActivity(Activity activity);
     protected abstract ActivityStrategy getStrategyByActivity(Activity activity);
 }
