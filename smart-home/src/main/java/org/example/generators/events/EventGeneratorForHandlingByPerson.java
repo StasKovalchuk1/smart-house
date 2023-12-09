@@ -1,11 +1,13 @@
 package org.example.generators.events;
 
+import lombok.extern.slf4j.Slf4j;
 import org.example.devices.DeviceController;
 import org.example.houseResidents.people.Person;
 
 import java.util.List;
 import java.util.Random;
 
+@Slf4j
 public class EventGeneratorForHandlingByPerson implements EventGenerator{
     private List<Person> people;
 
@@ -25,10 +27,12 @@ public class EventGeneratorForHandlingByPerson implements EventGenerator{
     public EventToHandle pickEvent() {
         EventToHandleByPerson[] events = EventToHandleByPerson.values();
         int index = new Random().nextInt(events.length);
+        log.info(events[index].toString());
         return events[index];
     }
 
     public Person pickPerson() {
-        return null;
+        log.info(people.get(0).toString());
+        return people.get(0);
     }
 }

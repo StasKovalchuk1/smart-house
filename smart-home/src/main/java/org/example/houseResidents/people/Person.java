@@ -36,7 +36,7 @@ public abstract class Person extends HouseResident implements Subscriber{
         strategy.performActivity(deviceController, device, name);
     }
 
-    @Override
+//    @Override
     protected Device getDeviceByActivity(Activity activity) {
         return switch ((PersonActivity) activity) {
             case GetFoodFromFridge, AddFoodToFridge -> deviceController.getDeviceByName("Fridge");
@@ -66,5 +66,12 @@ public abstract class Person extends HouseResident implements Subscriber{
                  FinishHeatingFood, FinishBakingFood,
                  FinishUsingComputer -> new FinishUsingDeviceStrategy();
         };
+    }
+
+    @Override
+    public String toString() {
+        return "Person{" +
+                "name='" + name + '\'' +
+                '}';
     }
 }

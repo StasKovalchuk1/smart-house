@@ -3,12 +3,13 @@ package org.example.devices;
 import lombok.Data;
 import org.example.generators.events.EventToHandle;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
 public class DeviceController {
 
-    private List<Device> devices;
+    private List<Device> devices = new ArrayList<>();
 
     public void turnOnDevice(Device device) {
         device.getState().turnOn();
