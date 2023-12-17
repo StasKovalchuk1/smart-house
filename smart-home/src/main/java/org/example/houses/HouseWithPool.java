@@ -12,6 +12,7 @@ public class HouseWithPool extends House{
     public HouseWithPool(List<Floor> floors, Pool pool) {
         this.floors = floors;
         this.pool = pool;
+        setType(HouseTypes.WITH_POOL);
     }
 
     public List<Floor> getFloors() {

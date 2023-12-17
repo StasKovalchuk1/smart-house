@@ -1,21 +1,31 @@
 package org.example.houseComponents.vehicle;
 
-
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 @Data
-@NoArgsConstructor
-public class Bicycle implements Vehicle{
+@Slf4j
+public class Bicycle extends Vehicle{
 
-    private Integer id;
+    public Bicycle() {
+        setName("Bicycle");
+    }
+
+    @Override
+    public void ride() {
+        setInUse(true);
+        log.info("Bicycle is in use");
+    }
+
+    @Override
+    public void returnToGarage() {
+        setInUse(false);
+        log.info("Bicycle was returned to the garage ");
+    }
 
     @Override
     public String toString() {
-        return "icycle";
-    }
-    @Override
-    public void ride() {
-        System.out.println("Bicycle is riding");
+        return "Bicycle";
     }
 }

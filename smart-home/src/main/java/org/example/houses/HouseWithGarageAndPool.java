@@ -16,6 +16,7 @@ public class HouseWithGarageAndPool extends House{
         this.floors = floors;
         this.garage = garage;
         this.pool = pool;
+        setType(HouseTypes.WITH_GARAGE_AND_POOL);
     }
 
     public List<Floor> getFloors() {

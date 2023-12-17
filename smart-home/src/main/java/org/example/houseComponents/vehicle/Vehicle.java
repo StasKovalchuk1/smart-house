@@ -1,7 +1,14 @@
 package org.example.houseComponents.vehicle;
 
+import lombok.Data;
 
-public interface Vehicle {
+@Data
+public abstract class Vehicle {
+    private String name;
 
-    public void ride();
+    private boolean inUse;
+
+    public abstract void ride();
+
+    public abstract void returnToGarage();
 }

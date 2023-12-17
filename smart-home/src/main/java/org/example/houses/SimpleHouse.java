@@ -8,6 +8,7 @@ public class SimpleHouse extends House{
 
     public SimpleHouse(List<Floor> floors){
         this.floors = floors;
+        setType(HouseTypes.SIMPLE);
     }
 
     public List<Floor> getFloors() {

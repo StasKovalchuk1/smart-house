@@ -4,11 +4,12 @@ import org.example.devices.DeviceController;
 import org.example.generators.events.EventToHandle;
 import org.example.generators.events.EventToHandleByPerson;
 import org.example.generators.events.strategies.forPerson.*;
+import org.example.houses.House;
 
 public class Mother extends Person{
 
-    public Mother(DeviceController deviceController) {
-        super(deviceController);
+    public Mother(DeviceController deviceController, House house) {
+        super(deviceController, house);
     }
 
     @Override

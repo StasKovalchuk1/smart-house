@@ -2,12 +2,15 @@ package org.example.houseComponents.vehicle;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 @Data
-@NoArgsConstructor
-public class Car implements Vehicle{
+@Slf4j
+public class Car extends Vehicle{
 
-    private Integer id;
+    public Car() {
+        setName("Car");
+    }
 
     @Override
     public String toString() {
@@ -16,6 +19,13 @@ public class Car implements Vehicle{
 
     @Override
     public void ride() {
-        System.out.println("Car is riding");
+        setInUse(true);
+        log.info("Car is in use");
+    }
+
+    @Override
+    public void returnToGarage() {
+        setInUse(false);
+        log.info("Car was returned to the garage ");
     }
 }

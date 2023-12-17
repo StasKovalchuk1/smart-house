@@ -12,6 +12,7 @@ public class HouseWithGarage extends House{
     public HouseWithGarage(List<Floor> floors, Garage garage) {
         this.floors = floors;
         this.garage = garage;
+        setType(HouseTypes.WITH_GARAGE);
     }
 
     public List<Floor> getFloors() {

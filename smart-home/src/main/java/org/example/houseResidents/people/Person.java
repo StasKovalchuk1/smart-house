@@ -12,19 +12,21 @@ import org.example.generators.activities.personActivities.strategies.*;
 import org.example.generators.events.EventToHandle;
 import org.example.generators.events.strategies.forPerson.EventHandleByPersonStrategy;
 import org.example.houseResidents.HouseResident;
+import org.example.houses.House;
 
 @Slf4j
 @EqualsAndHashCode(callSuper = true)
 @Data
 public abstract class Person extends HouseResident implements Subscriber{
-
+    private House house;
     private String name;
     private boolean atHome;
     private final DeviceController deviceController;
     private EventHandleByPersonStrategy eventStrategy;
 
-    public Person(DeviceController deviceController) {
+    public Person(DeviceController deviceController, House house) {
         this.deviceController = deviceController;
+        this.house = house;
     }
 
     public abstract void handleEvent(EventToHandle event);
@@ -33,7 +35,7 @@ public abstract class Person extends HouseResident implements Subscriber{
     public void doActivity(Activity activity) throws Exception {
         Device device = getDeviceByActivity(activity);
         setStrategy(getStrategyByActivity(activity));
-        strategy.performActivity(deviceController, device, name);
+        strategy.performActivity(deviceController, device, this);
     }
 
 //    @Override
@@ -54,6 +56,7 @@ public abstract class Person extends HouseResident implements Subscriber{
     protected ActivityStrategy getStrategyByActivity(Activity activity) {
         return switch ((PersonActivity) activity) {
             case GetFoodFromFridge -> new GetFoodFromFridgeStrategy();
+
             case AddFoodToFridge -> new AddFoodToFridgeStrategy();
 
             case StartDoingLaundry, StartWashingDishes,

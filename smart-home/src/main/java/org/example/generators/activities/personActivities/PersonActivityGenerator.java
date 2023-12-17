@@ -17,6 +17,8 @@ public class PersonActivityGenerator implements ActivityGenerator {
     Random randomNumberGenerator = new Random();
 
 
+
+
     @Override
     public void generateActivity() throws Exception {
         Activity activity = pickActivity();
