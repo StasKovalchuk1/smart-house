@@ -22,27 +22,11 @@ public class SkiStrategy implements ActivityStrategy {
             case SIMPLE, WITH_POOL -> log.info("There is no ski to ride");
             case WITH_GARAGE -> {
                 Optional<Vehicle> ski = ((HouseWithGarage) person.getHouse()).getGarage().getVehicleByName("Ski");
-                if (ski.isPresent()) {
-                    if (ski.get().isInUse()) {
-                        log.info("Ski is already in use. " + person.getName() + " should wait.");
-                    }
-                    else {
-                        ski.get().setInUse(true);
-                        person.setAtHome(false);
-                    }
-                }
+                ski.ifPresent(vehicle -> vehicle.useVehicle(person));
             }
             case WITH_GARAGE_AND_POOL -> {
                 Optional<Vehicle> ski = ((HouseWithGarageAndPool) person.getHouse()).getGarage().getVehicleByName("Ski");
-                if (ski.isPresent()) {
-                    if (ski.get().isInUse()) {
-                        log.info("Ski is already in use. " + person.getName() + " should wait.");
-                    }
-                    else {
-                        ski.get().setInUse(true);
-                        person.setAtHome(false);
-                    }
-                }
+                ski.ifPresent(vehicle -> vehicle.useVehicle(person));
             }
         }
     }

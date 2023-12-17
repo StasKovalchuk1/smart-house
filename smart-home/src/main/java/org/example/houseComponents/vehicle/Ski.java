@@ -3,6 +3,7 @@ package org.example.houseComponents.vehicle;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.example.houseResidents.people.Person;
 
 @Data
 @Slf4j
@@ -18,14 +19,16 @@ public class Ski extends Vehicle{
     }
 
     @Override
-    public void ride() {
+    public void ride(Person person) {
         setInUse(true);
+        person.setAtHome(false);
         log.info("Ski is in use");
     }
 
     @Override
-    public void returnToGarage() {
+    public void returnToGarage(Person person) {
         setInUse(false);
+        person.setAtHome(true);
         log.info("Ski were returned to the garage ");
     }
 }

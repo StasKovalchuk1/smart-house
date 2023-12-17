@@ -22,27 +22,11 @@ public class RideCarStrategy implements ActivityStrategy {
             case SIMPLE, WITH_POOL -> log.info("There is no car to ride");
             case WITH_GARAGE -> {
                 Optional<Vehicle> car = ((HouseWithGarage) person.getHouse()).getGarage().getVehicleByName("Car");
-                if (car.isPresent()) {
-                    if (car.get().isInUse()) {
-                        log.info("Car is already in use. " + person.getName() + " should wait.");
-                    }
-                    else {
-                        car.get().setInUse(true);
-                        person.setAtHome(false);
-                    }
-                }
+                car.ifPresent(vehicle -> vehicle.useVehicle(person));
             }
             case WITH_GARAGE_AND_POOL -> {
                 Optional<Vehicle> car = ((HouseWithGarageAndPool) person.getHouse()).getGarage().getVehicleByName("Car");
-                if (car.isPresent()) {
-                    if (car.get().isInUse()) {
-                        log.info("Car is already in use. " + person.getName() + " should wait.");
-                    }
-                    else {
-                        car.get().setInUse(true);
-                        person.setAtHome(false);
-                    }
-                }
+                car.ifPresent(vehicle -> vehicle.useVehicle(person));
             }
         }
     }
