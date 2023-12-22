@@ -1,5 +1,6 @@
 package org.example.factory;
 
+import lombok.NoArgsConstructor;
 import org.example.devices.CoffeeMachine;
 import org.example.devices.Device;
 import org.example.devices.Grill;
@@ -8,20 +9,28 @@ import org.example.houseResidents.people.Subscriber;
 
 import java.util.ArrayList;
 import java.util.List;
-
 public abstract class DeviceManager {
     private Device device;
+    private Integer deviceID;
+    private String deviceName;
+    private String deviceDocumentation;
     private int deviceGasConsumption;
     private int deviceElectricityConsumption;
     private int deviceWaterConsumption;
 
     private final List<Subscriber> subscribers = new ArrayList<>();
 
-    public abstract Device createDevice();
+    public DeviceManager(Integer deviceID, String deviceName, String deviceDocumentation) {
+        this.deviceID = deviceID;
+        this.deviceName = deviceName;
+        this.deviceDocumentation = deviceDocumentation;
+    }
+
+    public abstract Device createDevice(Integer deviceID, String deviceName, String deviceDocumentation);
 
         // метод будет вызываться к примеру каждый месяц
     public Device collectData() {
-        if (device == null) device = createDevice();
+        if (device == null) device = createDevice(deviceID, deviceName, deviceDocumentation);
         deviceGasConsumption = device.getGasConsumption();
         deviceElectricityConsumption = device.getElectricityConsumption();
         deviceWaterConsumption = device.getWaterConsumption();

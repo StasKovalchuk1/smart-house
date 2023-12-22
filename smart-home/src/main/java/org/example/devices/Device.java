@@ -8,7 +8,6 @@ import org.example.states.deviceStates.DeviceState;
 public abstract class Device {
 
     private Integer id;
-
     private String name;
     private String documentation;
     private DeviceState state;
@@ -16,7 +15,14 @@ public abstract class Device {
     private int gasConsumption;
     private int electricityConsumption;
 
-    public Device() {
+    protected Device() {
+        this.state = new DeviceOffState(this);
+    }
+
+    public Device(Integer id, String name, String documentation) {
+        this.id = id;
+        this.name = name;
+        this.documentation = documentation;
         this.state = new DeviceOffState(this);
     }
 

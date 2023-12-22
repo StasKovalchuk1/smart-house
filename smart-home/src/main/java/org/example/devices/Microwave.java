@@ -4,11 +4,14 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@NoArgsConstructor
 public class Microwave extends Device{
 
     private int power;
     private int timer;
+
+    public Microwave(Integer id, String name, String documentation) {
+        super(id, name, documentation);
+    }
 
     @Override
     public String somethingToFix() {

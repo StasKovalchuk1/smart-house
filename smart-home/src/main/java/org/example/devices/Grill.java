@@ -4,10 +4,12 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@NoArgsConstructor
 public class Grill extends Device{
-
     private int coalAmount;
+
+    public Grill(Integer id, String name, String documentation) {
+        super(id, name, documentation);
+    }
 
     @Override
     public String somethingToFix() {

@@ -11,7 +11,9 @@ import org.example.generators.activities.petActivities.strategies.DrinkWaterStra
 import org.example.generators.activities.petActivities.strategies.EatFoodStrategy;
 import org.example.generators.activities.petActivities.strategies.ComeIntoShelterStrategy;
 import org.example.houseResidents.HouseResident;
-
+import org.example.houseResidents.people.Father;
+import org.example.houseResidents.people.Person;
+import org.example.houses.SimpleHouse;
 
 
 @Data
@@ -22,13 +24,14 @@ public abstract class Pet extends HouseResident {
     protected Shelter petShelter;
     private String name;
 
+    //TODO раскомментирвоать строку
     @Override
     public void doActivity(Activity activity) throws Exception {
         if (this instanceof GoldenFish && !activity.toString().equals("EatFood")){
             return;
         }
         setStrategy(getStrategyByActivity(activity));
-        strategy.performActivity(deviceController, petShelter, name);
+//        strategy.performActivity(deviceController, petShelter, name);
     }
 
     @Override

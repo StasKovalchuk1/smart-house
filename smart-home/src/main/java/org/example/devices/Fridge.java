@@ -7,10 +7,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Data
-@NoArgsConstructor
 public class Fridge extends Device{
 
     private List<Food> foodInside = new ArrayList<>();
+
+    public Fridge(Integer id, String name, String documentation) {
+        super(id, name, documentation);
+    }
 
     @Override
     public String somethingToFix() {

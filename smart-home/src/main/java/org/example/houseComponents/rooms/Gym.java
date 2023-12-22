@@ -2,13 +2,21 @@ package org.example.houseComponents.rooms;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.example.devices.Device;
+
+import java.util.List;
 
 @Data
-@NoArgsConstructor
 public class Gym extends Room{
 
     public Gym(Gym target){
         super(target);
+        setType(RoomType.GYM);
+    }
+
+    //TODO добавить doors, windows, lights
+    public Gym(List<Device> devices) {
+        setDevices(devices);
     }
 
     @Override

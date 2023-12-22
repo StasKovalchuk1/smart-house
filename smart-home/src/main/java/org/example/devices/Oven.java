@@ -4,11 +4,14 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@NoArgsConstructor
 public class Oven extends Device{
 
     private int timer;
     private int temperature;
+
+    public Oven(Integer id, String name, String documentation) {
+        super(id, name, documentation);
+    }
 
     @Override
     public String somethingToFix() {

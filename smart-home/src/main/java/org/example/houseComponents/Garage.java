@@ -12,8 +12,6 @@ import java.util.Optional;
 @NoArgsConstructor
 public class Garage {
 
-    private Integer id;
-
     private List<Vehicle> vehicles;
 
     @Override

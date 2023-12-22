@@ -5,11 +5,14 @@ import org.example.devices.Device;
 import org.example.devices.DeviceController;
 import org.example.devices.Shelter;
 import org.example.generators.activities.ActivityStrategy;
+import org.example.houseResidents.people.Person;
 
 @Data
 public class DrinkWaterStrategy implements ActivityStrategy {
+
+    // TODO пофиксить person аргумент
     @Override
-    public void performActivity(DeviceController deviceController, Device device, String entityName) throws Exception {
+    public void performActivity(DeviceController deviceController, Device device, Person entityName) throws Exception {
         if (device!=null){
             if (((Shelter)device).getWaterAmount()!=0){
                 ((Shelter)device).setWaterAmount(((Shelter)device).getWaterAmount()-10);

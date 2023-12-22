@@ -4,10 +4,13 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@NoArgsConstructor
 public class Dishwasher extends Device{
 
     private int detergentAmount;
+
+    public Dishwasher(Integer id, String name, String documentation) {
+        super(id, name, documentation);
+    }
 
     @Override
     public String somethingToFix() {

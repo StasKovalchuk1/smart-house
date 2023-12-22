@@ -2,9 +2,44 @@
   "type": "With Garage",
   "floors": [
     {
+      "level": 1,
+      "rooms": [
+        {
+          "type": "TOILET",
+          "devices": [],
+          "doors": [],
+          "windows": [],
+          "lights": []
+        }
+      ]
+    },
+    {
+      "level": 2,
+      "rooms": [
+        {
+          "type": "KITCHEN",
+          "devices": [{
+            "id": 1,
+            "name": "Grill",
+            "documentation": "переворачивай блять"
+          }],
+          "doors": [],
+          "windows": [],
+          "lights": []
+        },
+        {
+          "type": "BATHROOM",
+          "devices": [{
+            "id": 2,
+            "name": "WashingMachine",
+            "documentation": "порошка добавить"
+          }],
+          "doors": [],
+          "windows": [],
+          "lights": []
+        }
+      ]
     }
   ],
-  "garage": {
-    "id": "1"
-  }
+  "garage": {}
 }

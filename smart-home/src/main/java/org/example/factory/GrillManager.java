@@ -4,9 +4,13 @@ import org.example.devices.Device;
 import org.example.devices.Grill;
 
 public class GrillManager extends DeviceManager{
-    @Override
-    public Device createDevice() {
-        return new Grill();
+
+    public GrillManager(Integer deviceID, String deviceName, String deviceDocumentation) {
+        super(deviceID, deviceName, deviceDocumentation);
     }
 
+    @Override
+    public Device createDevice(Integer deviceID, String deviceName, String deviceDocumentation) {
+        return new Grill(deviceID, deviceName, deviceDocumentation);
+    }
 }

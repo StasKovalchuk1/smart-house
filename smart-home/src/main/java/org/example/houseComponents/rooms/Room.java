@@ -14,8 +14,7 @@ import java.util.Objects;
 @NoArgsConstructor
 public abstract class Room {
 
-    private Integer id;
-
+    private RoomType type;
     private List<Device> devices;
     private List<Door> doors;
     private List<Window> windows;

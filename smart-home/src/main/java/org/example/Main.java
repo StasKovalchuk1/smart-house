@@ -44,7 +44,6 @@ public class Main {
 //        generator.generateEvent();
         try {
             House house = ConfigBuilder.buildHouseFromJson("config/config1.json");
-            System.out.println(((HouseWithGarage) house).getGarage().getId());
             System.out.println(house.toString());
         } catch (IOException e) {
             throw new RuntimeException(e);
