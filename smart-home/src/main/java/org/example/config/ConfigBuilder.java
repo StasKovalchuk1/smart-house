@@ -8,16 +8,16 @@ import lombok.extern.slf4j.Slf4j;
 import netscape.javascript.JSObject;
 import org.example.builders.HouseBuilder;
 import org.example.devices.Device;
+import org.example.devices.DeviceController;
 import org.example.devices.Grill;
 import org.example.devices.WashingMachine;
 import org.example.director.Director;
-import org.example.factory.DeviceManager;
-import org.example.factory.GrillManager;
-import org.example.factory.WashingMachineManager;
+import org.example.factory.*;
 import org.example.houseComponents.Floor;
 import org.example.houseComponents.Garage;
 import org.example.houseComponents.Pool;
 import org.example.houseComponents.rooms.*;
+import org.example.houseResidents.people.*;
 import org.example.houses.*;
 import org.json.JSONObject;
 
@@ -27,6 +27,7 @@ import java.lang.reflect.Field;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
@@ -90,11 +91,9 @@ public class ConfigBuilder {
 
         for (JsonNode roomNode : roomsNode) {
             RoomType roomType = RoomType.valueOf(roomNode.get("type").asText());
-            // Parse devices, doors, windows, lights if needed
-            // ...
+            JsonNode devicesNode = roomNode.get("devices");
+            List<Device> devices = (devicesNode != null) ? parseDevices(devicesNode) : Collections.emptyList();
 
-//            List<Device> devices = parseDevices(roomsNode.get("devices"));
-            List<Device> devices = roomNode.has("devices") ? parseDevices(roomNode.get("devices")) : new ArrayList<>();
             switch (roomType) {
                 case KITCHEN:
                     rooms.add(new Kitchen(devices));
@@ -115,7 +114,7 @@ public class ConfigBuilder {
                     rooms.add(new LivingRoom(devices));
                     break;
                 default:
-                    throw new IllegalArgumentException("Unknown home type: " + roomType);
+                    throw new IllegalArgumentException("Unknown room type: " + roomType);
             }
         }
 
@@ -127,9 +126,9 @@ public class ConfigBuilder {
         DeviceManager manager;
 
         for (JsonNode deviceNode : devicesNode) {
-            Integer id = Integer.valueOf(String.valueOf(deviceNode.get("id")));
-            String name = String.valueOf(deviceNode.get("name"));
-            String documentation = String.valueOf(deviceNode.get("documentation"));
+            Integer id = deviceNode.get("id").asInt();
+            String name = deviceNode.get("name").asText();
+            String documentation = deviceNode.get("documentation").asText();
 
             switch (name){
                 case "Grill":
@@ -140,12 +139,78 @@ public class ConfigBuilder {
                     manager = new WashingMachineManager(id, name, documentation);
                     devices.add(manager.collectData());
                     break;
+                case "CoffeeMachine":
+                    manager = new CoffeeMachineManager(id, name, documentation);
+                    devices.add(manager.collectData());
+                    break;
+                case "Computer":
+                    manager = new ComputerManager(id, name, documentation);
+                    devices.add(manager.collectData());
+                    break;
+                case "Dishwasher":
+                    manager = new DishwasherManager(id, name, documentation);
+                    devices.add(manager.collectData());
+                    break;
+                case "Fridge":
+                    manager = new FridgeManager(id, name, documentation);
+                    devices.add(manager.collectData());
+                    break;
+                case "Microwave":
+                    manager = new MicrowaveManager(id, name, documentation);
+                    devices.add(manager.collectData());
+                    break;
+                case "Oven":
+                    manager = new OvenManager(id, name, documentation);
+                    devices.add(manager.collectData());
+                    break;
+                case "Shelter":
+                    manager = new ShelterManager(id, name, documentation);
+                    devices.add(manager.collectData());
+                    break;
                 default:
-                    throw new IllegalArgumentException("Unknown home type: " + deviceNode);
+                    throw new IllegalArgumentException("Unknown device: " + name);
             }
         }
 
         return devices;
+    }
+
+    public static List<Person> getPeopleFromJson(String jsonFileName, DeviceController controller, House house) throws IOException {
+        ObjectMapper mapper = new ObjectMapper();
+        JsonNode node = mapper.readTree(new File(jsonFileName));
+
+        List<Person> people = new ArrayList<>();
+
+        for (JsonNode personNode : node.get("people")) {
+            PersonType type = PersonType.valueOf(personNode.get("type").asText());
+            String name = personNode.get("name").asText();
+            boolean atHome = personNode.get("atHome").asBoolean();
+
+            switch (type) {
+                case FATHER:
+                    Father father = new Father(controller, house);
+                    father.setName(name);
+                    father.setAtHome(atHome);
+                    people.add(father);
+                    break;
+                case MOTHER:
+                    Mother mother = new Mother(controller, house);
+                    mother.setName(name);
+                    mother.setAtHome(atHome);
+                    people.add(mother);
+                    break;
+                case CHILD:
+                    Child child = new Child(controller, house);
+                    child.setName(name);
+                    child.setAtHome(atHome);
+                    people.add(child);
+                    break;
+                default:
+                    throw new IllegalArgumentException("Unknown person: " + name);
+            }
+        }
+
+        return people;
     }
 
 }

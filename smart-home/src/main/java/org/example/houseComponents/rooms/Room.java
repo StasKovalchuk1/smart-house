@@ -29,11 +29,25 @@ public abstract class Room {
         }
     }
 
+    public Room(List<Device> devices){
+        setDevices(devices);
+    }
+
     public abstract Room clone();
 
     @Override
     public boolean equals(Object object2){
         if (!(object2 instanceof Room room2)) return false;
         return Objects.equals(room2.devices, this.devices);
+    }
+
+    @Override
+    public String toString() {
+        return "Room(type=" + type +
+                ", devices=" + devices +
+                ", doors=" + doors +
+                ", windows=" + windows +
+                ", lights=" + lights +
+                ")";
     }
 }

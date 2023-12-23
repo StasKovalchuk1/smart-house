@@ -12,6 +12,6 @@ public class WashingMachineManager extends DeviceManager{
 
     @Override
     public Device createDevice(Integer deviceID, String deviceName, String deviceDocumentation) {
-        return new Grill(deviceID, deviceName, deviceDocumentation);
+        return new WashingMachine(deviceID, deviceName, deviceDocumentation);
     }
 }

@@ -16,7 +16,7 @@ public class Kitchen extends Room{
 
     //TODO добавить doors, windows, lights
     public Kitchen(List<Device> devices) {
-        setDevices(devices);
+        super(devices);
     }
 
     @Override

@@ -10,6 +10,7 @@ public class Mother extends Person{
 
     public Mother(DeviceController deviceController, House house) {
         super(deviceController, house);
+        setType(PersonType.MOTHER);
     }
 
     @Override

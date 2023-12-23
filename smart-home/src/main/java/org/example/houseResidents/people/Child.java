@@ -10,10 +10,17 @@ public class Child extends Person{
     private Mother mother;
     private Father father;
 
-    public Child(DeviceController deviceController, House house, Mother mother, Father father) {
+//    public Child(DeviceController deviceController, House house, Mother mother, Father father) {
+//        super(deviceController, house);
+//        this.mother = mother;
+//        this.father = father;
+//
+//    }
+
+    public Child(DeviceController deviceController, House house) {
         super(deviceController, house);
-        this.mother = mother;
-        this.father = father;
+        setType(PersonType.CHILD);
+
     }
 
     @Override

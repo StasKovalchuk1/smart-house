@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Data
-//@NoArgsConstructor
 public class Floor {
 
     private final int level;

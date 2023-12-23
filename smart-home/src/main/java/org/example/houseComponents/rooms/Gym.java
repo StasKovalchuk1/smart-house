@@ -16,7 +16,7 @@ public class Gym extends Room{
 
     //TODO добавить doors, windows, lights
     public Gym(List<Device> devices) {
-        setDevices(devices);
+        super(devices);
     }
 
     @Override

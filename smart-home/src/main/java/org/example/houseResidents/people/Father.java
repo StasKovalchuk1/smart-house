@@ -10,7 +10,7 @@ public class Father extends Person{
 
     public Father(DeviceController deviceController, House house) {
         super(deviceController, house);
-        setName("father");
+        setType(PersonType.FATHER);
     }
 
     @Override

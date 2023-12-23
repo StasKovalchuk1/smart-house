@@ -1,15 +1,23 @@
 package org.example.devices;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.example.generators.events.EventToHandle;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Data
+@NoArgsConstructor
+@Slf4j
 public class DeviceController {
 
     private List<Device> devices = new ArrayList<>();
+
+    public DeviceController(List<Device> devices) {
+        this.devices = devices;
+    }
 
     public void turnOnDevice(Device device) {
         device.getState().turnOn();
@@ -29,7 +37,9 @@ public class DeviceController {
         device.getState().run();
     }
 
-    public void handleEvent(EventToHandle event) {}
+    public void handleEvent(EventToHandle event) {
+        log.info("ЧТО-ТО ПРОИСХОДИТ");
+    }
 
     public Device getDeviceByName(String name){
         for (Device device : devices){

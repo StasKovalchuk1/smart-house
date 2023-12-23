@@ -17,7 +17,7 @@ public class Toilet extends Room{
 
     //TODO добавить doors, windows, lights
     public Toilet(List<Device> devices) {
-        setDevices(devices);
+        super(devices);
     }
 
     @Override

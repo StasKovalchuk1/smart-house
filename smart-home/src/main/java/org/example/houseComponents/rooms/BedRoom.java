@@ -16,7 +16,7 @@ public class BedRoom extends Room{
 
     //TODO добавить doors, windows, lights
     public BedRoom(List<Device> devices) {
-        setDevices(devices);
+        super(devices);
     }
 
     @Override

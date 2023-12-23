@@ -41,5 +41,24 @@
       ]
     }
   ],
-  "garage": {}
+  "garage": {
+    "vehicles": []
+  },
+  "people": [
+    {
+      "name": "John",
+      "atHome": "true",
+      "type": "FATHER"
+    },
+    {
+      "name": "Maria",
+      "atHome": "true",
+      "type": "MOTHER"
+    },
+    {
+      "name": "Nick",
+      "atHome": "true",
+      "type": "CHILD"
+    }
+  ]
 }

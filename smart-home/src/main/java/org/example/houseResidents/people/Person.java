@@ -21,6 +21,7 @@ public abstract class Person extends HouseResident implements Subscriber{
     private House house;
     private String name;
     private boolean atHome;
+    private PersonType type;
     private final DeviceController deviceController;
     private EventHandleByPersonStrategy eventStrategy;
 
@@ -38,7 +39,6 @@ public abstract class Person extends HouseResident implements Subscriber{
         strategy.performActivity(deviceController, device, this);
     }
 
-//    @Override
     protected Device getDeviceByActivity(Activity activity) {
         return switch ((PersonActivity) activity) {
             case GetFoodFromFridge, AddFoodToFridge -> deviceController.getDeviceByName("Fridge");
@@ -75,6 +75,7 @@ public abstract class Person extends HouseResident implements Subscriber{
     public String toString() {
         return "Person{" +
                 "name='" + name + '\'' +
+                "type='" + type + '\'' +
                 '}';
     }
 }
