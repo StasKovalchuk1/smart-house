@@ -10,6 +10,7 @@ public class Child extends Person{
     private Mother mother;
     private Father father;
 
+    //TODO привязать father и mother
 //    public Child(DeviceController deviceController, House house, Mother mother, Father father) {
 //        super(deviceController, house);
 //        this.mother = mother;

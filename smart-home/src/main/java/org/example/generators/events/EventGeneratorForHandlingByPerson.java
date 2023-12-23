@@ -32,7 +32,8 @@ public class EventGeneratorForHandlingByPerson implements EventGenerator{
     }
 
     public Person pickPerson() {
-        log.info(people.get(0).toString());
-        return people.get(0);
+        int index = new Random().nextInt(people.size());
+        log.info(people.get(index).toString());
+        return people.get(index);
     }
 }
