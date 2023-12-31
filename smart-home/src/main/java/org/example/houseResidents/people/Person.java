@@ -41,14 +41,14 @@ public abstract class Person extends HouseResident implements Subscriber{
 
     protected Device getDeviceByActivity(Activity activity) {
         return switch ((PersonActivity) activity) {
-            case GetFoodFromFridge, AddFoodToFridge -> deviceController.getDeviceByName("Fridge");
-            case StartDoingLaundry, FinishDoingLaundry -> deviceController.getDeviceByName("Washing machine");
-            case StartWashingDishes, FinishWashingDishes -> deviceController.getDeviceByName("Dishwasher");
-            case StartGrillingMeet, FinishGrillingMeet -> deviceController.getDeviceByName("Grill");
-            case StartMakingCoffee, FinishMakingCoffee -> deviceController.getDeviceByName("Coffee Machine");
-            case StartHeatingFood, FinishHeatingFood -> deviceController.getDeviceByName("Microwave");
-            case StartBakingFood, FinishBakingFood -> deviceController.getDeviceByName("Oven");
-            case StartUsingComputer, FinishUsingComputer -> deviceController.getDeviceByName("Computer");
+            case GetFoodFromFridge, AddFoodToFridge -> deviceController.getDeviceByName("Fridge").get();
+            case StartDoingLaundry, FinishDoingLaundry -> deviceController.getDeviceByName("Washing machine").get();
+            case StartWashingDishes, FinishWashingDishes -> deviceController.getDeviceByName("Dishwasher").get();
+            case StartGrillingMeet, FinishGrillingMeet -> deviceController.getDeviceByName("Grill").get();
+            case StartMakingCoffee, FinishMakingCoffee -> deviceController.getDeviceByName("Coffee Machine").get();
+            case StartHeatingFood, FinishHeatingFood -> deviceController.getDeviceByName("Microwave").get();
+            case StartBakingFood, FinishBakingFood -> deviceController.getDeviceByName("Oven").get();
+            case StartUsingComputer, FinishUsingComputer -> deviceController.getDeviceByName("Computer").get();
         };
     }
 

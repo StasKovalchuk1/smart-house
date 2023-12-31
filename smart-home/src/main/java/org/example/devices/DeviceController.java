@@ -3,10 +3,18 @@ package org.example.devices;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.example.generators.events.EventGeneratorForAutomaticHandling;
 import org.example.generators.events.EventToHandle;
+import org.example.generators.events.EventToHandleAutomatically;
+import org.example.generators.events.EventToHandleByPerson;
+import org.example.generators.events.strategies.forController.EventHandleByControllerStrategy;
+import org.example.generators.events.strategies.forController.PowerOutageStrategy;
+import org.example.generators.events.strategies.forController.WaterLeakStrategy;
+import org.example.generators.events.strategies.forPerson.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Data
 @NoArgsConstructor
@@ -14,6 +22,8 @@ import java.util.List;
 public class DeviceController {
 
     private List<Device> devices = new ArrayList<>();
+
+    private EventHandleByControllerStrategy eventStrategy;
 
     public DeviceController(List<Device> devices) {
         this.devices = devices;
@@ -38,16 +48,25 @@ public class DeviceController {
     }
 
     public void handleEvent(EventToHandle event) {
-        log.info("ЧТО-ТО ПРОИСХОДИТ");
+        setStrategyByEvent(event);
+        getEventStrategy().handle(this);
     }
 
-    public Device getDeviceByName(String name){
+    public void setStrategyByEvent(EventToHandle event) {
+        switch ((EventToHandleAutomatically) event) {
+            case POWER_OUTAGE -> setEventStrategy(new PowerOutageStrategy());
+            case WATER_LEAK -> setEventStrategy(new WaterLeakStrategy());
+        };
+    }
+
+    public Optional<Device> getDeviceByName(String name){
         for (Device device : devices){
             if (device.getName().equals(name)){
-                return device;
+                return Optional.of(device);
             }
         }
-        return null;
+        log.warn(name + " was not found");
+        return Optional.empty();
     }
 
 

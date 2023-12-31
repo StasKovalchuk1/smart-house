@@ -9,6 +9,7 @@ import org.example.devices.Fridge;
 import org.example.generators.activities.ActivityStrategy;
 import org.example.houseResidents.people.Person;
 
+import java.util.Optional;
 import java.util.Random;
 
 @Data
@@ -17,22 +18,36 @@ public class GetFoodFromFridgeStrategy implements ActivityStrategy {
 
     @Override
     public void performActivity(DeviceController deviceController, Device device, Person person) throws Exception {
-        Fridge fridge = (Fridge) deviceController.getDeviceByName("Fridge");
+        Optional<Device> fridgeOptional = deviceController.getDeviceByName("Fridge");
         Food food = pickFood(deviceController);
-        if (fridge.getFoodInside().contains(food)) {
-            fridge.getFoodInside().remove(food);
-            System.out.printf("%s has took %s from fridge%n", person.getName(), food.toString());
-            log.info("Person took food from fridge");
-        } else {
-            throw new Exception("There is not enough " + food.toString() + " in the fridge");
+        Fridge fridge;
+        if (fridgeOptional.isPresent()) {
+            fridge = (Fridge) fridgeOptional.get();
+            if (fridge.getFoodInside().contains(food)) {
+                fridge.getFoodInside().remove(food);
+                System.out.printf("%s has took %s from fridge%n", person.getName(), food.toString());
+                log.info("Person took food from fridge");
+            } else {
+                log.info("There is not enough " + food.toString() + " in the fridge");
+            }
+        }
+        else {
+            log.warn("Fridge doesn't exist");
         }
     }
 
     private Food pickFood(DeviceController deviceController){
-        Fridge fridge = (Fridge)deviceController.getDeviceByName("Fridge");
-        int foodCount = fridge.getFoodInside().size();
-        int randomFoodIndex = new Random().nextInt(foodCount+1);
-        return fridge.getFoodInside().get(randomFoodIndex);
+        Optional<Device> fridgeOptional = deviceController.getDeviceByName("Fridge");
+        Fridge fridge;
+        if (fridgeOptional.isPresent()) {
+            fridge = (Fridge) fridgeOptional.get();
+            int foodCount = fridge.getFoodInside().size();
+            int randomFoodIndex = new Random().nextInt(foodCount+1);
+            return fridge.getFoodInside().get(randomFoodIndex);
+        } else {
+            log.warn("Fridge doesn't exist");
+            return null;
+        }
     }
 }
 
