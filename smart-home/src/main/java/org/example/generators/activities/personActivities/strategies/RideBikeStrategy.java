@@ -4,10 +4,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.example.devices.Device;
 import org.example.devices.DeviceController;
 import org.example.generators.activities.ActivityStrategy;
-import org.example.houseComponents.Garage;
 import org.example.houseComponents.vehicle.Vehicle;
 import org.example.houseResidents.people.Person;
-import org.example.houses.HouseTypes;
+import org.example.houses.HouseType;
 import org.example.houses.HouseWithGarage;
 import org.example.houses.HouseWithGarageAndPool;
 
@@ -18,7 +17,7 @@ public class RideBikeStrategy implements ActivityStrategy {
 
     @Override
     public void performActivity(DeviceController deviceController, Device device, Person person) throws Exception {
-        HouseTypes type = person.getHouse().getType();
+        HouseType type = person.getHouse().getType();
         switch (type){
             case SIMPLE, WITH_POOL -> log.info("There is no bike to ride");
             case WITH_GARAGE -> {

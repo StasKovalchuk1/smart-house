@@ -9,8 +9,8 @@ public class Oven extends Device{
     private int timer;
     private int temperature;
 
-    public Oven(Integer id, String name, String documentation) {
-        super(id, name, documentation);
+    public Oven(Integer id, String documentation) {
+        super(id, "Oven", documentation);
     }
 
     @Override

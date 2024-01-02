@@ -7,8 +7,8 @@ import lombok.NoArgsConstructor;
 public class Grill extends Device{
     private int coalAmount;
 
-    public Grill(Integer id, String name, String documentation) {
-        super(id, name, documentation);
+    public Grill(Integer id, String documentation) {
+        super(id, "Grill", documentation);
     }
 
     @Override

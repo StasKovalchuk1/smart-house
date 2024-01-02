@@ -17,7 +17,7 @@ public class LivingRoom extends Room{
 
     //TODO добавить doors, windows, lights
     public LivingRoom(List<Device> devices) {
-        super(devices);
+        super(devices, RoomType.LIVING_ROOM);
     }
 
     @Override

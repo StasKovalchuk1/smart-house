@@ -11,7 +11,7 @@ public class FridgeManager extends DeviceManager{
     }
 
     @Override
-    public Device createDevice(Integer deviceID, String deviceName, String deviceDocumentation) {
-        return new Fridge(deviceID, deviceName, deviceDocumentation);
+    public Device createDevice(Integer deviceID, String deviceDocumentation) {
+        return new Fridge(deviceID, deviceDocumentation);
     }
 }

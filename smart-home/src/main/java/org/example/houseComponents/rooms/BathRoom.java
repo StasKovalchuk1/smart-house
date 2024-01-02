@@ -16,7 +16,7 @@ public class BathRoom extends Room {
 
     //TODO добавить doors, windows, lights
     public BathRoom(List<Device> devices) {
-        super(devices);
+        super(devices, RoomType.BATHROOM);
     }
 
     @Override

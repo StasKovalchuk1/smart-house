@@ -7,4 +7,7 @@ import org.example.devices.Shelter;
 @Data
 public class GoldenFish extends Pet{
 
+    public GoldenFish() {
+        setType(PetType.GOLDENFISH);
+    }
 }

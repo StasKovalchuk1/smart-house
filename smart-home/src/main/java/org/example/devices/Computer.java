@@ -5,8 +5,8 @@ import lombok.NoArgsConstructor;
 
 @Data
 public class Computer extends Device{
-    public Computer(Integer id, String name, String documentation) {
-        super(id, name, documentation);
+    public Computer(Integer id, String documentation) {
+        super(id, "Computer", documentation);
     }
 
     @Override

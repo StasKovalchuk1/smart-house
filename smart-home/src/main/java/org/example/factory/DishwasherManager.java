@@ -12,7 +12,7 @@ public class DishwasherManager extends DeviceManager{
     }
 
     @Override
-    public Device createDevice(Integer deviceID, String deviceName, String deviceDocumentation) {
-        return new Dishwasher(deviceID, deviceName, deviceDocumentation);
+    public Device createDevice(Integer deviceID, String deviceDocumentation) {
+        return new Dishwasher(deviceID, deviceDocumentation);
     }
 }

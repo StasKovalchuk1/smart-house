@@ -26,11 +26,11 @@ public abstract class DeviceManager {
         this.deviceDocumentation = deviceDocumentation;
     }
 
-    public abstract Device createDevice(Integer deviceID, String deviceName, String deviceDocumentation);
+    public abstract Device createDevice(Integer deviceID, String deviceDocumentation);
 
         // метод будет вызываться к примеру каждый месяц
     public Device collectData() {
-        if (device == null) device = createDevice(deviceID, deviceName, deviceDocumentation);
+        if (device == null) device = createDevice(deviceID, deviceDocumentation);
         deviceGasConsumption = device.getGasConsumption();
         deviceElectricityConsumption = device.getElectricityConsumption();
         deviceWaterConsumption = device.getWaterConsumption();
@@ -53,19 +53,16 @@ public abstract class DeviceManager {
 
     private boolean highWaterConsumption() {
         if (deviceWaterConsumption > 20 && device instanceof CoffeeMachine) return true;
-        if (deviceWaterConsumption > 100) return true;
-        return false;
+        return deviceWaterConsumption > 100;
     }
 
     private boolean highGasConsumption() {
         if (deviceGasConsumption > 10 && device instanceof Grill) return true;
-        if (deviceGasConsumption > 15 && device instanceof Oven) return true;
-        return false;
+        return deviceGasConsumption > 15 && device instanceof Oven;
     }
 
     private boolean highElectricityConsumption() {
-        if (deviceElectricityConsumption > 50) return true;
-        return false;
+        return deviceElectricityConsumption > 50;
     }
 
 

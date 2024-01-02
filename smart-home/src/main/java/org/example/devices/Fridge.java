@@ -11,8 +11,8 @@ public class Fridge extends Device{
 
     private List<Food> foodInside = new ArrayList<>();
 
-    public Fridge(Integer id, String name, String documentation) {
-        super(id, name, documentation);
+    public Fridge(Integer id, String documentation) {
+        super(id, "Fridge", documentation);
     }
 
     @Override
