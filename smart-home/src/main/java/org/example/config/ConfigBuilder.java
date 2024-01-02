@@ -180,6 +180,9 @@ public class ConfigBuilder {
         JsonNode node = mapper.readTree(new File(jsonFileName));
 
         List<Person> people = new ArrayList<>();
+        Father father = null;
+        Mother mother = null;
+        Child child = null;
 
         for (JsonNode personNode : node.get("people")) {
             PersonType type = PersonType.valueOf(personNode.get("type").asText());
@@ -188,22 +191,26 @@ public class ConfigBuilder {
 
             switch (type) {
                 case FATHER:
-                    Father father = new Father(controller, house);
+                    father = new Father(controller, house);
                     father.setName(name);
                     father.setAtHome(atHome);
                     people.add(father);
                     break;
                 case MOTHER:
-                    Mother mother = new Mother(controller, house);
+                    mother = new Mother(controller, house);
                     mother.setName(name);
                     mother.setAtHome(atHome);
                     people.add(mother);
                     break;
                 case CHILD:
-                    Child child = new Child(controller, house);
-                    child.setName(name);
-                    child.setAtHome(atHome);
-                    people.add(child);
+                    if (father != null && mother != null) {
+                        child = new Child(controller, house, mother, father);
+                        child.setName(name);
+                        child.setAtHome(atHome);
+                        people.add(child);
+                    } else {
+                        log.warn("Couldn't read child because parents are not initialized");
+                    }
                     break;
                 default:
                     throw new IllegalArgumentException("Unknown person: " + name);

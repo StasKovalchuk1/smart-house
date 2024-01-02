@@ -33,7 +33,7 @@ public class EventGeneratorForHandlingByPerson implements EventGenerator{
 
     public Person pickPerson() {
         int index = new Random().nextInt(people.size());
-        log.info(people.get(index).toString());
+        log.info(people.get(index).toString() + " was chosen to handle event");
         return people.get(index);
     }
 }
