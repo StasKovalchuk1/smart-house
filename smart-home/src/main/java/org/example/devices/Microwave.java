@@ -9,8 +9,8 @@ public class Microwave extends Device{
     private int power;
     private int timer;
 
-    public Microwave(Integer id, String name, String documentation) {
-        super(id, name, documentation);
+    public Microwave(Integer id, String documentation) {
+        super(id, "Microwave", documentation);
     }
 
     @Override

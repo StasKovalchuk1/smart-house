@@ -1,11 +1,13 @@
 package org.example.houses;
 
+import lombok.Data;
 import org.example.houseComponents.Floor;
 import org.example.houseComponents.Garage;
 import org.example.houseComponents.Pool;
 
 import java.util.List;
 
+@Data
 public class HouseWithGarageAndPool extends House{
 
     private final Garage garage;
@@ -16,7 +18,7 @@ public class HouseWithGarageAndPool extends House{
         this.floors = floors;
         this.garage = garage;
         this.pool = pool;
-        setType(HouseTypes.WITH_GARAGE_AND_POOL);
+        setType(HouseType.WITH_GARAGE_AND_POOL);
     }
 
     public List<Floor> getFloors() {

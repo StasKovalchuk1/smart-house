@@ -8,8 +8,8 @@ public class CoffeeMachine extends Device{
 
     private int capsulesAmount;
 
-    public CoffeeMachine(Integer id, String name, String documentation) {
-        super(id, name, documentation);
+    public CoffeeMachine(Integer id, String documentation) {
+        super(id, "CoffeeMachine", documentation);
     }
 
     @Override

@@ -7,6 +7,7 @@ import org.example.houseComponents.rooms.roomComponents.Door;
 import org.example.houseComponents.rooms.roomComponents.Light;
 import org.example.houseComponents.rooms.roomComponents.Window;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -15,10 +16,10 @@ import java.util.Objects;
 public abstract class Room {
 
     private RoomType type;
-    private List<Device> devices;
-    private List<Door> doors;
-    private List<Window> windows;
-    private List<Light> lights;
+    private List<Device> devices = new ArrayList<>();
+    private List<Door> doors = new ArrayList<>() ;
+    private List<Window> windows = new ArrayList<>();
+    private List<Light> lights = new ArrayList<>();
 
     public Room(Room target){
         if (target!=null){
@@ -29,8 +30,9 @@ public abstract class Room {
         }
     }
 
-    public Room(List<Device> devices){
+    public Room(List<Device> devices, RoomType type){
         setDevices(devices);
+        this.type = type;
     }
 
     public abstract Room clone();

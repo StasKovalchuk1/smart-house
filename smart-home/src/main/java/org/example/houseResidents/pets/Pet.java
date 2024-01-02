@@ -23,6 +23,7 @@ public abstract class Pet extends HouseResident {
     private DeviceController deviceController;
     protected Shelter petShelter;
     private String name;
+    protected PetType type;
 
     //TODO раскомментирвоать строку
     @Override

@@ -12,7 +12,7 @@ public class CoffeeMachineManager extends DeviceManager{
     }
 
     @Override
-    public Device createDevice(Integer deviceID, String deviceName, String deviceDocumentation) {
-        return new CoffeeMachine(deviceID, deviceName, deviceDocumentation);
+    public Device createDevice(Integer deviceID, String deviceDocumentation) {
+        return new CoffeeMachine(deviceID, deviceDocumentation);
     }
 }

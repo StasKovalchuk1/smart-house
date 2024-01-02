@@ -8,8 +8,8 @@ public class WashingMachine extends Device{
 
     private int powderAmount;
 
-    public WashingMachine(Integer id, String name, String documentation) {
-        super(id, name, documentation);
+    public WashingMachine(Integer id, String documentation) {
+        super(id, "WashingMachine", documentation);
     }
 
     @Override
