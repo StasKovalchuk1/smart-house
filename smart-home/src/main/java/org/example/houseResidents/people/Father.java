@@ -1,16 +1,17 @@
 package org.example.houseResidents.people;
 
+import lombok.Data;
 import org.example.devices.DeviceController;
 import org.example.generators.events.EventToHandle;
 import org.example.generators.events.EventToHandleByPerson;
 import org.example.generators.events.strategies.forPerson.*;
 import org.example.houses.House;
 
+
 public class Father extends Person{
 
-    public Father(DeviceController deviceController, House house) {
-        super(deviceController, house);
-        setType(PersonType.FATHER);
+    public Father(DeviceController deviceController, House house, String name) {
+        super(deviceController, house, name, PersonType.FATHER);
     }
 
     @Override

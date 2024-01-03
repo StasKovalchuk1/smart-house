@@ -1,21 +1,26 @@
 package org.example.generators.events;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.example.devices.DeviceController;
+import org.example.reports.reportGenerators.EventReportGenerator;
 
 import java.util.Random;
 
 @Slf4j
+@Data
+@AllArgsConstructor
 public class EventGeneratorForAutomaticHandling implements EventGenerator {
-    private DeviceController deviceController;
 
-    public EventGeneratorForAutomaticHandling(DeviceController deviceController) {
-        this.deviceController = deviceController;
-    }
+    private DeviceController deviceController;
+    private EventReportGenerator eventReportGenerator;
 
     @Override
     public void generateEvent() {
-        deviceController.handleEvent(pickEvent());
+        EventToHandle eventToHandle = pickEvent();
+        deviceController.handleEvent(eventToHandle);
+        eventReportGenerator.writeEventToReport(null, eventToHandle);
     }
 
     @Override

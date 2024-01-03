@@ -9,14 +9,13 @@ import org.example.houses.House;
 
 @Slf4j
 public class Child extends Person{
-    private Mother mother;
-    private Father father;
+    private final Mother mother;
+    private final Father father;
 
-    public Child(DeviceController deviceController, House house, Mother mother, Father father) {
-        super(deviceController, house);
+    public Child(DeviceController deviceController, House house, String name, Mother mother, Father father) {
+        super(deviceController, house, name, PersonType.CHILD);
         this.mother = mother;
         this.father = father;
-        setType(PersonType.CHILD);
     }
 
 

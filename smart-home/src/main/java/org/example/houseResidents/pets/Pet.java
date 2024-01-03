@@ -1,6 +1,7 @@
 package org.example.houseResidents.pets;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import org.example.devices.DeviceController;
 import org.example.devices.Shelter;
 import org.example.generators.activities.Activity;
@@ -11,19 +12,19 @@ import org.example.generators.activities.petActivities.strategies.DrinkWaterStra
 import org.example.generators.activities.petActivities.strategies.EatFoodStrategy;
 import org.example.generators.activities.petActivities.strategies.ComeIntoShelterStrategy;
 import org.example.houseResidents.HouseResident;
-import org.example.houseResidents.people.Father;
-import org.example.houseResidents.people.Person;
-import org.example.houses.SimpleHouse;
 
 
+@EqualsAndHashCode(callSuper = true)
 @Data
 public abstract class Pet extends HouseResident {
 
     protected boolean isInShelter;
-    private DeviceController deviceController;
     protected Shelter petShelter;
-    private String name;
-    protected PetType type;
+//    protected final PetType type;
+
+    public Pet(DeviceController deviceController, String name, PetType type) {
+        super(deviceController, name, type);
+    }
 
     //TODO раскомментирвоать строку
     @Override
@@ -33,6 +34,7 @@ public abstract class Pet extends HouseResident {
         }
         setStrategy(getStrategyByActivity(activity));
 //        strategy.performActivity(deviceController, petShelter, name);
+        activityAndUsageReportGenerator.writeDeviceUsage(this, petShelter);
     }
 
     @Override

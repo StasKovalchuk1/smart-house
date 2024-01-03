@@ -1,7 +1,6 @@
 package org.example.reports.reportGenerators;
 
 import lombok.Data;
-import org.example.devices.Device;
 import org.example.houseComponents.Floor;
 import org.example.houseComponents.rooms.Room;
 import org.example.houseResidents.people.Person;
@@ -34,7 +33,7 @@ public class HouseConfigurationReportGenerator extends BaseReportGenerator {
         printRoomsInfo();
         printDevicesInfo();
 
-        printResidentsInfo();
+        printPeopleInfo();
         printPetsInfo();
         writer.close();
     }
@@ -42,17 +41,17 @@ public class HouseConfigurationReportGenerator extends BaseReportGenerator {
     private void printHouseInfo(){
         writer.println("HOUSE INFO:");
         writer.println("Type Of House: " + house.getType());
-        writer.println("Amount of resident: " + house.getResidents().size());
+        writer.println("Amount of resident: " + house.getPeople().size());
         writer.println("Amount of pets: " + house.getPets().size());
         writer.println("Amount of floors: " + house.getFloors().size());
         writer.println("");
     }
 
-    private void printResidentsInfo(){
-        writer.println("RESIDENTS INFO: ");
-        for (int i = 0; i < house.getResidents().size(); ++i) {
-            Person resident = house.getResidents().get(i);
-            writer.println(i+1 + ") " + resident.getType()+ ": " + resident.getName());
+    private void printPeopleInfo(){
+        writer.println("PEOPLE INFO: ");
+        for (int i = 0; i < house.getPeople().size(); ++i) {
+            Person person = (Person)house.getPeople().get(i);
+            writer.println(i+1 + ") " + person.getType()+ ": " + person.getName());
         }
         writer.println("");
     }
@@ -60,7 +59,7 @@ public class HouseConfigurationReportGenerator extends BaseReportGenerator {
     private void printPetsInfo(){
         writer.println("PETS INFO: ");
         for (int i = 0; i < house.getPets().size(); ++i) {
-            Pet pet = house.getPets().get(i);
+            Pet pet = (Pet)house.getPets().get(i);
             writer.println(i+1 + ") " + pet.getType()+ ": " + pet.getName());
         }
         writer.println("");
