@@ -16,7 +16,7 @@ public class HouseConfigurationReportGenerator extends BaseReportGenerator {
 
     public HouseConfigurationReportGenerator(House house) {
         this.house = house;
-        this.reportFile = "smart-home/src/main/java/org/example/reports/reportsFiles/houseConfigReport.txt";
+        this.reportFile = "./src/main/java/org/example/reports/reportsFiles/houseConfigReport.txt";
         try {
             this.writer = new PrintWriter(new PrintWriter(reportFile));
         } catch (Exception e) {
