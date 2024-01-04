@@ -78,9 +78,7 @@ public class HouseConfigurationReportGenerator extends BaseReportGenerator {
         for (Floor floor : house.getFloors()) {
             writer.println("ROOMS ON THE FLOOR " + floor.getLevel() + ":");
             for (Room room : floor.getRooms()) {
-                writer.println("Room " + room.getType() + " has " + room.getDevices().size() + " devices, "
-                + room.getDoors().size() + " doors, " + room.getWindows().size() + " windows, "
-                + room.getLights().size() + " lights");
+                writer.println("Room " + room.getType() + " has " + room.getDevices().size() + " devices");
             }
             writer.println("---");
         }

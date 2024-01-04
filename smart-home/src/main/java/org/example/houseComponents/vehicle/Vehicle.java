@@ -7,9 +7,13 @@ import org.example.houseResidents.people.Person;
 @Data
 @Slf4j
 public abstract class Vehicle {
-    private String name;
 
-    private boolean inUse;
+    protected final VehicleType type;
+    private boolean inUse = false;
+
+    public Vehicle(VehicleType type) {
+        this.type = type;
+    }
 
     public abstract void ride(Person person);
 
@@ -18,7 +22,7 @@ public abstract class Vehicle {
     public void useVehicle(Person person) {
         try {
             if (isInUse()) {
-                log.info(getName() + " is already in use. " + person.getName() + " should wait.");
+                log.info(getType() + " is already in use. " + person.getName() + " should wait.");
             } else {
                 ride(person);
 

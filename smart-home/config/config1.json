@@ -6,10 +6,28 @@
       "rooms": [
         {
           "type": "TOILET",
-          "devices": [],
-          "doors": [],
-          "windows": [],
-          "lights": []
+          "id": 1,
+          "devices": []
+        },
+        {
+          "type": "BATHROOM",
+          "id": 2,
+          "devices": [
+            {
+            "id": 1,
+            "name": "WashingMachine",
+            "documentation": "..."
+            },
+            {
+              "id": 6,
+              "name": "WashingMachine",
+              "documentation": "..."
+            }]
+        },
+        {
+          "type": "GYM",
+          "id": 3,
+          "devices": []
         }
       ]
     },
@@ -18,31 +36,132 @@
       "rooms": [
         {
           "type": "KITCHEN",
-          "devices": [{
-            "id": 1,
+          "id": 4,
+          "devices": [
+            {
+            "id": 2,
             "name": "Grill",
-            "documentation": "переворачивай блять"
-          }],
-          "doors": [],
-          "windows": [],
-          "lights": []
+            "documentation": "..."
+            },
+            {
+              "id": 3,
+              "name": "Fridge",
+              "documentation": "..."
+            },
+            {
+              "id": 4,
+              "name": "Fridge",
+              "documentation": "..."
+            },
+            {
+              "id": 5,
+              "name": "Fridge",
+              "documentation": "..."
+            },
+            {
+              "id": 8,
+              "name": "DishWasher",
+              "documentation": "..."
+            },
+            {
+              "id": 9,
+              "name": "DishWasher",
+              "documentation": "..."
+            },
+            {
+              "id": 16,
+              "name": "Microwave",
+              "documentation": "..."
+            },
+            {
+              "id": 20,
+              "name": "CoffeeMachine",
+              "documentation": "..."
+            },
+            {
+              "id": 21,
+              "name": "CoffeeMachine",
+              "documentation": "..."
+            }]
         },
         {
-          "type": "BATHROOM",
-          "devices": [{
-            "id": 2,
-            "name": "WashingMachine",
-            "documentation": "порошка добавить"
-          }],
-          "doors": [],
-          "windows": [],
-          "lights": []
+          "type": "LIVING_ROOM",
+          "id": 5,
+          "devices": [
+            {
+              "id": 17,
+              "name": "Shelter",
+              "documentation": "..."
+            },
+            {
+              "id": 18,
+              "name": "Shelter",
+              "documentation": "..."
+            },
+            {
+              "id": 19,
+              "name": "Shelter",
+              "documentation": "..."
+            }
+          ]
+        },
+        {
+          "type": "BED_ROOM",
+          "id": 6,
+          "devices": [
+            {
+            "id": 10,
+            "name": "Computer",
+            "documentation": "..."
+            },
+            {
+            "id": 11,
+            "name": "Computer",
+            "documentation": "..."
+            },
+            {
+            "id": 12,
+            "name": "Computer",
+            "documentation": "..."
+            }]
+        },
+        {
+          "type": "BED_ROOM",
+          "id": 7,
+          "devices": [
+            {
+              "id": 13,
+              "name": "Computer",
+              "documentation": "..."
+            },
+            {
+              "id": 14,
+              "name": "Computer",
+              "documentation": "..."
+            },
+            {
+              "id": 15,
+              "name": "Computer",
+              "documentation": "..."
+            }]
         }
       ]
     }
   ],
   "garage": {
-    "vehicles": []
+    "vehicles": [
+      {
+      "type": "SKI"
+      },
+      {
+        "type": "CAR"
+      },
+      {
+        "type": "BICYCLE"
+      },
+      {
+        "type": "BICYCLE"
+      }]
   },
   "people": [
     {
@@ -59,6 +178,34 @@
       "name": "Nick",
       "atHome": "true",
       "type": "CHILD"
+    },
+    {
+      "name": "Alex",
+      "atHome": "false",
+      "type": "CHILD"
+    },
+    {
+      "name": "Egor",
+      "atHome": "false",
+      "type": "CHILD"
+    },
+    {
+      "name": "Gregory",
+      "atHome": "true",
+      "type": "CHILD"
     }
-  ]
+  ],
+  "pets": [{
+    "name": "Barsik",
+    "isInShelter": "true",
+    "type": "CAT"
+  },{
+    "name": "Bobik",
+    "isInShelter": "false",
+    "type": "DOG"
+  },{
+    "name": "Nemo",
+    "isInShelter": "true",
+    "type": "GOLDENFISH"
+  }]
 }
