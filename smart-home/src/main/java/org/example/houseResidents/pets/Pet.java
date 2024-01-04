@@ -12,6 +12,7 @@ import org.example.generators.activities.petActivities.strategies.DrinkWaterStra
 import org.example.generators.activities.petActivities.strategies.EatFoodStrategy;
 import org.example.generators.activities.petActivities.strategies.ComeIntoShelterStrategy;
 import org.example.houseResidents.HouseResident;
+import org.example.houses.House;
 
 
 @EqualsAndHashCode(callSuper = true)
@@ -20,10 +21,9 @@ public abstract class Pet extends HouseResident {
 
     protected boolean isInShelter;
     protected Shelter petShelter;
-//    protected final PetType type;
 
-    public Pet(DeviceController deviceController, String name, PetType type) {
-        super(deviceController, name, type);
+    public Pet(DeviceController deviceController, String name, House house, PetType type) {
+        super(deviceController, name, house, type);
     }
 
     //TODO раскомментирвоать строку

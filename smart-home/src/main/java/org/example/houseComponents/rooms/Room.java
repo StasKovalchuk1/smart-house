@@ -3,9 +3,6 @@ package org.example.houseComponents.rooms;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.example.devices.Device;
-import org.example.houseComponents.rooms.roomComponents.Door;
-import org.example.houseComponents.rooms.roomComponents.Light;
-import org.example.houseComponents.rooms.roomComponents.Window;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,17 +13,15 @@ import java.util.Objects;
 public abstract class Room {
 
     private RoomType type;
+    private Integer id;
     private List<Device> devices = new ArrayList<>();
-    private List<Door> doors = new ArrayList<>() ;
-    private List<Window> windows = new ArrayList<>();
-    private List<Light> lights = new ArrayList<>();
+
 
     public Room(Room target){
         if (target!=null){
+            this.id = target.id;
             this.devices = target.devices;
-            this.doors = target.doors;
-            this.windows = target.windows;
-            this.lights = target.lights;
+            this.type = target.type;
         }
     }
 
@@ -46,10 +41,6 @@ public abstract class Room {
     @Override
     public String toString() {
         return "Room(type=" + type +
-                ", devices=" + devices +
-                ", doors=" + doors +
-                ", windows=" + windows +
-                ", lights=" + lights +
-                ")";
+                ", devices=" + devices;
     }
 }

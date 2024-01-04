@@ -5,12 +5,12 @@ import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.example.houseResidents.people.Person;
 
-@Data
+
 @Slf4j
 public class Ski extends Vehicle{
 
     public Ski() {
-        setName("Ski");
+        super(VehicleType.SKI);
     }
 
     @Override

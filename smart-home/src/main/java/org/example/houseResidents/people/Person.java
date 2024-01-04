@@ -18,13 +18,12 @@ import org.example.houses.House;
 @Slf4j
 @Data
 public abstract class Person extends HouseResident implements Subscriber{
-    private final House house;
+
     private boolean atHome;
     private EventHandleByPersonStrategy eventStrategy;
 
     public Person(DeviceController deviceController, House house, String name, PersonType type) {
-        super(deviceController, name, type);
-        this.house = house;
+        super(deviceController, name, house, type);
     }
 
     public abstract void handleEvent(EventToHandle event);

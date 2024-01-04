@@ -1,35 +1,29 @@
 package org.example.config;
 
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.node.ObjectNode;
 import lombok.extern.slf4j.Slf4j;
-import netscape.javascript.JSObject;
-import org.example.builders.HouseBuilder;
 import org.example.devices.Device;
 import org.example.devices.DeviceController;
-import org.example.devices.Grill;
-import org.example.devices.WashingMachine;
-import org.example.director.Director;
 import org.example.factory.*;
 import org.example.houseComponents.Floor;
 import org.example.houseComponents.Garage;
 import org.example.houseComponents.Pool;
 import org.example.houseComponents.rooms.*;
+import org.example.houseComponents.vehicle.Bicycle;
+import org.example.houseComponents.vehicle.Car;
+import org.example.houseComponents.vehicle.Ski;
+import org.example.houseComponents.vehicle.Vehicle;
 import org.example.houseResidents.people.*;
+import org.example.houseResidents.pets.*;
 import org.example.houses.*;
 import org.json.JSONObject;
 
 import java.io.File;
 import java.io.IOException;
-import java.lang.reflect.Field;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Objects;
 
 @Slf4j
 public class ConfigBuilder {
@@ -87,18 +81,43 @@ public class ConfigBuilder {
         List<Room> rooms = new ArrayList<>();
 
         for (JsonNode roomNode : roomsNode) {
-            RoomType roomType = RoomType.valueOf(roomNode.get("type").asText());
+            String type = roomNode.get("type").asText();
+            Integer roomId = roomNode.get("id").asInt();
             JsonNode devicesNode = roomNode.get("devices");
             List<Device> devices = (devicesNode != null) ? parseDevices(devicesNode) : Collections.emptyList();
 
-            switch (roomType) {
-                case KITCHEN -> rooms.add(new Kitchen(devices));
-                case TOILET -> rooms.add(new Toilet(devices));
-                case BEDROOM -> rooms.add(new BedRoom(devices));
-                case BATHROOM -> rooms.add(new BathRoom(devices));
-                case GYM -> rooms.add(new Gym(devices));
-                case LIVING_ROOM -> rooms.add(new LivingRoom(devices));
-                default -> throw new IllegalArgumentException("Unknown room type: " + roomType);
+            switch (type) {
+                case "KITCHEN" -> {
+                    Kitchen kitchen = new Kitchen(devices);
+                    kitchen.setId(roomId);
+                    rooms.add(kitchen);
+                }
+                case "TOILET" -> {
+                    Toilet toilet = new Toilet(devices);
+                    toilet.setId(roomId);
+                    rooms.add(toilet);
+                }
+                case "BEDROOM" -> {
+                    BedRoom bedRoom = new BedRoom(devices);
+                    bedRoom.setId(roomId);
+                    rooms.add(bedRoom);
+                }
+                case "BATHROOM" -> {
+                    BathRoom bathRoom = new BathRoom(devices);
+                    bathRoom.setId(roomId);
+                    rooms.add(bathRoom);
+                }
+                case "GYM" -> {
+                    Gym gym = new Gym(devices);
+                    gym.setId(roomId);
+                    rooms.add(gym);
+                }
+                case "LIVING_ROOM" -> {
+                    LivingRoom livingRoom = new LivingRoom(devices);
+                    livingRoom.setId(roomId);
+                    rooms.add(livingRoom);
+                }
+                default -> throw new IllegalArgumentException("Unknown room type: " + type);
             }
         }
 
@@ -158,7 +177,7 @@ public class ConfigBuilder {
         return devices;
     }
 
-    public static List<Person> getPeopleFromJson(String jsonFileName, DeviceController controller, House house) throws IOException {
+    public static List<Person> parsePeople(String jsonFileName, DeviceController controller, House house) throws IOException {
         ObjectMapper mapper = new ObjectMapper();
         JsonNode node = mapper.readTree(new File(jsonFileName));
 
@@ -168,22 +187,22 @@ public class ConfigBuilder {
         Child child = null;
 
         for (JsonNode personNode : node.get("people")) {
-            PersonType type = PersonType.valueOf(personNode.get("type").asText());
+            String type = personNode.get("type").asText();
             String name = personNode.get("name").asText();
             boolean atHome = personNode.get("atHome").asBoolean();
 
             switch (type) {
-                case FATHER -> {
+                case "FATHER" -> {
                     father = new Father(controller, house, name);
                     father.setAtHome(atHome);
                     people.add(father);
                 }
-                case MOTHER -> {
+                case "MOTHER" -> {
                     mother = new Mother(controller, house, name);
                     mother.setAtHome(atHome);
                     people.add(mother);
                 }
-                case CHILD -> {
+                case "CHILD" -> {
                     if (father != null && mother != null) {
                         child = new Child(controller, house, name, mother, father);
                         child.setAtHome(atHome);
@@ -199,4 +218,54 @@ public class ConfigBuilder {
         return people;
     }
 
+    public static List<Pet> parsePets(String jsonFileName, DeviceController deviceController, House house) throws IOException {
+        ObjectMapper mapper = new ObjectMapper();
+        JsonNode node = mapper.readTree(new File(jsonFileName));
+
+        List<Pet> pets = new ArrayList<>();
+        Cat cat = null;
+        Dog dog = null;
+        GoldenFish fish = null;
+
+        for (JsonNode petNode : node.get("pets")) {
+            String type = petNode.get("type").asText();
+            String name = petNode.get("name").asText();
+            boolean isInShelter = petNode.get("isInShelter").asBoolean();
+
+            switch (type) {
+                case "DOG" -> {
+                    dog = new Dog(deviceController, name, house);
+                    dog.setInShelter(isInShelter);
+                    pets.add(dog);
+                }
+                case "CAT" -> {
+                    cat = new Cat(deviceController, name, house);
+                    cat.setInShelter(isInShelter);
+                    pets.add(cat);
+                }
+                case "GOLDENFISH" -> {
+                    fish = new GoldenFish(deviceController, name, house);
+                    fish.setInShelter(isInShelter);
+                    pets.add(fish);
+                }
+                default -> throw new IllegalArgumentException("Unknown pet: " + name);
+            }
+        }
+        return pets;
+    }
+
+    public static List<Vehicle> parseVehicles(JsonNode garageNode){
+        List<Vehicle> vehicles = new ArrayList<>();
+
+        for (JsonNode vehicleNode : garageNode) {
+            String type = vehicleNode.get("type").asText();
+            switch (type) {
+                case "SKI" -> vehicles.add(new Ski());
+                case "CAR" -> vehicles.add(new Car());
+                case "BICYCLE" -> vehicles.add(new Bicycle());
+                default -> throw new IllegalArgumentException("Unknown vehicle: " + type);
+            }
+        }
+        return vehicles;
+    }
 }
