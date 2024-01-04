@@ -60,12 +60,12 @@
             },
             {
               "id": 8,
-              "name": "DishWasher",
+              "name": "Dishwasher",
               "documentation": "..."
             },
             {
               "id": 9,
-              "name": "DishWasher",
+              "name": "Dishwasher",
               "documentation": "..."
             },
             {
@@ -106,7 +106,7 @@
           ]
         },
         {
-          "type": "BED_ROOM",
+          "type": "BEDROOM",
           "id": 6,
           "devices": [
             {
@@ -126,7 +126,7 @@
             }]
         },
         {
-          "type": "BED_ROOM",
+          "type": "BEDROOM",
           "id": 7,
           "devices": [
             {

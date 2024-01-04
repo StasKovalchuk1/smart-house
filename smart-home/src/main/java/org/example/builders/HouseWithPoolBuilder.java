@@ -1,5 +1,6 @@
 package org.example.builders;
 
+import lombok.Data;
 import org.example.houseComponents.Floor;
 import org.example.houseComponents.Garage;
 import org.example.houseComponents.Pool;
@@ -7,9 +8,8 @@ import org.example.houses.HouseWithPool;
 
 import java.util.List;
 
+@Data
 public class HouseWithPoolBuilder implements HouseBuilder{
-
-    private Integer id;
 
     private List<Floor> floors;
 

@@ -17,11 +17,4 @@ public class HouseWithGarage extends House{
         setType(HouseType.WITH_GARAGE);
     }
 
-    public List<Floor> getFloors() {
-        return floors;
-    }
-
-    public Garage getGarage() {
-        return garage;
-    }
 }

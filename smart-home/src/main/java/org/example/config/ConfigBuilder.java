@@ -3,6 +3,7 @@ package org.example.config;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
+import org.example.builders.*;
 import org.example.devices.Device;
 import org.example.devices.DeviceController;
 import org.example.factory.*;
@@ -14,6 +15,7 @@ import org.example.houseComponents.vehicle.Bicycle;
 import org.example.houseComponents.vehicle.Car;
 import org.example.houseComponents.vehicle.Ski;
 import org.example.houseComponents.vehicle.Vehicle;
+import org.example.houseResidents.HouseResident;
 import org.example.houseResidents.people.*;
 import org.example.houseResidents.pets.*;
 import org.example.houses.*;
@@ -27,41 +29,49 @@ import java.util.List;
 
 @Slf4j
 public class ConfigBuilder {
+
     private static JSONObject object;
+    private static DeviceController deviceController;
 
     public static House buildHouseFromJson(String jsonFileName) throws IOException {
         ObjectMapper mapper = new ObjectMapper();
         JsonNode node = mapper.readTree(new File(jsonFileName));
 
         String type = node.get("type").asText();
-//        List<Floor> floors = mapper.readValue(node.get("floors").toString(), new TypeReference<List<Floor>>(){});
-
         List<Floor> floors = parseFloors(node.get("floors"));
-
-        Garage garage;
-        Pool pool;
         House house;
 
+        //Builders
+        SimpleHouseBuilder simpleHouseBuilder = new SimpleHouseBuilder();
+        HouseWithPoolBuilder houseWithPoolBuilder = new HouseWithPoolBuilder();
+        HouseWithGarageBuilder houseWithGarageBuilder = new HouseWithGarageBuilder();
+        HouseWithGarageAndPoolBuilder houseWithGarageAndPoolBuilder = new HouseWithGarageAndPoolBuilder();
+
+        Director director = new Director();
+
         switch (type) {
-            case "Simple" -> house = new SimpleHouse(floors);
+            case "Simple" -> {
+                director.constructSimpleHouse(simpleHouseBuilder, floors);
+                house = simpleHouseBuilder.getResult();
+            }
             case "With Garage" -> {
-                garage = mapper.readValue(node.get("garage").toString(), Garage.class);
-                house = new HouseWithGarage(floors, garage);
+                JsonNode garageNode = node.get("garage");
+                director.constructHouseWithGarage(houseWithGarageBuilder, floors, parseVehicles(garageNode));
+                house = houseWithGarageBuilder.getResult();
             }
             case "With Pool" -> {
-                pool = mapper.readValue(node.get("pool").toString(), Pool.class);
-                house = new HouseWithPool(floors, pool);
+                director.constructHouseWithPool(houseWithPoolBuilder, floors);
+                house = houseWithPoolBuilder.getResult();
             }
             case "With Garage and Pool" -> {
-                garage = mapper.readValue(node.get("garage").toString(), Garage.class);
-                pool = mapper.readValue(node.get("pool").toString(), Pool.class);
-                house = new HouseWithGarageAndPool(floors, garage, pool);
+                JsonNode garageNode = node.get("garage");
+                director.constructHouseWithGarageAndPool(houseWithGarageAndPoolBuilder, floors, parseVehicles(garageNode));
+                house = houseWithGarageAndPoolBuilder.getResult();
             }
             default -> throw new IllegalArgumentException("Unknown home type: " + type);
         }
-
-        house.setFloors(floors);
-
+        house.setPeople(parsePeople(jsonFileName, deviceController, house));
+        house.setPets(parsePets(jsonFileName, deviceController, house));
         return house;
     }
 
@@ -85,6 +95,7 @@ public class ConfigBuilder {
             Integer roomId = roomNode.get("id").asInt();
             JsonNode devicesNode = roomNode.get("devices");
             List<Device> devices = (devicesNode != null) ? parseDevices(devicesNode) : Collections.emptyList();
+            deviceController = new DeviceController(devices);
 
             switch (type) {
                 case "KITCHEN" -> {
@@ -124,7 +135,7 @@ public class ConfigBuilder {
         return rooms;
     }
 
-    private static List<Device> parseDevices(JsonNode devicesNode) throws IOException {
+    private static List<Device> parseDevices(JsonNode devicesNode) {
         List<Device> devices = new ArrayList<>();
         DeviceManager manager;
 
@@ -177,11 +188,11 @@ public class ConfigBuilder {
         return devices;
     }
 
-    public static List<Person> parsePeople(String jsonFileName, DeviceController controller, House house) throws IOException {
+    public static List<HouseResident> parsePeople(String jsonFileName, DeviceController controller, House house) throws IOException {
         ObjectMapper mapper = new ObjectMapper();
         JsonNode node = mapper.readTree(new File(jsonFileName));
 
-        List<Person> people = new ArrayList<>();
+        List<HouseResident> people = new ArrayList<>();
         Father father = null;
         Mother mother = null;
         Child child = null;
@@ -218,11 +229,11 @@ public class ConfigBuilder {
         return people;
     }
 
-    public static List<Pet> parsePets(String jsonFileName, DeviceController deviceController, House house) throws IOException {
+    public static List<HouseResident> parsePets(String jsonFileName, DeviceController deviceController, House house) throws IOException {
         ObjectMapper mapper = new ObjectMapper();
         JsonNode node = mapper.readTree(new File(jsonFileName));
 
-        List<Pet> pets = new ArrayList<>();
+        List<HouseResident> pets = new ArrayList<>();
         Cat cat = null;
         Dog dog = null;
         GoldenFish fish = null;
@@ -257,7 +268,7 @@ public class ConfigBuilder {
     public static List<Vehicle> parseVehicles(JsonNode garageNode){
         List<Vehicle> vehicles = new ArrayList<>();
 
-        for (JsonNode vehicleNode : garageNode) {
+        for (JsonNode vehicleNode : garageNode.get("vehicles")) {
             String type = vehicleNode.get("type").asText();
             switch (type) {
                 case "SKI" -> vehicles.add(new Ski());
