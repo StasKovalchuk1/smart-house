@@ -22,8 +22,8 @@ public abstract class Pet extends HouseResident {
     protected boolean isInShelter;
     protected Shelter petShelter;
 
-    public Pet(DeviceController deviceController, String name, House house, PetType type) {
-        super(deviceController, name, house, type);
+    public Pet(String name, House house, PetType type) {
+        super(name, house, type);
     }
 
     //TODO раскомментирвоать строку

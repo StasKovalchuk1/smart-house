@@ -22,8 +22,8 @@ public abstract class Person extends HouseResident implements Subscriber{
     private boolean atHome;
     private EventHandleByPersonStrategy eventStrategy;
 
-    public Person(DeviceController deviceController, House house, String name, PersonType type) {
-        super(deviceController, name, house, type);
+    public Person(House house, String name, PersonType type) {
+        super(name, house, type);
     }
 
     public abstract void handleEvent(EventToHandle event);
@@ -32,11 +32,12 @@ public abstract class Person extends HouseResident implements Subscriber{
     public void doActivity(Activity activity) throws Exception {
         Device device = getDeviceByActivity(activity);
         setStrategy(getStrategyByActivity(activity));
-        strategy.performActivity(deviceController, device, this);
+        strategy.performActivity(house.getDeviceController(), device, this);
         activityAndUsageReportGenerator.writeDeviceUsage(this, device);
     }
 
     protected Device getDeviceByActivity(Activity activity) {
+        DeviceController deviceController = house.getDeviceController();
         return switch ((PersonActivity) activity) {
             case GetFoodFromFridge, AddFoodToFridge -> deviceController.getDeviceByName("Fridge").get();
             case StartDoingLaundry, FinishDoingLaundry -> deviceController.getDeviceByName("Washing machine").get();

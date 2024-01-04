@@ -10,14 +10,14 @@ import org.example.houses.House;
 
 public class Father extends Person{
 
-    public Father(DeviceController deviceController, House house, String name) {
-        super(deviceController, house, name, PersonType.FATHER);
+    public Father(House house, String name) {
+        super(house, name, PersonType.FATHER);
     }
 
     @Override
     public void handleEvent(EventToHandle event) {
         setStrategyByEvent(event);
-        getEventStrategy().handle(getDeviceController());
+        getEventStrategy().handle(house.getDeviceController());
     }
 
     public void setStrategyByEvent(EventToHandle event) {

@@ -1,6 +1,7 @@
 package org.example.houses;
 
 import lombok.Data;
+import org.example.devices.DeviceController;
 import org.example.houseComponents.Floor;
 import org.example.houseResidents.HouseResident;
 import org.example.houseResidents.people.Person;
@@ -11,8 +12,10 @@ import java.util.List;
 
 @Data
 public abstract class House {
-    private HouseType type;
 
+    protected DeviceController deviceController;
+
+    private HouseType type;
     protected List<Floor> floors;
     protected List<HouseResident> people;
     protected List<HouseResident> pets;

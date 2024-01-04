@@ -8,8 +8,6 @@ import org.example.devices.Device;
 import org.example.devices.DeviceController;
 import org.example.factory.*;
 import org.example.houseComponents.Floor;
-import org.example.houseComponents.Garage;
-import org.example.houseComponents.Pool;
 import org.example.houseComponents.rooms.*;
 import org.example.houseComponents.vehicle.Bicycle;
 import org.example.houseComponents.vehicle.Car;
@@ -31,21 +29,24 @@ import java.util.List;
 public class ConfigBuilder {
 
     private static JSONObject object;
+    private static House house;
     private static DeviceController deviceController;
 
     public static House buildHouseFromJson(String jsonFileName) throws IOException {
         ObjectMapper mapper = new ObjectMapper();
-        JsonNode node = mapper.readTree(new File(jsonFileName));
+        JsonNode houseNode = mapper.readTree(new File(jsonFileName));
 
-        String type = node.get("type").asText();
-        List<Floor> floors = parseFloors(node.get("floors"));
-        House house;
+        String type = houseNode.get("type").asText();
+        List<Floor> floors = parseFloors(houseNode.get("floors"));
+
+        deviceController = new DeviceController(parseAllDevices(houseNode));
+
 
         //Builders
-        SimpleHouseBuilder simpleHouseBuilder = new SimpleHouseBuilder();
-        HouseWithPoolBuilder houseWithPoolBuilder = new HouseWithPoolBuilder();
-        HouseWithGarageBuilder houseWithGarageBuilder = new HouseWithGarageBuilder();
-        HouseWithGarageAndPoolBuilder houseWithGarageAndPoolBuilder = new HouseWithGarageAndPoolBuilder();
+        SimpleHouseBuilder simpleHouseBuilder = new SimpleHouseBuilder(deviceController);
+        HouseWithPoolBuilder houseWithPoolBuilder = new HouseWithPoolBuilder(deviceController);
+        HouseWithGarageBuilder houseWithGarageBuilder = new HouseWithGarageBuilder(deviceController);
+        HouseWithGarageAndPoolBuilder houseWithGarageAndPoolBuilder = new HouseWithGarageAndPoolBuilder(deviceController);
 
         Director director = new Director();
 
@@ -55,7 +56,7 @@ public class ConfigBuilder {
                 house = simpleHouseBuilder.getResult();
             }
             case "With Garage" -> {
-                JsonNode garageNode = node.get("garage");
+                JsonNode garageNode = houseNode.get("garage");
                 director.constructHouseWithGarage(houseWithGarageBuilder, floors, parseVehicles(garageNode));
                 house = houseWithGarageBuilder.getResult();
             }
@@ -64,14 +65,15 @@ public class ConfigBuilder {
                 house = houseWithPoolBuilder.getResult();
             }
             case "With Garage and Pool" -> {
-                JsonNode garageNode = node.get("garage");
+                JsonNode garageNode = houseNode.get("garage");
                 director.constructHouseWithGarageAndPool(houseWithGarageAndPoolBuilder, floors, parseVehicles(garageNode));
                 house = houseWithGarageAndPoolBuilder.getResult();
             }
             default -> throw new IllegalArgumentException("Unknown home type: " + type);
         }
-        house.setPeople(parsePeople(jsonFileName, deviceController, house));
-        house.setPets(parsePets(jsonFileName, deviceController, house));
+//        house.setDeviceController(deviceController);
+        house.setPeople(parsePeople(jsonFileName, house));
+        house.setPets(parsePets(jsonFileName, house));
         return house;
     }
 
@@ -94,8 +96,8 @@ public class ConfigBuilder {
             String type = roomNode.get("type").asText();
             Integer roomId = roomNode.get("id").asInt();
             JsonNode devicesNode = roomNode.get("devices");
-            List<Device> devices = (devicesNode != null) ? parseDevices(devicesNode) : Collections.emptyList();
-            deviceController = new DeviceController(devices);
+            List<Device> devices = (devicesNode != null) ? parseDevicesInRoom(devicesNode) : Collections.emptyList();
+//            deviceController = new DeviceController(devices);
 
             switch (type) {
                 case "KITCHEN" -> {
@@ -135,7 +137,65 @@ public class ConfigBuilder {
         return rooms;
     }
 
-    private static List<Device> parseDevices(JsonNode devicesNode) {
+    private static List<Device> parseAllDevices(JsonNode houseNode) {
+        List<Device> devices = new ArrayList<>();
+        DeviceManager manager;
+
+        for (JsonNode floorNode : houseNode.get("floors")) {
+            for (JsonNode roomNode : floorNode.get("rooms")) {
+                for (JsonNode device : roomNode.get("devices")) {
+                    Integer id = device.get("id").asInt();
+                    String name = device.get("name").asText();
+                    String documentation = device.get("documentation").asText();
+
+                    switch (name) {
+                        case "Grill":
+                            manager = new GrillManager(id, name, documentation);
+                            devices.add(manager.collectData());
+                            break;
+                        case "WashingMachine":
+                            manager = new WashingMachineManager(id, name, documentation);
+                            devices.add(manager.collectData());
+                            break;
+                        case "CoffeeMachine":
+                            manager = new CoffeeMachineManager(id, name, documentation);
+                            devices.add(manager.collectData());
+                            break;
+                        case "Computer":
+                            manager = new ComputerManager(id, name, documentation);
+                            devices.add(manager.collectData());
+                            break;
+                        case "Dishwasher":
+                            manager = new DishwasherManager(id, name, documentation);
+                            devices.add(manager.collectData());
+                            break;
+                        case "Fridge":
+                            manager = new FridgeManager(id, name, documentation);
+                            devices.add(manager.collectData());
+                            break;
+                        case "Microwave":
+                            manager = new MicrowaveManager(id, name, documentation);
+                            devices.add(manager.collectData());
+                            break;
+                        case "Oven":
+                            manager = new OvenManager(id, name, documentation);
+                            devices.add(manager.collectData());
+                            break;
+                        case "Shelter":
+                            manager = new ShelterManager(id, name, documentation);
+                            devices.add(manager.collectData());
+                            break;
+                        default:
+                            throw new IllegalArgumentException("Unknown device: " + name);
+                    }
+                }
+            }
+        }
+        return devices;
+    }
+
+
+    private static List<Device> parseDevicesInRoom(JsonNode devicesNode) {
         List<Device> devices = new ArrayList<>();
         DeviceManager manager;
 
@@ -188,7 +248,7 @@ public class ConfigBuilder {
         return devices;
     }
 
-    public static List<HouseResident> parsePeople(String jsonFileName, DeviceController controller, House house) throws IOException {
+    public static List<HouseResident> parsePeople(String jsonFileName, House house) throws IOException {
         ObjectMapper mapper = new ObjectMapper();
         JsonNode node = mapper.readTree(new File(jsonFileName));
 
@@ -204,18 +264,18 @@ public class ConfigBuilder {
 
             switch (type) {
                 case "FATHER" -> {
-                    father = new Father(controller, house, name);
+                    father = new Father(house, name);
                     father.setAtHome(atHome);
                     people.add(father);
                 }
                 case "MOTHER" -> {
-                    mother = new Mother(controller, house, name);
+                    mother = new Mother(house, name);
                     mother.setAtHome(atHome);
                     people.add(mother);
                 }
                 case "CHILD" -> {
                     if (father != null && mother != null) {
-                        child = new Child(controller, house, name, mother, father);
+                        child = new Child(house, name, mother, father);
                         child.setAtHome(atHome);
                         people.add(child);
                     } else {
@@ -229,14 +289,14 @@ public class ConfigBuilder {
         return people;
     }
 
-    public static List<HouseResident> parsePets(String jsonFileName, DeviceController deviceController, House house) throws IOException {
+    public static List<HouseResident> parsePets(String jsonFileName, House house) throws IOException {
         ObjectMapper mapper = new ObjectMapper();
         JsonNode node = mapper.readTree(new File(jsonFileName));
 
         List<HouseResident> pets = new ArrayList<>();
-        Cat cat = null;
-        Dog dog = null;
-        GoldenFish fish = null;
+        Cat cat;
+        Dog dog;
+        GoldenFish fish;
 
         for (JsonNode petNode : node.get("pets")) {
             String type = petNode.get("type").asText();
@@ -245,17 +305,17 @@ public class ConfigBuilder {
 
             switch (type) {
                 case "DOG" -> {
-                    dog = new Dog(deviceController, name, house);
+                    dog = new Dog(name, house);
                     dog.setInShelter(isInShelter);
                     pets.add(dog);
                 }
                 case "CAT" -> {
-                    cat = new Cat(deviceController, name, house);
+                    cat = new Cat(name, house);
                     cat.setInShelter(isInShelter);
                     pets.add(cat);
                 }
                 case "GOLDENFISH" -> {
-                    fish = new GoldenFish(deviceController, name, house);
+                    fish = new GoldenFish(name, house);
                     fish.setInShelter(isInShelter);
                     pets.add(fish);
                 }

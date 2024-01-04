@@ -32,24 +32,16 @@ public class Simulation {
     //Simulation Timer
     private final Timer timer;
 
-    public Simulation(House house,
-                      EventGeneratorForAutomaticHandling eventGenAuto,
-                      EventGeneratorForHandlingByPerson eventGenPerson,
-                      PersonActivityGenerator personActivityGen,
-                      PetActivityGenerator petActivityGen,
-                      EventReportGenerator eventReportGenerator,
-                      ActivityAndUsageReportGenerator activityAndUsageReportGenerator,
-                      ConsumptionReportGenerator consumptionReportGenerator,
-                      HouseConfigurationReportGenerator houseConfigReportGenerator) {
+    public Simulation(House house) {
         this.house = house;
-        this.eventGenAuto = eventGenAuto;
-        this.eventGenPerson = eventGenPerson;
-        this.personActivityGen = personActivityGen;
-        this.petActivityGen = petActivityGen;
-        this.eventReportGen = eventReportGenerator;
-        this.activityAndUsageReportGen = activityAndUsageReportGenerator;
-        this.consumptionReportGen = consumptionReportGenerator;
-        this.houseConfigReportGen = houseConfigReportGenerator;
+        this.eventReportGen = new EventReportGenerator();
+        this.activityAndUsageReportGen = new ActivityAndUsageReportGenerator(house);
+        this.consumptionReportGen = new ConsumptionReportGenerator();
+        this.houseConfigReportGen = new HouseConfigurationReportGenerator(house);
+        this.eventGenAuto = new EventGeneratorForAutomaticHandling(house.getDeviceController(), eventReportGen);
+        this.eventGenPerson = new EventGeneratorForHandlingByPerson(house.getPeople(), house.getDeviceController(), eventReportGen);
+        this.personActivityGen = new PersonActivityGenerator();
+        this.petActivityGen = new PetActivityGenerator();
         timer = new Timer();
     }
 

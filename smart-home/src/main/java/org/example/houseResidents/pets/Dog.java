@@ -7,7 +7,7 @@ import org.example.houses.House;
 
 public class Dog extends Pet{
 
-    public Dog(DeviceController deviceController, String name, House house) {
-        super(deviceController, name, house, PetType.DOG);
+    public Dog(String name, House house) {
+        super(name, house, PetType.DOG);
     }
 }
