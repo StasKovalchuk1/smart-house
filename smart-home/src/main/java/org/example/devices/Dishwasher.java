@@ -10,6 +10,9 @@ public class Dishwasher extends Device{
 
     public Dishwasher(Integer id, String documentation) {
         super(id, "Dishwasher", documentation);
+        setAverageElectricityConsumption(5);
+        setAverageWaterConsumption(3);
+        setAverageGasConsumption(0);
     }
 
     @Override
@@ -21,6 +24,23 @@ public class Dishwasher extends Device{
     @Override
     public void performDeviceAction() {
         detergentAmount--;
+
+        double percentChange = (Math.random() - 0.5) * 0.2;
+        setCurrentElectricityConsumption(getAverageElectricityConsumption() * (1 + percentChange));
+        setCurrentWaterConsumption(getAverageWaterConsumption() * (1 + percentChange));
+
+        getController().increaseTotalElectricityConsumption(getCurrentElectricityConsumption());
+        getController().increaseTotalWaterConsumption(getCurrentWaterConsumption());
+
         System.out.println("Dishwasher has washed dishes");
+    }
+
+    @Override
+    public void stopDeviceAction() {
+        getController().decreaseTotalElectricityConsumption(getCurrentElectricityConsumption());
+        getController().decreaseTotalWaterConsumption(getCurrentWaterConsumption());
+
+        setCurrentElectricityConsumption(0);
+        setCurrentWaterConsumption(0);
     }
 }

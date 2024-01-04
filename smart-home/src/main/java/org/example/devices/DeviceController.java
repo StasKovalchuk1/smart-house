@@ -21,6 +21,13 @@ import java.util.Optional;
 @Slf4j
 public class DeviceController {
 
+    private double totalWaterConsumption;
+    private double totalGasConsumption;
+    private double totalElectricityConsumption;
+    private double maxTotalWaterConsumption;
+    private double maxTotalGasConsumption;
+    private double maxTotalElectricityConsumption;
+
     private List<Device> devices = new ArrayList<>();
 
     private EventHandleByControllerStrategy eventStrategy;
@@ -69,5 +76,27 @@ public class DeviceController {
         return Optional.empty();
     }
 
+    public void increaseTotalWaterConsumption(double amount) {
+        totalWaterConsumption += amount;
+    }
 
+    public void increaseTotalGasConsumption(double amount) {
+        totalGasConsumption += amount;
+    }
+
+    public void increaseTotalElectricityConsumption(double amount) {
+        totalElectricityConsumption += amount;
+    }
+
+    public void decreaseTotalWaterConsumption(double amount) {
+        totalWaterConsumption -= amount;
+    }
+
+    public void decreaseTotalGasConsumption(double amount) {
+        totalGasConsumption -= amount;
+    }
+
+    public void decreaseTotalElectricityConsumption(double amount) {
+        totalElectricityConsumption -= amount;
+    }
 }

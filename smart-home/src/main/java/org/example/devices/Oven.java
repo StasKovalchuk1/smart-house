@@ -11,6 +11,9 @@ public class Oven extends Device{
 
     public Oven(Integer id, String documentation) {
         super(id, "Oven", documentation);
+        setAverageElectricityConsumption(3);
+        setAverageWaterConsumption(0);
+        setAverageGasConsumption(5);
     }
 
     @Override
@@ -20,6 +23,22 @@ public class Oven extends Device{
 
     @Override
     public void performDeviceAction() {
+        double percentChange = (Math.random() - 0.5) * 0.2;
+        setCurrentElectricityConsumption(getAverageElectricityConsumption() * (1 + percentChange));
+        setCurrentGasConsumption(getAverageGasConsumption() * (1 + percentChange));
+
+        getController().increaseTotalElectricityConsumption(getCurrentElectricityConsumption());
+        getController().increaseTotalGasConsumption(getCurrentGasConsumption());
+
         System.out.println("Oven has baked food");
+    }
+
+    @Override
+    public void stopDeviceAction() {
+        getController().decreaseTotalElectricityConsumption(getCurrentElectricityConsumption());
+        getController().decreaseTotalGasConsumption(getCurrentGasConsumption());
+
+        setCurrentElectricityConsumption(0);
+        setCurrentGasConsumption(0);
     }
 }

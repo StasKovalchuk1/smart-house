@@ -6,14 +6,17 @@ import org.example.states.deviceStates.DeviceState;
 
 @Data
 public abstract class Device {
-
     private Integer id;
     private String name;
     private String documentation;
     private DeviceState state;
-    private int waterConsumption;
-    private int gasConsumption;
-    private int electricityConsumption;
+    private double averageWaterConsumption;
+    private double averageGasConsumption;
+    private double averageElectricityConsumption;
+    private double currentWaterConsumption;
+    private double currentGasConsumption;
+    private double currentElectricityConsumption;
+    private DeviceController controller;
 
     protected Device() {
         this.state = new DeviceOffState(this);
@@ -33,4 +36,6 @@ public abstract class Device {
     public abstract String somethingToFix();
 
     public abstract void performDeviceAction();
+
+    public abstract void stopDeviceAction();
 }

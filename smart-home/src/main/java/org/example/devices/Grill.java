@@ -9,6 +9,9 @@ public class Grill extends Device{
 
     public Grill(Integer id, String documentation) {
         super(id, "Grill", documentation);
+        setAverageElectricityConsumption(5);
+        setAverageWaterConsumption(0);
+        setAverageGasConsumption(0);
     }
 
     @Override
@@ -20,6 +23,17 @@ public class Grill extends Device{
     @Override
     public void performDeviceAction() {
         coalAmount--;
+
+        double percentChange = (Math.random() - 0.5) * 0.2;
+        setCurrentElectricityConsumption(getAverageElectricityConsumption() * (1 + percentChange));
+        getController().increaseTotalElectricityConsumption(getCurrentElectricityConsumption());
+
         System.out.println("Grill has grilled food");
+    }
+
+    @Override
+    public void stopDeviceAction() {
+        getController().decreaseTotalElectricityConsumption(getCurrentElectricityConsumption());
+        setCurrentElectricityConsumption(0);
     }
 }

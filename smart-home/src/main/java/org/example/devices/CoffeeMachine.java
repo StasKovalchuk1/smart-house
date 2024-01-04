@@ -10,6 +10,9 @@ public class CoffeeMachine extends Device{
 
     public CoffeeMachine(Integer id, String documentation) {
         super(id, "CoffeeMachine", documentation);
+        setAverageElectricityConsumption(3);
+        setAverageWaterConsumption(1);
+        setAverageGasConsumption(0);
     }
 
     @Override
@@ -21,6 +24,23 @@ public class CoffeeMachine extends Device{
     @Override
     public void performDeviceAction() {
         capsulesAmount--;
+
+        double percentChange = (Math.random() - 0.5) * 0.2;
+        setCurrentElectricityConsumption(getAverageElectricityConsumption() * (1 + percentChange));
+        setCurrentWaterConsumption(getAverageWaterConsumption() * (1 + percentChange));
+
+        getController().increaseTotalElectricityConsumption(getCurrentElectricityConsumption());
+        getController().increaseTotalWaterConsumption(getCurrentWaterConsumption());
+
         System.out.println("CoffeeMachine has made coffee");
+    }
+
+    @Override
+    public void stopDeviceAction() {
+        getController().decreaseTotalElectricityConsumption(getCurrentElectricityConsumption());
+        getController().decreaseTotalWaterConsumption(getCurrentWaterConsumption());
+
+        setCurrentElectricityConsumption(0);
+        setCurrentWaterConsumption(0);
     }
 }

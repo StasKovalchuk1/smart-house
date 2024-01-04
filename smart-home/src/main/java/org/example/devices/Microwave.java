@@ -11,6 +11,9 @@ public class Microwave extends Device{
 
     public Microwave(Integer id, String documentation) {
         super(id, "Microwave", documentation);
+        setAverageElectricityConsumption(2);
+        setAverageWaterConsumption(0);
+        setAverageGasConsumption(0);
     }
 
     @Override
@@ -20,7 +23,17 @@ public class Microwave extends Device{
 
     @Override
     public void performDeviceAction() {
-        System.out.println("Microwave has heated food");
+        double percentChange = (Math.random() - 0.5) * 0.2;
+        setCurrentElectricityConsumption(getAverageElectricityConsumption() * (1 + percentChange));
+        getController().increaseTotalElectricityConsumption(getCurrentElectricityConsumption());
 
+        System.out.println("Microwave has heated food");
     }
+
+    @Override
+    public void stopDeviceAction() {
+        getController().decreaseTotalElectricityConsumption(getCurrentElectricityConsumption());
+        setCurrentElectricityConsumption(0);
+    }
+
 }
