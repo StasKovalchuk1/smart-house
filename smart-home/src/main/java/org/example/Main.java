@@ -131,7 +131,7 @@ public class Main {
 
             DeviceController controller = new DeviceController(devices);
 
-            List<Person> people = ConfigBuilder.getPeopleFromJson("config/config1.json", controller, house);
+            List<Person> people = ConfigBuilder.parsePeople("config/config1.json", controller, house);
             System.out.println(people);
             System.out.println("-------------------");
 
