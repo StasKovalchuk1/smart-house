@@ -1,13 +1,12 @@
 package org.example.houseResidents.pets;
 
 import lombok.Data;
-import org.example.devices.Device;
-import org.example.generators.activities.Activity;
+import org.example.devices.DeviceController;
 
-@Data
+
 public class Cat extends Pet{
 
-    public Cat() {
-        setType(PetType.CAT);
+    public Cat(DeviceController deviceController, String name) {
+        super(deviceController, name, PetType.CAT);
     }
 }

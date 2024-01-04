@@ -63,10 +63,10 @@ IN THE ROOM: BEDROOM
 2) Fridge
 ---
 
-RESIDENTS INFO: 
-1) MOTHER: Liza
+PEOPLE INFO: 
+1) MOTHER: Irena
 2) FATHER: Oleg
-3) CHILD: Vova
+3) CHILD: Daniil
 
 PETS INFO: 
 1) DOG: Bobik

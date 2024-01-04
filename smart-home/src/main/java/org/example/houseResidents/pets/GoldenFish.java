@@ -1,13 +1,12 @@
 package org.example.houseResidents.pets;
 
 import lombok.Data;
-import org.example.decorators.GoldenFishShelterDecorator;
-import org.example.devices.Shelter;
+import org.example.devices.DeviceController;
 
-@Data
+
 public class GoldenFish extends Pet{
 
-    public GoldenFish() {
-        setType(PetType.GOLDENFISH);
+    public GoldenFish(DeviceController deviceController, String name) {
+        super(deviceController, name, PetType.GOLDENFISH);
     }
 }

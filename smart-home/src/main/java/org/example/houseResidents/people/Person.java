@@ -14,19 +14,16 @@ import org.example.generators.events.strategies.forPerson.EventHandleByPersonStr
 import org.example.houseResidents.HouseResident;
 import org.example.houses.House;
 
-@Slf4j
 @EqualsAndHashCode(callSuper = true)
+@Slf4j
 @Data
 public abstract class Person extends HouseResident implements Subscriber{
-    private House house;
-    private String name;
+    private final House house;
     private boolean atHome;
-    private PersonType type;
-    private final DeviceController deviceController;
     private EventHandleByPersonStrategy eventStrategy;
 
-    public Person(DeviceController deviceController, House house) {
-        this.deviceController = deviceController;
+    public Person(DeviceController deviceController, House house, String name, PersonType type) {
+        super(deviceController, name, type);
         this.house = house;
     }
 
@@ -37,6 +34,7 @@ public abstract class Person extends HouseResident implements Subscriber{
         Device device = getDeviceByActivity(activity);
         setStrategy(getStrategyByActivity(activity));
         strategy.performActivity(deviceController, device, this);
+        activityAndUsageReportGenerator.writeDeviceUsage(this, device);
     }
 
     protected Device getDeviceByActivity(Activity activity) {

@@ -8,9 +8,8 @@ import org.example.houses.House;
 
 public class Mother extends Person{
 
-    public Mother(DeviceController deviceController, House house) {
-        super(deviceController, house);
-        setType(PersonType.MOTHER);
+    public Mother(DeviceController deviceController, House house, String name) {
+        super(deviceController, house, name, PersonType.MOTHER);
     }
 
     @Override

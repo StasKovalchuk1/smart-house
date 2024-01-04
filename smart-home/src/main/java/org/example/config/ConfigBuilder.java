@@ -49,24 +49,21 @@ public class ConfigBuilder {
         House house;
 
         switch (type) {
-            case "Simple":
-                house = new SimpleHouse(floors);
-                break;
-            case "With Garage":
+            case "Simple" -> house = new SimpleHouse(floors);
+            case "With Garage" -> {
                 garage = mapper.readValue(node.get("garage").toString(), Garage.class);
                 house = new HouseWithGarage(floors, garage);
-                break;
-            case "With Pool":
+            }
+            case "With Pool" -> {
                 pool = mapper.readValue(node.get("pool").toString(), Pool.class);
                 house = new HouseWithPool(floors, pool);
-                break;
-            case "With Garage and Pool":
+            }
+            case "With Garage and Pool" -> {
                 garage = mapper.readValue(node.get("garage").toString(), Garage.class);
                 pool = mapper.readValue(node.get("pool").toString(), Pool.class);
                 house = new HouseWithGarageAndPool(floors, garage, pool);
-                break;
-            default:
-                throw new IllegalArgumentException("Unknown home type: " + type);
+            }
+            default -> throw new IllegalArgumentException("Unknown home type: " + type);
         }
 
         house.setFloors(floors);
@@ -95,26 +92,13 @@ public class ConfigBuilder {
             List<Device> devices = (devicesNode != null) ? parseDevices(devicesNode) : Collections.emptyList();
 
             switch (roomType) {
-                case KITCHEN:
-                    rooms.add(new Kitchen(devices));
-                    break;
-                case TOILET:
-                    rooms.add(new Toilet(devices));
-                    break;
-                case BEDROOM:
-                    rooms.add(new BedRoom(devices));
-                    break;
-                case BATHROOM:
-                    rooms.add(new BathRoom(devices));
-                    break;
-                case GYM:
-                    rooms.add(new Gym(devices));
-                    break;
-                case LIVING_ROOM:
-                    rooms.add(new LivingRoom(devices));
-                    break;
-                default:
-                    throw new IllegalArgumentException("Unknown room type: " + roomType);
+                case KITCHEN -> rooms.add(new Kitchen(devices));
+                case TOILET -> rooms.add(new Toilet(devices));
+                case BEDROOM -> rooms.add(new BedRoom(devices));
+                case BATHROOM -> rooms.add(new BathRoom(devices));
+                case GYM -> rooms.add(new Gym(devices));
+                case LIVING_ROOM -> rooms.add(new LivingRoom(devices));
+                default -> throw new IllegalArgumentException("Unknown room type: " + roomType);
             }
         }
 
@@ -130,45 +114,44 @@ public class ConfigBuilder {
             String name = deviceNode.get("name").asText();
             String documentation = deviceNode.get("documentation").asText();
 
-            switch (name){
-                case "Grill":
+            switch (name) {
+                case "Grill" -> {
                     manager = new GrillManager(id, name, documentation);
                     devices.add(manager.collectData());
-                    break;
-                case "WashingMachine":
+                }
+                case "WashingMachine" -> {
                     manager = new WashingMachineManager(id, name, documentation);
                     devices.add(manager.collectData());
-                    break;
-                case "CoffeeMachine":
+                }
+                case "CoffeeMachine" -> {
                     manager = new CoffeeMachineManager(id, name, documentation);
                     devices.add(manager.collectData());
-                    break;
-                case "Computer":
+                }
+                case "Computer" -> {
                     manager = new ComputerManager(id, name, documentation);
                     devices.add(manager.collectData());
-                    break;
-                case "Dishwasher":
+                }
+                case "Dishwasher" -> {
                     manager = new DishwasherManager(id, name, documentation);
                     devices.add(manager.collectData());
-                    break;
-                case "Fridge":
+                }
+                case "Fridge" -> {
                     manager = new FridgeManager(id, name, documentation);
                     devices.add(manager.collectData());
-                    break;
-                case "Microwave":
+                }
+                case "Microwave" -> {
                     manager = new MicrowaveManager(id, name, documentation);
                     devices.add(manager.collectData());
-                    break;
-                case "Oven":
+                }
+                case "Oven" -> {
                     manager = new OvenManager(id, name, documentation);
                     devices.add(manager.collectData());
-                    break;
-                case "Shelter":
+                }
+                case "Shelter" -> {
                     manager = new ShelterManager(id, name, documentation);
                     devices.add(manager.collectData());
-                    break;
-                default:
-                    throw new IllegalArgumentException("Unknown device: " + name);
+                }
+                default -> throw new IllegalArgumentException("Unknown device: " + name);
             }
         }
 
@@ -190,30 +173,26 @@ public class ConfigBuilder {
             boolean atHome = personNode.get("atHome").asBoolean();
 
             switch (type) {
-                case FATHER:
-                    father = new Father(controller, house);
-                    father.setName(name);
+                case FATHER -> {
+                    father = new Father(controller, house, name);
                     father.setAtHome(atHome);
                     people.add(father);
-                    break;
-                case MOTHER:
-                    mother = new Mother(controller, house);
-                    mother.setName(name);
+                }
+                case MOTHER -> {
+                    mother = new Mother(controller, house, name);
                     mother.setAtHome(atHome);
                     people.add(mother);
-                    break;
-                case CHILD:
+                }
+                case CHILD -> {
                     if (father != null && mother != null) {
-                        child = new Child(controller, house, mother, father);
-                        child.setName(name);
+                        child = new Child(controller, house, name, mother, father);
                         child.setAtHome(atHome);
                         people.add(child);
                     } else {
                         log.warn("Couldn't read child because parents are not initialized");
                     }
-                    break;
-                default:
-                    throw new IllegalArgumentException("Unknown person: " + name);
+                }
+                default -> throw new IllegalArgumentException("Unknown person: " + name);
             }
         }
 

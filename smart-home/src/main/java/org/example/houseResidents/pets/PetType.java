@@ -1,6 +1,8 @@
 package org.example.houseResidents.pets;
 
-public enum PetType {
+import org.example.houseResidents.ResidentType;
+
+public enum PetType implements ResidentType {
 
     DOG,
     CAT,

@@ -1,6 +1,7 @@
 package org.example.reports.reportGenerators;
 
 import lombok.Data;
+import org.example.generators.events.EventToHandle;
 
 import java.io.PrintWriter;
 
