@@ -23,7 +23,7 @@ public class AddFoodToFridgeStrategy implements ActivityStrategy {
         if (fridgeOptional.isPresent()) {
             fridge = (Fridge) fridgeOptional.get();
             fridge.getFoodInside().add(food);
-            System.out.printf("%s has put %s to fridge%n", person.getName(), food.toString());
+            log.info(String.format("%s has put %s to fridge%n", person.getName(), food.toString()));
             log.info("Food was added to fridge");
         } else {
             log.warn(device.getName() + " was not found");

@@ -31,8 +31,6 @@ public class WashingMachine extends Device{
 
         getController().increaseTotalElectricityConsumption(getCurrentElectricityConsumption());
         getController().increaseTotalWaterConsumption(getCurrentWaterConsumption());
-
-        System.out.println("Washing machine has washed clothes");
     }
 
     @Override

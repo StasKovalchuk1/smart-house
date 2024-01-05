@@ -31,8 +31,6 @@ public class CoffeeMachine extends Device{
 
         getController().increaseTotalElectricityConsumption(getCurrentElectricityConsumption());
         getController().increaseTotalWaterConsumption(getCurrentWaterConsumption());
-
-        System.out.println("CoffeeMachine has made coffee");
     }
 
     @Override

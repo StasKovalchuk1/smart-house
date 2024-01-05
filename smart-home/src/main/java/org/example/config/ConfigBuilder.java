@@ -40,7 +40,7 @@ public class ConfigBuilder {
         List<Floor> floors = parseFloors(houseNode.get("floors"));
 
         deviceController = new DeviceController(parseAllDevices(houseNode));
-
+        deviceController.getDevices().forEach(device -> device.setController(deviceController));
 
         //Builders
         SimpleHouseBuilder simpleHouseBuilder = new SimpleHouseBuilder(deviceController);

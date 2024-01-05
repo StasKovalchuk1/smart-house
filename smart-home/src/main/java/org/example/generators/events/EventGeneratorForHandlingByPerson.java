@@ -31,13 +31,13 @@ public class EventGeneratorForHandlingByPerson implements EventGenerator{
     @Override
     public EventToHandle pickEvent() {
         EventToHandleByPerson[] events = EventToHandleByPerson.values();
-        int index = new Random().nextInt(events.length+1);
+        int index = new Random().nextInt(events.length);
         log.info(events[index].toString());
         return events[index];
     }
 
     public Person pickPerson() {
-        int index = new Random().nextInt(people.size()+1);
+        int index = new Random().nextInt(people.size());
         log.info(people.get(index).toString() + " was chosen to handle event");
         return (Person)people.get(index);
     }

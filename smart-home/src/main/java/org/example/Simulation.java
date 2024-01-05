@@ -1,5 +1,6 @@
 package org.example;
 
+import org.example.devices.Device;
 import org.example.generators.activities.personActivities.PersonActivityGenerator;
 import org.example.generators.activities.petActivities.PetActivityGenerator;
 import org.example.generators.events.EventGeneratorForAutomaticHandling;
@@ -40,9 +41,12 @@ public class Simulation {
         this.houseConfigReportGen = new HouseConfigurationReportGenerator(house);
         this.eventGenAuto = new EventGeneratorForAutomaticHandling(house.getDeviceController(), eventReportGen);
         this.eventGenPerson = new EventGeneratorForHandlingByPerson(house.getPeople(), house.getDeviceController(), eventReportGen);
-        this.personActivityGen = new PersonActivityGenerator();
-        this.petActivityGen = new PetActivityGenerator();
+        this.personActivityGen = new PersonActivityGenerator(house.getPeople(), activityAndUsageReportGen);
+        this.petActivityGen = new PetActivityGenerator(house.getPets(), activityAndUsageReportGen);
         timer = new Timer();
+
+        // может надо исправить
+        house.getPeople().forEach(resident -> resident.setActivityAndUsageReportGenerator(activityAndUsageReportGen));
     }
 
     public void runSimulation() {
@@ -50,10 +54,14 @@ public class Simulation {
             @Override
             public void run() {
                 eventGenAuto.generateEvent();
+                System.out.println("-----------------------------");
                 eventGenPerson.generateEvent();
+                System.out.println("-----------------------------");
                 try {
                     personActivityGen.generateActivity();
+                    System.out.println("-----------------------------");
                     petActivityGen.generateActivity();
+                    System.out.println("-----------------------------");
                 } catch (Exception e) {
                     throw new RuntimeException(e);
                 }

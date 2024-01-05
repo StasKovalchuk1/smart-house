@@ -29,8 +29,6 @@ public class Fridge extends Device{
         double percentChange = (Math.random() - 0.5) * 0.2;
         setCurrentElectricityConsumption(getAverageElectricityConsumption() * (1 + percentChange));
         getController().increaseTotalElectricityConsumption(getCurrentElectricityConsumption());
-
-        System.out.println("Fridge was used");
     }
 
     @Override

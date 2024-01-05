@@ -5,6 +5,7 @@ import org.example.generators.activities.Activity;
 import org.example.generators.activities.ActivityGenerator;
 import org.example.houseResidents.HouseResident;
 import org.example.houseResidents.people.Person;
+import org.example.houseResidents.people.PersonType;
 import org.example.reports.reportGenerators.ActivityAndUsageReportGenerator;
 
 import java.util.List;
@@ -17,6 +18,11 @@ public class PersonActivityGenerator implements ActivityGenerator {
     private final Random randomNumberGenerator = new Random();
     private ActivityAndUsageReportGenerator activityAndUsageReportGenerator;
 
+    public PersonActivityGenerator(List<HouseResident> people, ActivityAndUsageReportGenerator reportGenerator) {
+        this.people = people;
+        this.activityAndUsageReportGenerator = reportGenerator;
+    }
+
     @Override
     public void generateActivity() throws Exception {
         Activity activity = pickActivity();
@@ -28,7 +34,7 @@ public class PersonActivityGenerator implements ActivityGenerator {
     @Override
     public Activity pickActivity() {
         PersonActivity[] activities = PersonActivity.values();
-        int index = randomNumberGenerator.nextInt(activities.length+1);
+        int index = randomNumberGenerator.nextInt(activities.length);
         return activities[index];
     }
 

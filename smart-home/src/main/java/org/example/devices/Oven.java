@@ -29,8 +29,6 @@ public class Oven extends Device{
 
         getController().increaseTotalElectricityConsumption(getCurrentElectricityConsumption());
         getController().increaseTotalGasConsumption(getCurrentGasConsumption());
-
-        System.out.println("Oven has baked food");
     }
 
     @Override

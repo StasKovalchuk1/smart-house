@@ -1,12 +1,14 @@
 package org.example.generators.activities.personActivities.strategies;
 
 import lombok.Data;
+import lombok.extern.slf4j.Slf4j;
 import org.example.devices.Device;
 import org.example.devices.DeviceController;
 import org.example.generators.activities.ActivityStrategy;
 import org.example.houseResidents.people.Person;
 
 @Data
+@Slf4j
 public class FinishUsingDeviceStrategy implements ActivityStrategy {
     @Override
     public void performActivity(DeviceController deviceController, Device device, Person person){
@@ -14,7 +16,7 @@ public class FinishUsingDeviceStrategy implements ActivityStrategy {
             if (device.getState().getName().equals("Running")) {
                 deviceController.turnOffDevice(device);
             } else {
-                System.out.printf("%s tried to stop using %s, but %s is not being used", person.getName(), device.getName(),device.getName());
+                log.info(String.format("%s tried to stop using %s, but %s is not being used", person.getName(), device.getName(),device.getName()));
             }
         }
     }

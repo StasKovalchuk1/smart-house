@@ -23,8 +23,6 @@ public class Computer extends Device{
         setCurrentElectricityConsumption(getAverageElectricityConsumption() * (1 + percentChange));
 
         getController().increaseTotalElectricityConsumption(getCurrentElectricityConsumption());
-
-        System.out.println("Computer was used");
     }
 
     @Override

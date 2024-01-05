@@ -25,7 +25,7 @@ public class GetFoodFromFridgeStrategy implements ActivityStrategy {
             fridge = (Fridge) fridgeOptional.get();
             if (fridge.getFoodInside().contains(food)) {
                 fridge.getFoodInside().remove(food);
-                System.out.printf("%s has took %s from fridge%n", person.getName(), food.toString());
+                log.info(String.format("%s has took %s from fridge%n", person.getName(), food.toString()));
                 log.info("Person took food from fridge");
             } else {
                 log.info("There is not enough " + food.toString() + " in the fridge");

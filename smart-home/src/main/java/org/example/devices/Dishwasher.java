@@ -31,8 +31,6 @@ public class Dishwasher extends Device{
 
         getController().increaseTotalElectricityConsumption(getCurrentElectricityConsumption());
         getController().increaseTotalWaterConsumption(getCurrentWaterConsumption());
-
-        System.out.println("Dishwasher has washed dishes");
     }
 
     @Override
