@@ -5,13 +5,14 @@ import lombok.extern.slf4j.Slf4j;
 import org.example.devices.Device;
 import org.example.devices.DeviceController;
 import org.example.generators.activities.ActivityStrategy;
+import org.example.houseResidents.HouseResident;
 import org.example.houseResidents.people.Person;
 
 @Data
 @Slf4j
 public class FinishUsingDeviceStrategy implements ActivityStrategy {
     @Override
-    public void performActivity(DeviceController deviceController, Device device, Person person){
+    public void performActivity(DeviceController deviceController, Device device, HouseResident person){
         if (device != null) {
             if (device.getState().getName().equals("Running")) {
                 deviceController.turnOffDevice(device);

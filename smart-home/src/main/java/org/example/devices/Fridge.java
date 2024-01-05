@@ -40,4 +40,9 @@ public class Fridge extends Device{
     public void removeFoodFromFridge(Food food) {
         foodInside.remove(food);
     }
+
+    @Override
+    public String toString(){
+        return getName() + " [id = " + getId() + "]";
+    }
 }

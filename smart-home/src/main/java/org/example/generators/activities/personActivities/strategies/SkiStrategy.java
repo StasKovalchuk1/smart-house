@@ -6,6 +6,7 @@ import org.example.devices.DeviceController;
 import org.example.generators.activities.ActivityStrategy;
 import org.example.houseComponents.vehicle.Vehicle;
 import org.example.houseComponents.vehicle.VehicleType;
+import org.example.houseResidents.HouseResident;
 import org.example.houseResidents.people.Person;
 import org.example.houses.HouseType;
 import org.example.houses.HouseWithGarage;
@@ -17,17 +18,17 @@ import java.util.Optional;
 public class SkiStrategy implements ActivityStrategy {
 
     @Override
-    public void performActivity(DeviceController deviceController, Device device, Person person) throws Exception {
+    public void performActivity(DeviceController deviceController, Device device, HouseResident person) throws Exception {
         HouseType type = person.getHouse().getType();
         switch (type){
             case SIMPLE, WITH_POOL -> log.info("There is no ski to ride");
             case WITH_GARAGE -> {
                 Optional<Vehicle> ski = ((HouseWithGarage) person.getHouse()).getGarage().getVehicleByType(VehicleType.SKI);
-                ski.ifPresent(vehicle -> vehicle.useVehicle(person));
+                ski.ifPresent(vehicle -> vehicle.useVehicle((Person) person));
             }
             case WITH_GARAGE_AND_POOL -> {
                 Optional<Vehicle> ski = ((HouseWithGarageAndPool) person.getHouse()).getGarage().getVehicleByType(VehicleType.SKI);
-                ski.ifPresent(vehicle -> vehicle.useVehicle(person));
+                ski.ifPresent(vehicle -> vehicle.useVehicle((Person) person));
             }
         }
     }

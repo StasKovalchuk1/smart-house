@@ -34,4 +34,9 @@ public class Microwave extends Device{
         setCurrentElectricityConsumption(0);
     }
 
+    @Override
+    public String toString(){
+        return getName() + " [id = " + getId() + "]";
+    }
+
 }

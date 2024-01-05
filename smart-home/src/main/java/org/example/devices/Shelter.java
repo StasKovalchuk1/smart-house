@@ -55,4 +55,9 @@ public class Shelter extends Device implements ShelterInterface {
         setCurrentElectricityConsumption(0);
         setCurrentWaterConsumption(0);
     }
+
+    @Override
+    public String toString(){
+        return getName() + " [id = " + getId() + "]";
+    }
 }

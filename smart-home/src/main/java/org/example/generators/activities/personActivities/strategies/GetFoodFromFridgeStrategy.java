@@ -7,6 +7,7 @@ import org.example.devices.DeviceController;
 import org.example.devices.Food;
 import org.example.devices.Fridge;
 import org.example.generators.activities.ActivityStrategy;
+import org.example.houseResidents.HouseResident;
 import org.example.houseResidents.people.Person;
 
 import java.util.Optional;
@@ -17,7 +18,7 @@ import java.util.Random;
 public class GetFoodFromFridgeStrategy implements ActivityStrategy {
 
     @Override
-    public void performActivity(DeviceController deviceController, Device device, Person person) throws Exception {
+    public void performActivity(DeviceController deviceController, Device device, HouseResident person) throws Exception {
         Optional<Device> fridgeOptional = deviceController.getDeviceByName("Fridge");
         Food food = pickFood(deviceController);
         Fridge fridge;
@@ -26,7 +27,7 @@ public class GetFoodFromFridgeStrategy implements ActivityStrategy {
             if (fridge.getFoodInside().contains(food)) {
                 fridge.getFoodInside().remove(food);
                 log.info(String.format("%s has took %s from fridge%n", person.getName(), food.toString()));
-                log.info("Person took food from fridge");
+                log.info(String.format("%s took food from fridge", person.getName()));
             } else {
                 log.info("There is not enough " + food.toString() + " in the fridge");
             }

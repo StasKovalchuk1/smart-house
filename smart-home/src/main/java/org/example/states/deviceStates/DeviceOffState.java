@@ -19,7 +19,7 @@ public class DeviceOffState extends DeviceState{
 
     @Override
     public void turnOff() {
-        log.info("{} is already turned off", device.getName());
+        log.info("{} is already turned off", device.toString());
     }
 
     @Override

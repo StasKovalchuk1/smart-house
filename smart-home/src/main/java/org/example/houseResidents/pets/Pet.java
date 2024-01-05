@@ -15,7 +15,7 @@ import org.example.houseResidents.HouseResident;
 import org.example.houses.House;
 
 
-@EqualsAndHashCode(callSuper = true)
+//@EqualsAndHashCode(callSuper = true)
 @Data
 public abstract class Pet extends HouseResident {
 
@@ -33,7 +33,7 @@ public abstract class Pet extends HouseResident {
             return;
         }
         setStrategy(getStrategyByActivity(activity));
-//        strategy.performActivity(deviceController, petShelter, name);
+        strategy.performActivity(house.getDeviceController(), petShelter, this);
         activityAndUsageReportGenerator.writeDeviceUsage(this, petShelter);
     }
 

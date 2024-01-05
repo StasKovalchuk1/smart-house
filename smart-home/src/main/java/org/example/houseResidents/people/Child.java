@@ -29,9 +29,11 @@ public class Child extends Person{
             case BAD_FOOD:
                 setEventStrategy(new ExpiredFoodStrategy());
                 getEventStrategy().handle(house.getDeviceController());
+                break;
             case CHILD_GOT_HURT:
                 log.info(mother.toString() + " was chosen to handle event");
                 mother.handleEvent(event);
+                break;
             default:
                 throw new IllegalStateException("Unexpected value: " + (EventToHandleByPerson) event);
         }

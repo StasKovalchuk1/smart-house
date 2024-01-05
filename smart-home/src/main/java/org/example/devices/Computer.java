@@ -30,4 +30,9 @@ public class Computer extends Device{
         getController().decreaseTotalElectricityConsumption(getCurrentElectricityConsumption());
         setCurrentElectricityConsumption(0);
     }
+
+    @Override
+    public String toString(){
+        return getName() + " [id = " + getId() + "]";
+    }
 }

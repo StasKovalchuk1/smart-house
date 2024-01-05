@@ -41,4 +41,9 @@ public class CoffeeMachine extends Device{
         setCurrentElectricityConsumption(0);
         setCurrentWaterConsumption(0);
     }
+
+    @Override
+    public String toString(){
+        return getName() + " [id = " + getId() + "]";
+    }
 }

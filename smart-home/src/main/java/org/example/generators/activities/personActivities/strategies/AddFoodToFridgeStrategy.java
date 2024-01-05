@@ -7,6 +7,7 @@ import org.example.devices.DeviceController;
 import org.example.devices.Food;
 import org.example.devices.Fridge;
 import org.example.generators.activities.ActivityStrategy;
+import org.example.houseResidents.HouseResident;
 import org.example.houseResidents.people.Person;
 
 import java.util.Optional;
@@ -16,7 +17,7 @@ import java.util.Random;
 @Slf4j
 public class AddFoodToFridgeStrategy implements ActivityStrategy {
     @Override
-    public void performActivity(DeviceController deviceController, Device device, Person person){
+    public void performActivity(DeviceController deviceController, Device device, HouseResident person){
         Optional<Device> fridgeOptional = deviceController.getDeviceByName("Fridge");
         Food food = pickFood(deviceController);
         Fridge fridge;

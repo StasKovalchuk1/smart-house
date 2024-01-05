@@ -47,6 +47,7 @@ public class Simulation {
 
         // может надо исправить
         house.getPeople().forEach(resident -> resident.setActivityAndUsageReportGenerator(activityAndUsageReportGen));
+        house.getPets().forEach(resident -> resident.setActivityAndUsageReportGenerator(activityAndUsageReportGen));
     }
 
     public void runSimulation() {
@@ -66,10 +67,10 @@ public class Simulation {
                     throw new RuntimeException(e);
                 }
 
-                eventReportGen.generateReport();
-                activityAndUsageReportGen.generateReport();
-                consumptionReportGen.generateReport();
-                houseConfigReportGen.generateReport();
+//                eventReportGen.generateReport();
+//                activityAndUsageReportGen.generateReport();
+//                consumptionReportGen.generateReport();
+//                houseConfigReportGen.generateReport();
             }
         }, 0, 10000); // Repeat every 10 seconds
     }

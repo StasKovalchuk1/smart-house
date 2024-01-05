@@ -24,6 +24,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Slf4j
 public class ConfigBuilder {
@@ -39,7 +40,12 @@ public class ConfigBuilder {
         String type = houseNode.get("type").asText();
         List<Floor> floors = parseFloors(houseNode.get("floors"));
 
-        deviceController = new DeviceController(parseAllDevices(houseNode));
+        List<Device> devices = floors.stream()
+                .flatMap(floor -> floor.getRooms().stream())
+                .flatMap(room -> room.getDevices().stream())
+                .toList();
+
+        deviceController = new DeviceController(devices);
         deviceController.getDevices().forEach(device -> device.setController(deviceController));
 
         //Builders

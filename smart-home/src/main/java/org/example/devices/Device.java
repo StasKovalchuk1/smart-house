@@ -38,4 +38,5 @@ public abstract class Device {
     public abstract void performDeviceAction();
 
     public abstract void stopDeviceAction();
+
 }

@@ -39,4 +39,9 @@ public class Oven extends Device{
         setCurrentElectricityConsumption(0);
         setCurrentGasConsumption(0);
     }
+
+    @Override
+    public String toString(){
+        return getName() + " [id = " + getId() + "]";
+    }
 }

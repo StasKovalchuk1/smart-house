@@ -14,7 +14,7 @@ import org.example.generators.events.strategies.forPerson.EventHandleByPersonStr
 import org.example.houseResidents.HouseResident;
 import org.example.houses.House;
 
-@EqualsAndHashCode(callSuper = true)
+//@EqualsAndHashCode(callSuper = true)
 @Slf4j
 @Data
 public abstract class Person extends HouseResident implements Subscriber{
