@@ -12,8 +12,8 @@ public class Child extends Person{
     private final Mother mother;
     private final Father father;
 
-    public Child(DeviceController deviceController, House house, String name, Mother mother, Father father) {
-        super(deviceController, house, name, PersonType.CHILD);
+    public Child(House house, String name, Mother mother, Father father) {
+        super(house, name, PersonType.CHILD);
         this.mother = mother;
         this.father = father;
     }
@@ -28,7 +28,7 @@ public class Child extends Person{
                 break;
             case BAD_FOOD:
                 setEventStrategy(new ExpiredFoodStrategy());
-                getEventStrategy().handle(getDeviceController());
+                getEventStrategy().handle(house.getDeviceController());
             case CHILD_GOT_HURT:
                 log.info(mother.toString() + " was chosen to handle event");
                 mother.handleEvent(event);

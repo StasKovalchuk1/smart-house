@@ -1,5 +1,7 @@
 package org.example.builders;
 
+import lombok.Data;
+import org.example.devices.DeviceController;
 import org.example.houseComponents.Floor;
 import org.example.houseComponents.Garage;
 import org.example.houseComponents.Pool;
@@ -7,11 +9,15 @@ import org.example.houses.SimpleHouse;
 
 import java.util.List;
 
+@Data
 public class SimpleHouseBuilder implements HouseBuilder{
 
-    private Integer id;
-
     private List<Floor> floors;
+    private final DeviceController deviceController;
+
+    public SimpleHouseBuilder(DeviceController deviceController) {
+        this.deviceController = deviceController;
+    }
 
     @Override
     public void setFloors(List<Floor> floors) {
@@ -25,6 +31,6 @@ public class SimpleHouseBuilder implements HouseBuilder{
     public void setPool(Pool pool) {}
 
     public SimpleHouse getResult() {
-        return new SimpleHouse(floors);
+        return new SimpleHouse(floors, deviceController);
     }
 }

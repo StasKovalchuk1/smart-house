@@ -2,11 +2,12 @@ package org.example.houseResidents.pets;
 
 import lombok.Data;
 import org.example.devices.DeviceController;
+import org.example.houses.House;
 
 
 public class Dog extends Pet{
 
-    public Dog(DeviceController deviceController, String name) {
-        super(deviceController, name, PetType.DOG);
+    public Dog(String name, House house) {
+        super(name, house, PetType.DOG);
     }
 }

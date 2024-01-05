@@ -1,6 +1,7 @@
 package org.example.houses;
 
 import lombok.Data;
+import org.example.devices.DeviceController;
 import org.example.houseComponents.Floor;
 import org.example.houseComponents.Garage;
 import org.example.houseComponents.Pool;
@@ -14,10 +15,11 @@ public class HouseWithGarageAndPool extends House{
 
     private final Pool pool;
 
-    public HouseWithGarageAndPool(List<Floor> floors, Garage garage, Pool pool) {
+    public HouseWithGarageAndPool(List<Floor> floors, Garage garage, Pool pool, DeviceController deviceController) {
         this.floors = floors;
         this.garage = garage;
         this.pool = pool;
+        this.deviceController = deviceController;
         setType(HouseType.WITH_GARAGE_AND_POOL);
     }
 

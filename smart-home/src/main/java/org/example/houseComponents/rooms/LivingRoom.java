@@ -2,7 +2,6 @@ package org.example.houseComponents.rooms;
 
 
 import lombok.Data;
-import lombok.NoArgsConstructor;
 import org.example.devices.Device;
 
 import java.util.List;

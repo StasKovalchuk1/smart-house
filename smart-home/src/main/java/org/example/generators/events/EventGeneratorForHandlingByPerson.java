@@ -16,7 +16,7 @@ import java.util.Random;
 @AllArgsConstructor
 public class EventGeneratorForHandlingByPerson implements EventGenerator{
 
-    private List<Person> people;
+    private List<HouseResident> people;
     private DeviceController deviceController;
     private EventReportGenerator eventReportGenerator;
 
