@@ -39,11 +39,11 @@ public abstract class Person extends HouseResident implements Subscriber{
     protected Device getDeviceByActivity(Activity activity) {
         DeviceController deviceController = house.getDeviceController();
         return switch ((PersonActivity) activity) {
-            case GetFoodFromFridge, AddFoodToFridge -> deviceController.getDeviceByName("Fridge").get();
-            case StartDoingLaundry, FinishDoingLaundry -> deviceController.getDeviceByName("Washing machine").get();
+//            case GetFoodFromFridge, AddFoodToFridge -> deviceController.getDeviceByName("Fridge").get();
+            case StartDoingLaundry, FinishDoingLaundry -> deviceController.getDeviceByName("WashingMachine").get();
             case StartWashingDishes, FinishWashingDishes -> deviceController.getDeviceByName("Dishwasher").get();
             case StartGrillingMeet, FinishGrillingMeet -> deviceController.getDeviceByName("Grill").get();
-            case StartMakingCoffee, FinishMakingCoffee -> deviceController.getDeviceByName("Coffee Machine").get();
+            case StartMakingCoffee, FinishMakingCoffee -> deviceController.getDeviceByName("CoffeeMachine").get();
             case StartHeatingFood, FinishHeatingFood -> deviceController.getDeviceByName("Microwave").get();
             case StartBakingFood, FinishBakingFood -> deviceController.getDeviceByName("Oven").get();
             case StartUsingComputer, FinishUsingComputer -> deviceController.getDeviceByName("Computer").get();
@@ -53,9 +53,9 @@ public abstract class Person extends HouseResident implements Subscriber{
     @Override
     protected ActivityStrategy getStrategyByActivity(Activity activity) {
         return switch ((PersonActivity) activity) {
-            case GetFoodFromFridge -> new GetFoodFromFridgeStrategy();
-
-            case AddFoodToFridge -> new AddFoodToFridgeStrategy();
+//            case GetFoodFromFridge -> new GetFoodFromFridgeStrategy();
+//
+//            case AddFoodToFridge -> new AddFoodToFridgeStrategy();
 
             case StartDoingLaundry, StartWashingDishes,
                  StartGrillingMeet, StartMakingCoffee,

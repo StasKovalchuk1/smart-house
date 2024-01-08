@@ -67,6 +67,8 @@ public class Simulation {
                     throw new RuntimeException(e);
                 }
 
+                house.getDeviceController().controlEnergyConsumption();
+                System.out.println("-----------------------------");
 //                eventReportGen.generateReport();
 //                activityAndUsageReportGen.generateReport();
 //                consumptionReportGen.generateReport();

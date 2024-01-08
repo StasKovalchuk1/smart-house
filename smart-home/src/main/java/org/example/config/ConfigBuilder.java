@@ -4,8 +4,13 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.example.builders.*;
+import org.example.decorators.CatShelterDecorator;
+import org.example.decorators.DogShelterDecorator;
+import org.example.decorators.GoldenFishShelterDecorator;
 import org.example.devices.Device;
 import org.example.devices.DeviceController;
+import org.example.devices.Shelter;
+import org.example.devices.ShelterType;
 import org.example.factory.*;
 import org.example.houseComponents.Floor;
 import org.example.houseComponents.rooms.*;
@@ -77,7 +82,8 @@ public class ConfigBuilder {
             }
             default -> throw new IllegalArgumentException("Unknown home type: " + type);
         }
-//        house.setDeviceController(deviceController);
+
+        house.setDeviceController(deviceController);
         house.setPeople(parsePeople(jsonFileName, house));
         house.setPets(parsePets(jsonFileName, house));
         return house;
@@ -141,63 +147,6 @@ public class ConfigBuilder {
         }
 
         return rooms;
-    }
-
-    private static List<Device> parseAllDevices(JsonNode houseNode) {
-        List<Device> devices = new ArrayList<>();
-        DeviceManager manager;
-
-        for (JsonNode floorNode : houseNode.get("floors")) {
-            for (JsonNode roomNode : floorNode.get("rooms")) {
-                for (JsonNode device : roomNode.get("devices")) {
-                    Integer id = device.get("id").asInt();
-                    String name = device.get("name").asText();
-                    String documentation = device.get("documentation").asText();
-
-                    switch (name) {
-                        case "Grill":
-                            manager = new GrillManager(id, name, documentation);
-                            devices.add(manager.collectData());
-                            break;
-                        case "WashingMachine":
-                            manager = new WashingMachineManager(id, name, documentation);
-                            devices.add(manager.collectData());
-                            break;
-                        case "CoffeeMachine":
-                            manager = new CoffeeMachineManager(id, name, documentation);
-                            devices.add(manager.collectData());
-                            break;
-                        case "Computer":
-                            manager = new ComputerManager(id, name, documentation);
-                            devices.add(manager.collectData());
-                            break;
-                        case "Dishwasher":
-                            manager = new DishwasherManager(id, name, documentation);
-                            devices.add(manager.collectData());
-                            break;
-                        case "Fridge":
-                            manager = new FridgeManager(id, name, documentation);
-                            devices.add(manager.collectData());
-                            break;
-                        case "Microwave":
-                            manager = new MicrowaveManager(id, name, documentation);
-                            devices.add(manager.collectData());
-                            break;
-                        case "Oven":
-                            manager = new OvenManager(id, name, documentation);
-                            devices.add(manager.collectData());
-                            break;
-                        case "Shelter":
-                            manager = new ShelterManager(id, name, documentation);
-                            devices.add(manager.collectData());
-                            break;
-                        default:
-                            throw new IllegalArgumentException("Unknown device: " + name);
-                    }
-                }
-            }
-        }
-        return devices;
     }
 
 
@@ -309,20 +258,38 @@ public class ConfigBuilder {
             String name = petNode.get("name").asText();
             boolean isInShelter = petNode.get("isInShelter").asBoolean();
 
+            Shelter shelter = null;
+
             switch (type) {
                 case "DOG" -> {
                     dog = new Dog(name, house);
-                    dog.setInShelter(isInShelter);
+                    if (house.getDeviceController().getFreeShelter().isPresent()){
+                        dog.setInShelter(isInShelter);
+                        shelter = house.getDeviceController().getFreeShelter().get();
+                        shelter.setType(ShelterType.DOG);
+                        dog.setPetShelter(new DogShelterDecorator(shelter));
+                    }
+
                     pets.add(dog);
                 }
                 case "CAT" -> {
                     cat = new Cat(name, house);
-                    cat.setInShelter(isInShelter);
+                    if (house.getDeviceController().getFreeShelter().isPresent()){
+                        cat.setInShelter(isInShelter);
+                        shelter = house.getDeviceController().getFreeShelter().get();
+                        shelter.setType(ShelterType.CAT);
+                        cat.setPetShelter(new CatShelterDecorator(shelter));
+                    }
                     pets.add(cat);
                 }
                 case "GOLDENFISH" -> {
                     fish = new GoldenFish(name, house);
-                    fish.setInShelter(isInShelter);
+                    if (house.getDeviceController().getFreeShelter().isPresent()){
+                        fish.setInShelter(isInShelter);
+                        shelter = house.getDeviceController().getFreeShelter().get();
+                        shelter.setType(ShelterType.FISH);
+                        fish.setPetShelter(new GoldenFishShelterDecorator(shelter));
+                    }
                     pets.add(fish);
                 }
                 default -> throw new IllegalArgumentException("Unknown pet: " + name);

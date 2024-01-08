@@ -76,6 +76,26 @@ public class DeviceController {
         return Optional.empty();
     }
 
+    public Optional<Device> getDeviceByID(int id) {
+        for (Device device : devices){
+            if (device.getId() == id){
+                return Optional.of(device);
+            }
+        }
+        log.warn("Device with id=" + id + " was not found");
+        return Optional.empty();
+    }
+
+    public Optional<Shelter> getFreeShelter() {
+        for (Device device : devices){
+            if (device.getName().equals("Shelter") && ((Shelter) device).getType() == null){
+                return Optional.of(((Shelter) device));
+            }
+        }
+        log.warn("No free shelters were found");
+        return Optional.empty();
+    }
+
     public void increaseTotalWaterConsumption(double amount) {
         totalWaterConsumption += amount;
     }
@@ -98,5 +118,22 @@ public class DeviceController {
 
     public void decreaseTotalElectricityConsumption(double amount) {
         totalElectricityConsumption -= amount;
+    }
+
+    public void controlEnergyConsumption() {
+        if (getTotalWaterConsumption() > 5) {
+            log.info("Water consumption is over limit");
+            handleEvent(EventToHandleAutomatically.POWER_OUTAGE);
+        }
+        if (getTotalGasConsumption() > 5) {
+            log.info("Gas consumption is over limit");
+            handleEvent(EventToHandleAutomatically.POWER_OUTAGE);
+        }
+        if (getTotalElectricityConsumption() > 5) {
+            log.info("Electricity consumption is over limit");
+            handleEvent(EventToHandleAutomatically.POWER_OUTAGE);
+        } else {
+            log.info("Consumption is fine");
+        }
     }
 }

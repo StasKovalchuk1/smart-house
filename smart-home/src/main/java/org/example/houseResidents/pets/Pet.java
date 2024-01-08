@@ -2,6 +2,8 @@ package org.example.houseResidents.pets;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import org.example.decorators.BaseShelterDecorator;
+import org.example.decorators.ShelterInterface;
 import org.example.devices.DeviceController;
 import org.example.devices.Shelter;
 import org.example.generators.activities.Activity;
@@ -20,7 +22,7 @@ import org.example.houses.House;
 public abstract class Pet extends HouseResident {
 
     protected boolean isInShelter;
-    protected Shelter petShelter;
+    protected ShelterInterface petShelter;
 
     public Pet(String name, House house, PetType type) {
         super(name, house, type);
@@ -33,8 +35,8 @@ public abstract class Pet extends HouseResident {
             return;
         }
         setStrategy(getStrategyByActivity(activity));
-        strategy.performActivity(house.getDeviceController(), petShelter, this);
-        activityAndUsageReportGenerator.writeDeviceUsage(this, petShelter);
+        strategy.performActivity(house.getDeviceController(), ((BaseShelterDecorator) petShelter).getWrapper(), this);
+        activityAndUsageReportGenerator.writeDeviceUsage(this, ((BaseShelterDecorator) petShelter).getWrapper());
     }
 
     @Override

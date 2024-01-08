@@ -1,5 +1,6 @@
 package org.example.factory;
 
+import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.example.devices.CoffeeMachine;
 import org.example.devices.Device;
@@ -9,6 +10,8 @@ import org.example.houseResidents.people.Subscriber;
 
 import java.util.ArrayList;
 import java.util.List;
+
+@Data
 public abstract class DeviceManager {
     private Device device;
     private Integer deviceID;

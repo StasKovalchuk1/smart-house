@@ -11,6 +11,7 @@ public class Shelter extends Device implements ShelterInterface {
     private int waterAmount;
     private int foodAmount;
     private boolean heaterIsWorking;
+    private ShelterType type;
 
     public Shelter(Integer id, String documentation) {
         super(id, "Shelter", documentation);

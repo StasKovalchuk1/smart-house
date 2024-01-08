@@ -17,7 +17,7 @@ public class ComeOutOfShelterStrategy implements ActivityStrategy {
     public void performActivity(DeviceController deviceController, Device device, HouseResident petName) throws Exception {
         if (device != null) {
             deviceController.turnOffDevice(device);
-            log.info(String.format("Pet %s came out of the shelter, shelter was turned off", petName));
+            log.info(String.format("Pet %s came out of the shelter, shelter was turned off", petName.getName()));
         }
     }
 }
