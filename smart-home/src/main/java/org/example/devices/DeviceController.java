@@ -8,6 +8,7 @@ import org.example.generators.events.EventToHandle;
 import org.example.generators.events.EventToHandleAutomatically;
 import org.example.generators.events.EventToHandleByPerson;
 import org.example.generators.events.strategies.forController.EventHandleByControllerStrategy;
+import org.example.generators.events.strategies.forController.NothingToDoStrategy;
 import org.example.generators.events.strategies.forController.PowerOutageStrategy;
 import org.example.generators.events.strategies.forController.WaterLeakStrategy;
 import org.example.generators.events.strategies.forPerson.*;
@@ -63,6 +64,7 @@ public class DeviceController {
         switch ((EventToHandleAutomatically) event) {
             case POWER_OUTAGE -> setEventStrategy(new PowerOutageStrategy());
             case WATER_LEAK -> setEventStrategy(new WaterLeakStrategy());
+            case NOTHING -> setEventStrategy(new NothingToDoStrategy());
         };
     }
 

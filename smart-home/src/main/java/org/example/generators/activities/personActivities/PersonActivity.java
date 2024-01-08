@@ -4,8 +4,8 @@ import org.example.generators.activities.Activity;
 
 public enum PersonActivity implements Activity {
 
-//    GetFoodFromFridge,
-//    AddFoodToFridge,
+    GetFoodFromFridge,
+    AddFoodToFridge,
 
     StartDoingLaundry,
     StartWashingDishes,

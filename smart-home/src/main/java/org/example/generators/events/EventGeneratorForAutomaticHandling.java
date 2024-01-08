@@ -25,9 +25,14 @@ public class EventGeneratorForAutomaticHandling implements EventGenerator {
 
     @Override
     public EventToHandle pickEvent() {
-        EventToHandleAutomatically[] events = EventToHandleAutomatically.values();
-        int index = new Random().nextInt(events.length);
-        log.info(events[index].toString());
-        return events[index];
+        if (new Random().nextBoolean()){
+            EventToHandleAutomatically[] events = EventToHandleAutomatically.values();
+            int index = new Random().nextInt(events.length);
+            log.info(events[index].toString());
+            return events[index];
+        } else {
+            log.info(EventToHandleAutomatically.NOTHING.toString());
+            return EventToHandleAutomatically.NOTHING;
+        }
     }
 }
