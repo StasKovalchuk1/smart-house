@@ -25,9 +25,9 @@ public class GetFoodFromFridgeStrategy implements ActivityStrategy {
             Food food = pickFood(fridge);
             if (fridge.getFoodInside().contains(food)) {
                 fridge.getFoodInside().remove(food);
-                log.info(String.format("%s has took %s from fridge", person.toString(), food.toString()));
+                log.info(String.format("%s has took %s from %s", person.toString(), food.toString(), fridge.toString()));
             } else {
-                log.info("There is not enough " + food.toString() + " in the fridge");
+                log.info("There is not enough " + food.toString() + " in the " + fridge.toString());
             }
         } else {
             fridgeOptional = deviceController.getOffDeviceByName("Fridge");
@@ -38,9 +38,9 @@ public class GetFoodFromFridgeStrategy implements ActivityStrategy {
                 Food food = pickFood(fridge);
                 if (fridge.getFoodInside().contains(food)) {
                     fridge.getFoodInside().remove(food);
-                    log.info(String.format("%s has took %s from fridge", person.toString(), food.toString()));
+                    log.info(String.format("%s has took %s from %s", person.toString(), food.toString(), fridge.toString()));
                 } else {
-                    log.info("There is not enough " + food.toString() + " in the fridge");
+                    log.info("There is not enough " + food.toString() + " in the " + fridge.toString());
                 }
             } else {
                 log.warn(device.toString() + " was not found");

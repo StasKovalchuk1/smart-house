@@ -44,7 +44,7 @@ public class DeviceController {
 
     public void turnOffAllDevices() {
         for (Device device : devices) {
-            turnOffDevice(device);
+            if (!device.getName().equals("Fridge")) turnOffDevice(device);
         }
     }
 

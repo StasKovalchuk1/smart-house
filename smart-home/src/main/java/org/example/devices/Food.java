@@ -5,7 +5,6 @@ public enum Food {
     MILK,
     MEAT,
     FISH,
-    ICECREAM,
     TOMATO,
     CARROT,
     CUCUMBER,

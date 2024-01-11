@@ -46,17 +46,37 @@
             {
               "id": 3,
               "name": "Fridge",
-              "documentation": "..."
+              "documentation": "...",
+              "foodInside": [
+                "APPLE",
+                "MILK",
+                "MEAT",
+                "TOMATO",
+                "CARROT",
+                "CUCUMBER",
+                "COLA",
+                "BEER",
+                "PIZZA",
+                "PASTA"
+              ]
             },
             {
               "id": 4,
               "name": "Fridge",
-              "documentation": "..."
-            },
-            {
-              "id": 5,
-              "name": "Fridge",
-              "documentation": "..."
+              "documentation": "...",
+              "foodInside": [
+                "APPLE",
+                "MILK",
+                "MEAT",
+                "FISH",
+                "TOMATO",
+                "CARROT",
+                "CUCUMBER",
+                "COLA",
+                "BEER",
+                "PIZZA",
+                "PASTA"
+              ]
             },
             {
               "id": 8,

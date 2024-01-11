@@ -7,10 +7,7 @@ import org.example.builders.*;
 import org.example.decorators.CatShelterDecorator;
 import org.example.decorators.DogShelterDecorator;
 import org.example.decorators.GoldenFishShelterDecorator;
-import org.example.devices.Device;
-import org.example.devices.DeviceController;
-import org.example.devices.Shelter;
-import org.example.devices.ShelterType;
+import org.example.devices.*;
 import org.example.factory.*;
 import org.example.houseComponents.Floor;
 import org.example.houseComponents.rooms.*;
@@ -180,7 +177,11 @@ public class ConfigBuilder {
                 }
                 case "Fridge" -> {
                     manager = new FridgeManager(id, name, documentation);
-                    devices.add(manager.collectData());
+                    Fridge fridge = (Fridge) manager.collectData();
+                    JsonNode foodsNode = deviceNode.get("foodInside");
+                    List<Food> food = parseFood(foodsNode);
+                    fridge.setFoodInside(food);
+                    devices.add(fridge);
                 }
                 case "Microwave" -> {
                     manager = new MicrowaveManager(id, name, documentation);
@@ -310,4 +311,20 @@ public class ConfigBuilder {
         }
         return vehicles;
     }
+
+    public static List<Food> parseFood(JsonNode foodsNode){
+        List<Food> foodList = new ArrayList<>();
+
+        for (JsonNode foodNode : foodsNode) {
+            String foodName = foodNode.asText();
+
+            for (Food food : Food.values()) {
+                if (foodName.equals(food.name())) {
+                    foodList.add(food);
+                }
+            }
+        }
+        return foodList;
+    }
+
 }

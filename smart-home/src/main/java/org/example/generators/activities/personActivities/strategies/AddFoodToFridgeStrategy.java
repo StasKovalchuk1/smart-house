@@ -16,7 +16,6 @@ import java.util.Random;
 @Slf4j
 public class AddFoodToFridgeStrategy implements ActivityStrategy {
 
-    //TODO если нет включенного холодильника, надо взять выключенный и включить его
     @Override
     public void performActivity(DeviceController deviceController, Device device, HouseResident person){
         Optional<Device> fridgeOptional = deviceController.getRunningDeviceByName("Fridge");
@@ -25,7 +24,7 @@ public class AddFoodToFridgeStrategy implements ActivityStrategy {
             fridge = (Fridge) fridgeOptional.get();
             Food food = pickFood(fridge);
             fridge.getFoodInside().add(food);
-            log.info(String.format("%s has put %s to fridge%n", person.getName(), food.toString()));
+            log.info(String.format("%s has put %s to %s", person.getName(), food.toString(), fridge.toString()));
         } else {
             fridgeOptional = deviceController.getOffDeviceByName("Fridge");
             if (fridgeOptional.isPresent()){
@@ -34,7 +33,7 @@ public class AddFoodToFridgeStrategy implements ActivityStrategy {
                 deviceController.runDevice(fridge);
                 Food food = pickFood(fridge);
                 fridge.getFoodInside().add(food);
-                log.info(String.format("%s has put %s to fridge%n", person.getName(), food.toString()));
+                log.info(String.format("%s has put %s to %s", person.getName(), food.toString(), fridge.toString()));
             } else {
                 log.warn(device.toString() + " was not found");
             }
