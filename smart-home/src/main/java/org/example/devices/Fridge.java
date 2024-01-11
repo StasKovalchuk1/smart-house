@@ -30,6 +30,9 @@ public class Fridge extends Device{
     public void performDeviceAction() {
         double percentChange = (Math.random() - 0.5) * 0.2;
         setCurrentElectricityConsumption(getAverageElectricityConsumption() * (1 + percentChange));
+        setTotalElectricityConsumption(getTotalElectricityConsumption()+getCurrentElectricityConsumption());
+
+
         getController().increaseTotalElectricityConsumption(getCurrentElectricityConsumption());
     }
 

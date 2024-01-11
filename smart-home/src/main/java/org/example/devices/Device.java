@@ -17,6 +17,9 @@ public abstract class Device {
     private double currentWaterConsumption;
     private double currentGasConsumption;
     private double currentElectricityConsumption;
+    private double totalWaterConsumption = 0;
+    private double totalGasConsumption = 0;
+    private double totalElectricityConsumption = 0;
     private DeviceController controller;
 
     protected Device() {

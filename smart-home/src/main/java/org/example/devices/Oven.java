@@ -26,6 +26,8 @@ public class Oven extends Device{
         double percentChange = (Math.random() - 0.5) * 0.2;
         setCurrentElectricityConsumption(getAverageElectricityConsumption() * (1 + percentChange));
         setCurrentGasConsumption(getAverageGasConsumption() * (1 + percentChange));
+        setTotalElectricityConsumption(getTotalElectricityConsumption()+getCurrentElectricityConsumption());
+        setTotalGasConsumption(getTotalGasConsumption()+getCurrentGasConsumption());
 
         getController().increaseTotalElectricityConsumption(getCurrentElectricityConsumption());
         getController().increaseTotalGasConsumption(getCurrentGasConsumption());
