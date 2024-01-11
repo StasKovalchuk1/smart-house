@@ -158,8 +158,8 @@ House resident GOLDENFISH 'Nemo' has used devices:
 20) CoffeeMachine 0 times
 =======
 HOUSE RESIDENT ACTIVITIES:
-House resident FATHER 'John' has done activity 'FinishBakingFood'
-House resident DOG 'Bobik' has done activity 'DrinkWater'
+House resident CAT 'Barsik' has done activity 'EatFood'
+House resident MOTHER 'Maria' has done activity 'StartGrillingMeet'
 
 
 DEVICE USAGES:

@@ -1,7 +1,6 @@
 package org.example.houseResidents.people;
 
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 import lombok.extern.slf4j.Slf4j;
 import org.example.devices.Device;
 import org.example.devices.DeviceController;
@@ -16,8 +15,7 @@ import org.example.houses.House;
 
 import java.util.Optional;
 
-
-@EqualsAndHashCode(callSuper = true)
+//@EqualsAndHashCode(callSuper = true)
 @Slf4j
 @Data
 public abstract class Person extends HouseResident implements Subscriber{
@@ -25,8 +23,8 @@ public abstract class Person extends HouseResident implements Subscriber{
     private boolean atHome;
     private EventHandleByPersonStrategy eventStrategy;
 
-    public Person(Integer id, House house, String name, PersonType type) {
-        super(id, name, house, type);
+    public Person(House house, String name, PersonType type) {
+        super(name, house, type);
     }
 
     public abstract void handleEvent(EventToHandle event);
@@ -35,126 +33,73 @@ public abstract class Person extends HouseResident implements Subscriber{
     public void doActivity(Activity activity) throws Exception {
         if (getDeviceByActivity(activity).isPresent()) {
             Device device = getDeviceByActivity(activity).get();
+
             setStrategy(getStrategyByActivity(activity));
-            activityAndUsageReportGenerator.writeActivity(this, activity);
-            activityAndUsageReportGenerator.writeDeviceUsage(this, device);
             strategy.performActivity(house.getDeviceController(), device, this);
+
+            activityAndUsageReportGenerator.writeDeviceUsage(this, device);
+        } else if (activity.equals(PersonActivity.StartCarRiding) || activity.equals(PersonActivity.StartBikeRiding)
+                || activity.equals(PersonActivity.StartSkiing)){
+            setStrategy(getStrategyByActivity(activity));
+            strategy.performActivity(house.getDeviceController(), null, this);
+
+            // todo надо что-то с этим делать
+//            activityAndUsageReportGenerator.writeDeviceUsage(this, device);
         } else {
             log.info(activity.toString() + " wasn't performed");
+
         }
     }
 
     protected Optional<Device> getDeviceByActivity(Activity activity) {
         DeviceController deviceController = house.getDeviceController();
         switch ((PersonActivity) activity) {
-            case GetFoodFromFridge, AddFoodToFridge -> {
-                if (deviceController.getRunningDeviceByName("Fridge").isPresent()) {
-                    return deviceController.getRunningDeviceByName("Fridge");
-                } else {
-                    return Optional.empty();
-                }
-            }
-            case StartDoingLaundry -> {
-                if (deviceController.getOffDeviceByName("WashingMachine").isPresent()) {
-                    return deviceController.getOffDeviceByName("WashingMachine");
-                } else {
-                    return Optional.empty();
-                }
-            }
-            case FinishDoingLaundry -> {
-                if (deviceController.getRunningDeviceByName("WashingMachine").isPresent()) {
-                    return deviceController.getRunningDeviceByName("WashingMachine");
-                } else {
-                    return Optional.empty();
-                }
-            }
-            case StartWashingDishes -> {
-                if (deviceController.getOffDeviceByName("Dishwasher").isPresent()) {
-                    return deviceController.getOffDeviceByName("Dishwasher");
-                } else {
-                    return Optional.empty();
-                }
-            }
-            case FinishWashingDishes -> {
-                if (deviceController.getRunningDeviceByName("Dishwasher").isPresent()) {
-                    return deviceController.getRunningDeviceByName("Dishwasher");
-                } else {
-                    return Optional.empty();
-                }
-            }
-            case StartGrillingMeet -> {
-                if (deviceController.getOffDeviceByName("Grill").isPresent()) {
-                    return deviceController.getOffDeviceByName("Grill");
-                } else {
-                    return Optional.empty();
-                }
-            }
-            case FinishGrillingMeet -> {
-                if (deviceController.getRunningDeviceByName("Grill").isPresent()) {
-                    return deviceController.getRunningDeviceByName("Grill");
-                } else {
-                    return Optional.empty();
-                }
-            }
-            case StartMakingCoffee -> {
-                if (deviceController.getOffDeviceByName("CoffeeMachine").isPresent()) {
-                    return deviceController.getOffDeviceByName("CoffeeMachine");
-                } else {
-                    return Optional.empty();
-                }
-            }
-            case FinishMakingCoffee -> {
-                if (deviceController.getRunningDeviceByName("CoffeeMachine").isPresent()) {
-                    return deviceController.getRunningDeviceByName("CoffeeMachine");
-                } else {
-                    return Optional.empty();
-                }
-            }
-            case StartHeatingFood -> {
-                if (deviceController.getOffDeviceByName("Microwave").isPresent()) {
-                    return deviceController.getOffDeviceByName("Microwave");
-                } else {
-                    return Optional.empty();
-                }
-            }
-            case FinishHeatingFood -> {
-                if (deviceController.getRunningDeviceByName("Microwave").isPresent()) {
-                    return deviceController.getRunningDeviceByName("Microwave");
-                } else {
-                    return Optional.empty();
-                }
-            }
-            case StartBakingFood -> {
-                if (deviceController.getOffDeviceByName("Oven").isPresent()) {
-                    return deviceController.getOffDeviceByName("Oven");
-                } else {
-                    return Optional.empty();
-                }
-            }
-            case FinishBakingFood -> {
-                if (deviceController.getRunningDeviceByName("Oven").isPresent()) {
-                    return deviceController.getRunningDeviceByName("Oven");
-                } else {
-                    return Optional.empty();
-                }
-            }
-            case StartUsingComputer -> {
-                if (deviceController.getOffDeviceByName("Computer").isPresent()) {
-                    return deviceController.getOffDeviceByName("Computer");
-                } else {
-                    return Optional.empty();
-                }
-            }
-            case FinishUsingComputer -> {
-                if (deviceController.getRunningDeviceByName("Computer").isPresent()) {
-                    return deviceController.getRunningDeviceByName("Computer");
-                } else {
-                    return Optional.empty();
-                }
-            }
-            default -> {
+            case GetFoodFromFridge, AddFoodToFridge:
+                return deviceController.getRunningDeviceByName("Fridge");
+            case StartDoingLaundry:
+                return deviceController.getOffDeviceByName("WashingMachine");
+
+            case FinishDoingLaundry:
+                return deviceController.getRunningDeviceByName("WashingMachine");
+
+            case StartWashingDishes:
+                return deviceController.getOffDeviceByName("Dishwasher");
+
+            case FinishWashingDishes:
+                return deviceController.getRunningDeviceByName("Dishwasher");
+
+            case StartGrillingMeet:
+                return deviceController.getOffDeviceByName("Grill");
+
+            case FinishGrillingMeet:
+                return deviceController.getRunningDeviceByName("Grill");
+
+            case StartMakingCoffee:
+                return deviceController.getOffDeviceByName("CoffeeMachine");
+
+            case FinishMakingCoffee:
+                return deviceController.getRunningDeviceByName("CoffeeMachine");
+
+            case StartHeatingFood:
+                return deviceController.getOffDeviceByName("Microwave");
+
+            case FinishHeatingFood:
+                return deviceController.getRunningDeviceByName("Microwave");
+
+            case StartBakingFood:
+                return deviceController.getOffDeviceByName("Oven");
+
+            case FinishBakingFood:
+                return deviceController.getRunningDeviceByName("Oven");
+
+            case StartUsingComputer:
+                return deviceController.getOffDeviceByName("Computer");
+
+            case FinishUsingComputer:
+                return deviceController.getRunningDeviceByName("Computer");
+
+            default:
                 return Optional.empty();
-            }
         }
     }
 
@@ -174,14 +119,24 @@ public abstract class Person extends HouseResident implements Subscriber{
                  FinishGrillingMeet, FinishMakingCoffee,
                  FinishHeatingFood, FinishBakingFood,
                  FinishUsingComputer -> new FinishUsingDeviceStrategy();
+            case StartBikeRiding -> new RideBikeStrategy();
+            case StartSkiing -> new SkiStrategy();
+            case StartCarRiding -> new RideCarStrategy();
+
         };
+    }
+
+    @Override
+    public void update(String message) {
+        log.info(toString() + " got the message: " + message);
     }
 
     @Override
     public String toString() {
         return "Person{" +
-                "name='" + name + '\'' +
-                "type='" + type + '\'' +
+                " name='" + name + '\'' +
+                " type='" + type + '\'' +
                 '}';
     }
+
 }

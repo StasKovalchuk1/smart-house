@@ -1,7 +1,7 @@
 EVENTS REPORT
 
 EVENTS HANDLED BY PEOPLE:
-1) Event 'NO_EVENT_FOR_PERSON' was handled by person 'FATHER'
+1) Event 'NO_EVENT_FOR_PERSON' was handled by person 'CHILD'
 ---
 EVENTS HANDLED AUTOMATICALLY:
-1) Event 'NOTHING' was handled automatically
+1) Event 'WATER_LEAK' was handled automatically

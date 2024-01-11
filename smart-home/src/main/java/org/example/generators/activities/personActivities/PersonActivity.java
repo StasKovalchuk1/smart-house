@@ -22,7 +22,11 @@ public enum PersonActivity implements Activity {
     FinishHeatingFood,
     FinishBakingFood,
     FinishUsingComputer,
-
-    //todo add: sport activities, went from house:
-
+    StartBikeRiding,
+    StartSkiing,
+    StartCarRiding
+//    ,
+//    FinishBikeRiding,
+//    FinishSkiing,
+//    FinishCarRiding
 }
