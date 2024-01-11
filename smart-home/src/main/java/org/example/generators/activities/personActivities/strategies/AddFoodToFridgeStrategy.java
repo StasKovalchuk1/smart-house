@@ -20,31 +20,30 @@ public class AddFoodToFridgeStrategy implements ActivityStrategy {
     @Override
     public void performActivity(DeviceController deviceController, Device device, HouseResident person){
         Optional<Device> fridgeOptional = deviceController.getRunningDeviceByName("Fridge");
-        Food food = pickFood(deviceController);
         Fridge fridge;
         if (fridgeOptional.isPresent()) {
             fridge = (Fridge) fridgeOptional.get();
+            Food food = pickFood(fridge);
             fridge.getFoodInside().add(food);
             log.info(String.format("%s has put %s to fridge%n", person.getName(), food.toString()));
-            log.info("Food was added to fridge");
         } else {
-            log.warn(device.getName() + " was not found");
+            fridgeOptional = deviceController.getOffDeviceByName("Fridge");
+            if (fridgeOptional.isPresent()){
+                fridge = (Fridge) fridgeOptional.get();
+                deviceController.turnOnDevice(fridge);
+                deviceController.runDevice(fridge);
+                Food food = pickFood(fridge);
+                fridge.getFoodInside().add(food);
+                log.info(String.format("%s has put %s to fridge%n", person.getName(), food.toString()));
+            } else {
+                log.warn(device.toString() + " was not found");
+            }
         }
     }
 
-    private Food pickFood(DeviceController deviceController){
-        Optional<Device> fridgeOptional = deviceController.getRunningDeviceByName("Fridge");
-        Food food = pickFood(deviceController);
-        Fridge fridge;
-        if (fridgeOptional.isPresent()) {
-            fridge = (Fridge) fridgeOptional.get();
-            int foodCount = fridge.getFoodInside().size();
-            int randomFoodIndex = new Random().nextInt(foodCount+1);
-            return fridge.getFoodInside().get(randomFoodIndex);
-        } else {
-            log.warn("Fridge was not found");
-            return null;
-        }
-
+    private Food pickFood(Fridge fridge){
+        int foodCount = fridge.getFoodInside().size();
+        int randomFoodIndex = new Random().nextInt(foodCount);
+        return fridge.getFoodInside().get(randomFoodIndex);
     }
 }

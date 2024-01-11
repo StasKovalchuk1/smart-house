@@ -12,7 +12,7 @@ public class StartUsingDeviceStrategy implements ActivityStrategy {
     @Override
     public void performActivity(DeviceController deviceController, Device device, HouseResident person){
         if (device != null) {
-            if (!device.getState().getName().equals("Running")) {
+            if (!device.isRunning()) {
                 deviceController.turnOnDevice(device);
                 deviceController.runDevice(device);
             } else {

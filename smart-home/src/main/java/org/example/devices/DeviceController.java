@@ -131,15 +131,15 @@ public class DeviceController {
     }
 
     public void controlEnergyConsumption() {
-        if (getTotalWaterConsumption() > 5) {
+        if (getTotalWaterConsumption() > 9) {
             log.info("Water consumption is over limit");
             handleEvent(EventToHandleAutomatically.POWER_OUTAGE);
         }
-        if (getTotalGasConsumption() > 5) {
+        if (getTotalGasConsumption() > 10) {
             log.info("Gas consumption is over limit");
             handleEvent(EventToHandleAutomatically.POWER_OUTAGE);
         }
-        if (getTotalElectricityConsumption() > 5) {
+        if (getTotalElectricityConsumption() > 15) {
             log.info("Electricity consumption is over limit");
             handleEvent(EventToHandleAutomatically.POWER_OUTAGE);
         } else {

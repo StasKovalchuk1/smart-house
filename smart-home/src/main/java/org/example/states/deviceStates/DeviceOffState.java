@@ -14,7 +14,7 @@ public class DeviceOffState extends DeviceState{
     @Override
     public void turnOn() {
         device.changeState(new DeviceReadyState(device));
-        log.info("{} was turned on", device.getName());
+        log.info("{} was turned on", device.toString());
     }
 
     @Override
@@ -24,6 +24,6 @@ public class DeviceOffState extends DeviceState{
 
     @Override
     public void run(){
-        log.info("{} can not change state to running", device.getName());
+        log.info("{} can not change state to running", device.toString());
     }
 }

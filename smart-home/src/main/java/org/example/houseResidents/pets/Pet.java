@@ -28,7 +28,7 @@ public abstract class Pet extends HouseResident {
         super(name, house, type);
     }
 
-    //TODO раскомментирвоать строку
+    //TODO рыбка не совершает активностей
     @Override
     public void doActivity(Activity activity) throws Exception {
         if (this instanceof GoldenFish && !activity.toString().equals("EatFood")){

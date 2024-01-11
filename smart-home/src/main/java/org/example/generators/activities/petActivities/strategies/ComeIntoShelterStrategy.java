@@ -18,7 +18,7 @@ public class ComeIntoShelterStrategy implements ActivityStrategy {
         if (device != null) {
             deviceController.turnOnDevice(device);
             deviceController.runDevice(device);
-            log.info(String.format("Pet %s came into the shelter, shelter was turned on", petName));
+            log.info(String.format("Pet %s came into the shelter, shelter was turned on", petName.getName()));
         }
     }
 }
