@@ -6,7 +6,7 @@ import lombok.NoArgsConstructor;
 @Data
 public class CoffeeMachine extends Device{
 
-    private int capsulesAmount;
+    private int capsulesAmount = 5;
 
     public CoffeeMachine(Integer id, String documentation) {
         super(id, "CoffeeMachine", documentation);

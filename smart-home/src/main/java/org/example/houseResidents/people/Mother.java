@@ -1,8 +1,8 @@
 package org.example.houseResidents.people;
 
-import org.example.devices.DeviceController;
 import org.example.generators.events.EventToHandle;
 import org.example.generators.events.EventToHandleByPerson;
+import org.example.generators.events.strategies.forPerson.PersonNothingToDoStrategy;
 import org.example.generators.events.strategies.forPerson.*;
 import org.example.houses.House;
 
@@ -25,11 +25,8 @@ public class Mother extends Person{
             case CHILD_GOT_HURT -> new ChildGotHurtStrategy();
             case GUEST_ARRIVAL -> new GuestArrivalStrategy();
             case FIRE_ALARM -> new FireAlarmStrategy();
+            case NO_EVENT_FOR_PERSON -> new PersonNothingToDoStrategy();
         };
     }
 
-    @Override
-    public void update(String message) {
-
-    }
 }

@@ -10,19 +10,19 @@ import java.util.List;
 @Data
 public class Fridge extends Device{
 
-    private List<Food> foodInside = new ArrayList<>();
+    private List<Food> foodInside;
 
     public Fridge(Integer id, String documentation) {
         super(id, "Fridge", documentation);
         setAverageElectricityConsumption(5);
         setAverageWaterConsumption(0);
         setAverageGasConsumption(0);
-        setState(new DeviceRunningState(this));
+        changeState(new DeviceRunningState(this));
     }
 
     @Override
     public String somethingToFix() {
-        if (foodInside.size() < 10) return "Not enough food";
+        if (foodInside!= null && foodInside.size() < 4) return "Not enough food";
         return null;
     }
 

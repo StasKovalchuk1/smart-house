@@ -1,7 +1,6 @@
 package org.example.houseResidents.people;
 
 import lombok.extern.slf4j.Slf4j;
-import org.example.devices.DeviceController;
 import org.example.generators.events.EventToHandle;
 import org.example.generators.events.EventToHandleByPerson;
 import org.example.generators.events.strategies.forPerson.*;
@@ -34,13 +33,12 @@ public class Child extends Person{
                 log.info(mother.toString() + " was chosen to handle event");
                 mother.handleEvent(event);
                 break;
+            case NO_EVENT_FOR_PERSON:
+                setEventStrategy(new PersonNothingToDoStrategy());
+                break;
             default:
                 throw new IllegalStateException("Unexpected value: " + (EventToHandleByPerson) event);
         }
     }
 
-    @Override
-    public void update(String message) {
-        // отреагировать на сообщение
-    }
 }

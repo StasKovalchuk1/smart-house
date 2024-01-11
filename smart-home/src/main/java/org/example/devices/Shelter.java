@@ -8,8 +8,8 @@ import org.example.decorators.ShelterInterface;
 @Data
 public class Shelter extends Device implements ShelterInterface {
 
-    private int waterAmount;
-    private int foodAmount;
+    private int waterAmount = 20;
+    private int foodAmount = 10;
     private boolean heaterIsWorking;
     private ShelterType type;
 
@@ -33,6 +33,7 @@ public class Shelter extends Device implements ShelterInterface {
     // TODO
     @Override
     public String somethingToFix() {
+        if (waterAmount < 5 || foodAmount < 3) return "Check food and water in shelter";
         return null;
     }
 

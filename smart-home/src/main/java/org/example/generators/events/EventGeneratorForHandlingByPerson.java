@@ -30,10 +30,16 @@ public class EventGeneratorForHandlingByPerson implements EventGenerator{
 
     @Override
     public EventToHandle pickEvent() {
-        EventToHandleByPerson[] events = EventToHandleByPerson.values();
-        int index = new Random().nextInt(events.length);
-        log.info(events[index].toString());
-        return events[index];
+        if (new Random().nextBoolean()){
+            EventToHandleByPerson[] events = EventToHandleByPerson.values();
+            int index = new Random().nextInt(events.length);
+            log.info(events[index].toString());
+            return events[index];
+        }
+        else {
+            log.info(EventToHandleByPerson.NO_EVENT_FOR_PERSON.toString());
+            return EventToHandleByPerson.NO_EVENT_FOR_PERSON;
+        }
     }
 
     public Person pickPerson() {

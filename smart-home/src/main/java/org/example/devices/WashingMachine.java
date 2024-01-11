@@ -6,7 +6,7 @@ import lombok.NoArgsConstructor;
 @Data
 public class WashingMachine extends Device{
 
-    private int powderAmount;
+    private int powderAmount = 6;
 
     public WashingMachine(Integer id, String documentation) {
         super(id, "WashingMachine", documentation);
@@ -17,7 +17,7 @@ public class WashingMachine extends Device{
 
     @Override
     public String somethingToFix() {
-        if (powderAmount < 5) return "Small reserves of laundry powder";
+        if (powderAmount < 2) return "Small reserves of laundry powder";
         return null;
     }
 

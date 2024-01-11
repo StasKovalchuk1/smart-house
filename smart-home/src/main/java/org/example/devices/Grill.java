@@ -5,7 +5,7 @@ import lombok.NoArgsConstructor;
 
 @Data
 public class Grill extends Device{
-    private int coalAmount;
+    private int coalAmount = 5;
 
     public Grill(Integer id, String documentation) {
         super(id, "Grill", documentation);

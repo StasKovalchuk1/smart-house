@@ -3,6 +3,7 @@ package org.example.devices;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.example.factory.DeviceManager;
 import org.example.generators.events.EventToHandle;
 import org.example.generators.events.EventToHandleAutomatically;
 import org.example.generators.events.strategies.forController.EventHandleByControllerStrategy;
@@ -25,10 +26,9 @@ public class DeviceController {
     private double maxTotalWaterConsumption;
     private double maxTotalGasConsumption;
     private double maxTotalElectricityConsumption;
-
-    private List<Device> devices = new ArrayList<>();
-
+    private List<Device> devices;
     private EventHandleByControllerStrategy eventStrategy;
+    private List<DeviceManager> deviceManagers;
 
     public DeviceController(List<Device> devices) {
         this.devices = devices;
@@ -44,7 +44,7 @@ public class DeviceController {
 
     public void turnOffAllDevices() {
         for (Device device : devices) {
-            turnOffDevice(device);
+            if (!device.getName().equals("Fridge")) turnOffDevice(device);
         }
     }
 
@@ -62,7 +62,7 @@ public class DeviceController {
             case POWER_OUTAGE -> setEventStrategy(new PowerOutageStrategy());
             case WATER_LEAK -> setEventStrategy(new WaterLeakStrategy());
             case NOTHING -> setEventStrategy(new NothingToDoStrategy());
-        };
+        }
     }
 
     public Optional<Device> getRunningDeviceByName(String name){

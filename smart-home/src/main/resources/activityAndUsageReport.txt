@@ -1,0 +1,73 @@
+ACTIVITY AND USAGE REPORT
+
+HOUSE RESIDENT ACTIVITIES:
+House resident CAT 'Barsik' has done activity 'DrinkWater'
+House resident MOTHER 'Maria' has done activity 'StartGrillingMeet'
+
+
+DEVICE USAGES:
+House resident DOG 'Bobik' has used devices: 
+1) Grill 0 times
+2) Dishwasher 0 times
+3) CoffeeMachine 0 times
+4) WashingMachine 0 times
+5) Microwave 0 times
+6) Shelter 0 times
+7) Computer 0 times
+8) Fridge 0 times
+9) Shelter 0 times
+10) Fridge 0 times
+11) Shelter 0 times
+
+House resident CAT 'Barsik' has used devices: 
+1) Grill 0 times
+2) Dishwasher 0 times
+3) CoffeeMachine 0 times
+4) WashingMachine 0 times
+5) Microwave 0 times
+6) Shelter 0 times
+7) Computer 0 times
+8) Fridge 0 times
+9) Shelter 0 times
+10) Fridge 0 times
+11) Shelter 0 times
+
+House resident FATHER 'John' has used devices: 
+1) Grill 0 times
+2) Dishwasher 0 times
+3) CoffeeMachine 0 times
+4) WashingMachine 0 times
+5) Microwave 0 times
+6) Shelter 0 times
+7) Computer 0 times
+8) Fridge 0 times
+9) Shelter 0 times
+10) Fridge 0 times
+11) Shelter 0 times
+
+House resident GOLDENFISH 'Nemo' has used devices: 
+1) Grill 0 times
+2) Dishwasher 0 times
+3) CoffeeMachine 0 times
+4) WashingMachine 0 times
+5) Microwave 0 times
+6) Shelter 0 times
+7) Computer 0 times
+8) Fridge 0 times
+9) Shelter 0 times
+10) Fridge 0 times
+11) Shelter 0 times
+
+House resident CHILD 'Egor' has used devices: 
+1) Grill 0 times
+2) Dishwasher 0 times
+3) CoffeeMachine 0 times
+4) WashingMachine 0 times
+5) Microwave 0 times
+6) Shelter 0 times
+7) Computer 0 times
+8) Fridge 0 times
+9) Shelter 0 times
+10) Fridge 0 times
+11) Shelter 0 times
+

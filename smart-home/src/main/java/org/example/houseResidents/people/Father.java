@@ -1,13 +1,13 @@
 package org.example.houseResidents.people;
 
-import lombok.Data;
-import org.example.devices.DeviceController;
+import lombok.extern.slf4j.Slf4j;
 import org.example.generators.events.EventToHandle;
 import org.example.generators.events.EventToHandleByPerson;
+import org.example.generators.events.strategies.forPerson.PersonNothingToDoStrategy;
 import org.example.generators.events.strategies.forPerson.*;
 import org.example.houses.House;
 
-
+@Slf4j
 public class Father extends Person{
 
     public Father(House house, String name) {
@@ -27,11 +27,8 @@ public class Father extends Person{
             case CHILD_GOT_HURT -> setEventStrategy(new ChildGotHurtStrategy());
             case GUEST_ARRIVAL -> setEventStrategy(new GuestArrivalStrategy());
             case FIRE_ALARM -> setEventStrategy(new FireAlarmStrategy());
+             case NO_EVENT_FOR_PERSON -> setEventStrategy(new PersonNothingToDoStrategy());
         };
     }
 
-    @Override
-    public void update(String message) {
-
-    }
 }
