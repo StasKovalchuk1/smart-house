@@ -12,8 +12,8 @@ public class Child extends Person{
     private final Mother mother;
     private final Father father;
 
-    public Child(House house, String name, Mother mother, Father father) {
-        super(house, name, PersonType.CHILD);
+    public Child(Integer id, House house, String name, Mother mother, Father father) {
+        super(id, house, name, PersonType.CHILD);
         this.mother = mother;
         this.father = father;
     }

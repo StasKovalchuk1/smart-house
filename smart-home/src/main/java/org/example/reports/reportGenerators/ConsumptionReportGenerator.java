@@ -13,7 +13,7 @@ public class ConsumptionReportGenerator extends BaseReportGenerator {
 
     public ConsumptionReportGenerator(DeviceController deviceController) {
         this.deviceController = deviceController;
-        this.reportFile = "./src/main/resources/consumptionReport.txt";
+        this.reportFile = "smart-home/src/main/resources/consumptionReport.txt";
         try {
             this.writer = new PrintWriter(new PrintWriter(reportFile));
         } catch (Exception e) {
@@ -45,6 +45,7 @@ public class ConsumptionReportGenerator extends BaseReportGenerator {
             writer.println("Water: " + device.getTotalWaterConsumption());
             writer.println("Gas: " + device.getTotalGasConsumption());
             writer.println("Electricity: " + device.getTotalElectricityConsumption());
+            writer.println();
         }
     }
 }

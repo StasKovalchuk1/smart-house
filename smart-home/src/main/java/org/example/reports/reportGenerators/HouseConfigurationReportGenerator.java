@@ -16,7 +16,7 @@ public class HouseConfigurationReportGenerator extends BaseReportGenerator {
 
     public HouseConfigurationReportGenerator(House house) {
         this.house = house;
-        this.reportFile = "./src/main/resources/houseConfigReport.txt";
+        this.reportFile = "smart-home/src/main/resources/houseConfigReport.txt";
         try {
             this.writer = new PrintWriter(new PrintWriter(reportFile));
         } catch (Exception e) {
@@ -32,7 +32,6 @@ public class HouseConfigurationReportGenerator extends BaseReportGenerator {
         printFloorsInfo();
         printRoomsInfo();
         printDevicesInfo();
-
         printPeopleInfo();
         printPetsInfo();
         writer.close();
@@ -94,14 +93,10 @@ public class HouseConfigurationReportGenerator extends BaseReportGenerator {
                 for (int i = 0; i < room.getDevices().size(); ++i) {
                     writer.println(i+1 + ") " + room.getDevices().get(i).getName());
                 }
+                writer.println();
             }
             writer.println("---");
         }
         writer.println("");
-
     }
-
-
-
-
 }

@@ -7,7 +7,7 @@ import org.example.houses.House;
 
 public class GoldenFish extends Pet{
 
-    public GoldenFish(String name, House house) {
-        super(name, house, PetType.GOLDENFISH);
+    public GoldenFish(Integer id, String name, House house) {
+        super(id, name, house, PetType.GOLDENFISH);
     }
 }

@@ -1,0 +1,108 @@
+CONSUMPTION REPORT
+
+GENERAL CONSUMPTION:
+Total water consumption: 0.0
+Total gas consumption: 0.0
+Total electricity consumption: 0.0
+---
+DEVICES CONSUMPTION:
+Device 'WashingMachine' consumption:
+Water: 0.0
+Gas: 0.0
+Electricity: 0.0
+
+Device 'WashingMachine' consumption:
+Water: 0.0
+Gas: 0.0
+Electricity: 0.0
+
+Device 'Grill' consumption:
+Water: 0.0
+Gas: 0.0
+Electricity: 0.0
+
+Device 'Fridge' consumption:
+Water: 0.0
+Gas: 0.0
+Electricity: 0.0
+
+Device 'Fridge' consumption:
+Water: 0.0
+Gas: 0.0
+Electricity: 0.0
+
+Device 'Fridge' consumption:
+Water: 0.0
+Gas: 0.0
+Electricity: 0.0
+
+Device 'Dishwasher' consumption:
+Water: 0.0
+Gas: 0.0
+Electricity: 0.0
+
+Device 'Dishwasher' consumption:
+Water: 0.0
+Gas: 0.0
+Electricity: 0.0
+
+Device 'Microwave' consumption:
+Water: 0.0
+Gas: 0.0
+Electricity: 0.0
+
+Device 'CoffeeMachine' consumption:
+Water: 0.0
+Gas: 0.0
+Electricity: 0.0
+
+Device 'CoffeeMachine' consumption:
+Water: 0.0
+Gas: 0.0
+Electricity: 0.0
+
+Device 'Shelter' consumption:
+Water: 0.0
+Gas: 0.0
+Electricity: 0.0
+
+Device 'Shelter' consumption:
+Water: 0.0
+Gas: 0.0
+Electricity: 0.0
+
+Device 'Shelter' consumption:
+Water: 0.0
+Gas: 0.0
+Electricity: 0.0
+
+Device 'Computer' consumption:
+Water: 0.0
+Gas: 0.0
+Electricity: 0.0
+
+Device 'Computer' consumption:
+Water: 0.0
+Gas: 0.0
+Electricity: 0.0
+
+Device 'Computer' consumption:
+Water: 0.0
+Gas: 0.0
+Electricity: 0.0
+
+Device 'Computer' consumption:
+Water: 0.0
+Gas: 0.0
+Electricity: 0.0
+
+Device 'Computer' consumption:
+Water: 0.0
+Gas: 0.0
+Electricity: 0.0
+
+Device 'Computer' consumption:
+Water: 0.0
+Gas: 0.0
+Electricity: 0.0
+

@@ -4,8 +4,6 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import org.example.decorators.BaseShelterDecorator;
 import org.example.decorators.ShelterInterface;
-import org.example.devices.DeviceController;
-import org.example.devices.Shelter;
 import org.example.generators.activities.Activity;
 import org.example.generators.activities.ActivityStrategy;
 import org.example.generators.activities.petActivities.PetActivity;
@@ -18,14 +16,15 @@ import org.example.houses.House;
 
 
 //@EqualsAndHashCode(callSuper = true)
+@EqualsAndHashCode(callSuper = true)
 @Data
 public abstract class Pet extends HouseResident {
 
     protected boolean isInShelter;
     protected ShelterInterface petShelter;
 
-    public Pet(String name, House house, PetType type) {
-        super(name, house, type);
+    public Pet(Integer id, String name, House house, PetType type) {
+        super(id, name, house, type);
     }
 
     //TODO рыбка не совершает активностей
@@ -35,8 +34,9 @@ public abstract class Pet extends HouseResident {
             return;
         }
         setStrategy(getStrategyByActivity(activity));
-        strategy.performActivity(house.getDeviceController(), ((BaseShelterDecorator) petShelter).getWrapper(), this);
+        activityAndUsageReportGenerator.writeActivity(this, activity);
         activityAndUsageReportGenerator.writeDeviceUsage(this, ((BaseShelterDecorator) petShelter).getWrapper());
+        strategy.performActivity(house.getDeviceController(), ((BaseShelterDecorator) petShelter).getWrapper(), this);
     }
 
     @Override

@@ -16,19 +16,19 @@ public class PersonActivityGenerator implements ActivityGenerator {
 
     private List<HouseResident> people;
     private final Random randomNumberGenerator = new Random();
-    private ActivityAndUsageReportGenerator activityAndUsageReportGenerator;
+//    private ActivityAndUsageReportGenerator activityAndUsageReportGenerator;
 
-    public PersonActivityGenerator(List<HouseResident> people, ActivityAndUsageReportGenerator reportGenerator) {
+    public PersonActivityGenerator(List<HouseResident> people) {
         this.people = people;
-        this.activityAndUsageReportGenerator = reportGenerator;
+//        this.activityAndUsageReportGenerator = reportGenerator;
     }
 
     @Override
     public void generateActivity() throws Exception {
         Activity activity = pickActivity();
         Person person = (Person)pickEntity();
+//        activityAndUsageReportGenerator.writeActivity(person, activity);
         person.doActivity(activity);
-        activityAndUsageReportGenerator.writeActivity(person, activity);
     }
 
     @Override

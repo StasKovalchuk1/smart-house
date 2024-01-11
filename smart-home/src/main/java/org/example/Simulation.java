@@ -40,8 +40,8 @@ public class Simulation {
         this.houseConfigReportGen = new HouseConfigurationReportGenerator(house);
         this.eventGenAuto = new EventGeneratorForAutomaticHandling(house.getDeviceController(), eventReportGen);
         this.eventGenPerson = new EventGeneratorForHandlingByPerson(house.getPeople(), house.getDeviceController(), eventReportGen);
-        this.personActivityGen = new PersonActivityGenerator(house.getPeople(), activityAndUsageReportGen);
-        this.petActivityGen = new PetActivityGenerator(house.getPets(), activityAndUsageReportGen);
+        this.personActivityGen = new PersonActivityGenerator(house.getPeople());
+        this.petActivityGen = new PetActivityGenerator(house.getPets());
         timer = new Timer();
 
         // может надо исправить
@@ -68,12 +68,17 @@ public class Simulation {
 
                 house.getDeviceController().controlEnergyConsumption();
                 System.out.println("-----------------------------");
-                eventReportGen.generateReport();
-                activityAndUsageReportGen.generateReport();
-                consumptionReportGen.generateReport();
-                houseConfigReportGen.generateReport();
+//                eventReportGen.generateReport();
+//                activityAndUsageReportGen.generateReport();
+//                consumptionReportGen.generateReport();
+//                houseConfigReportGen.generateReport();
             }
-        }, 0, 10000); // Repeat every 10 seconds
+        }, 0, 1000);// Repeat every 10 seconds
+
+        eventReportGen.generateReport();
+        activityAndUsageReportGen.generateReport();
+        consumptionReportGen.generateReport();
+        houseConfigReportGen.generateReport();
     }
 
     public void stopSimulation(){
