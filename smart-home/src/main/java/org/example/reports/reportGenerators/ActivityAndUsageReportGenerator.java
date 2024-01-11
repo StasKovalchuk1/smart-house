@@ -25,7 +25,7 @@ public class ActivityAndUsageReportGenerator extends BaseReportGenerator {
 
     public ActivityAndUsageReportGenerator(House house) {
         this.house = house;
-        this.reportFile = "./src/main/java/org/example/reports/reportsFiles/activityAndUsageReport.txt";
+        this.reportFile = "./src/main/resources/activityAndUsageReport.txt";
         try {
             this.writer = new PrintWriter(new PrintWriter(reportFile));
         } catch (Exception e) {
