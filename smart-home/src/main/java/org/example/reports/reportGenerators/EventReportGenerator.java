@@ -19,7 +19,7 @@ public class EventReportGenerator extends BaseReportGenerator {
     private List<EventToHandle> eventsHandledAutomatically = new ArrayList<>();
 
     public EventReportGenerator() {
-        this.reportFile = "./src/main/java/org/example/reports/reportsFiles/eventReport.txt";
+        this.reportFile = "./src/main/resources/eventReport.txt";
         try {
             this.writer = new PrintWriter(new PrintWriter(reportFile));
         } catch (Exception e) {
@@ -32,7 +32,6 @@ public class EventReportGenerator extends BaseReportGenerator {
         writer.println("EVENTS REPORT");
         writer.println("");
         printEventsHandledByPeople();
-        writer.println("---");
         printEventsHandledAutomatically();
         writer.close();
     }
@@ -44,6 +43,7 @@ public class EventReportGenerator extends BaseReportGenerator {
             writer.println(i + ") Event '" + entry.getValue() + "' was handled by person '" + entry.getKey().getType() + "'");
             ++i;
         }
+        writer.println("---");
     }
 
     private void printEventsHandledAutomatically(){

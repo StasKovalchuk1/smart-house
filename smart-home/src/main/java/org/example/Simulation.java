@@ -1,6 +1,5 @@
 package org.example;
 
-import org.example.devices.Device;
 import org.example.generators.activities.personActivities.PersonActivityGenerator;
 import org.example.generators.activities.petActivities.PetActivityGenerator;
 import org.example.generators.events.EventGeneratorForAutomaticHandling;
@@ -37,7 +36,7 @@ public class Simulation {
         this.house = house;
         this.eventReportGen = new EventReportGenerator();
         this.activityAndUsageReportGen = new ActivityAndUsageReportGenerator(house);
-        this.consumptionReportGen = new ConsumptionReportGenerator();
+        this.consumptionReportGen = new ConsumptionReportGenerator(house.getDeviceController());
         this.houseConfigReportGen = new HouseConfigurationReportGenerator(house);
         this.eventGenAuto = new EventGeneratorForAutomaticHandling(house.getDeviceController(), eventReportGen);
         this.eventGenPerson = new EventGeneratorForHandlingByPerson(house.getPeople(), house.getDeviceController(), eventReportGen);
@@ -69,10 +68,10 @@ public class Simulation {
 
                 house.getDeviceController().controlEnergyConsumption();
                 System.out.println("-----------------------------");
-//                eventReportGen.generateReport();
-//                activityAndUsageReportGen.generateReport();
-//                consumptionReportGen.generateReport();
-//                houseConfigReportGen.generateReport();
+                eventReportGen.generateReport();
+                activityAndUsageReportGen.generateReport();
+                consumptionReportGen.generateReport();
+                houseConfigReportGen.generateReport();
             }
         }, 0, 10000); // Repeat every 10 seconds
     }
