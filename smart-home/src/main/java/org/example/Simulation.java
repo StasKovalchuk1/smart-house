@@ -1,7 +1,5 @@
 package org.example;
 
-import lombok.extern.slf4j.Slf4j;
-import org.example.factory.DeviceManager;
 import org.example.generators.activities.personActivities.PersonActivityGenerator;
 import org.example.generators.activities.petActivities.PetActivityGenerator;
 import org.example.generators.events.EventGeneratorForAutomaticHandling;
@@ -15,7 +13,6 @@ import org.example.reports.reportGenerators.HouseConfigurationReportGenerator;
 import java.util.Timer;
 import java.util.TimerTask;
 
-@Slf4j
 public class Simulation {
 
     private final House house;
@@ -43,8 +40,8 @@ public class Simulation {
         this.houseConfigReportGen = new HouseConfigurationReportGenerator(house);
         this.eventGenAuto = new EventGeneratorForAutomaticHandling(house.getDeviceController(), eventReportGen);
         this.eventGenPerson = new EventGeneratorForHandlingByPerson(house.getPeople(), house.getDeviceController(), eventReportGen);
-        this.personActivityGen = new PersonActivityGenerator(house.getPeople(), activityAndUsageReportGen);
-        this.petActivityGen = new PetActivityGenerator(house.getPets(), activityAndUsageReportGen);
+        this.personActivityGen = new PersonActivityGenerator(house.getPeople());
+        this.petActivityGen = new PetActivityGenerator(house.getPets());
         timer = new Timer();
 
         // может надо исправить
@@ -56,35 +53,32 @@ public class Simulation {
         timer.scheduleAtFixedRate(new TimerTask() {
             @Override
             public void run() {
-                log.info("------------Proceed to event for controller------------");
                 eventGenAuto.generateEvent();
-                System.out.println("---------------------------------");
-                log.info("------------Proceed to event for people------------");
+                System.out.println("-----------------------------");
                 eventGenPerson.generateEvent();
-                System.out.println("---------------------------------");
+                System.out.println("-----------------------------");
                 try {
-                    log.info("------------Proceed to person activity------------");
                     personActivityGen.generateActivity();
-                    System.out.println("---------------------------------");
-                    log.info("------------Proceed to pet activity------------");
+                    System.out.println("-----------------------------");
                     petActivityGen.generateActivity();
-                    System.out.println("---------------------------------");
+                    System.out.println("-----------------------------");
                 } catch (Exception e) {
                     throw new RuntimeException(e);
                 }
-                log.info("------------Proceed to control consumption------------");
-                house.getDeviceController().controlEnergyConsumption();
-                System.out.println("---------------------------------");
-                log.info("------------Proceed to receiving notification------------");
-                house.getDeviceController().getDeviceManagers().forEach(DeviceManager::collectData);
-                System.out.println("---------------------------------");
 
-                eventReportGen.generateReport();
-                activityAndUsageReportGen.generateReport();
-                consumptionReportGen.generateReport();
-                houseConfigReportGen.generateReport();
+                house.getDeviceController().controlEnergyConsumption();
+                System.out.println("-----------------------------");
+//                eventReportGen.generateReport();
+//                activityAndUsageReportGen.generateReport();
+//                consumptionReportGen.generateReport();
+//                houseConfigReportGen.generateReport();
             }
-        }, 0, 10000); // Repeat every 10 seconds
+        }, 0, 1000);// Repeat every 10 seconds
+
+        eventReportGen.generateReport();
+        activityAndUsageReportGen.generateReport();
+        consumptionReportGen.generateReport();
+        houseConfigReportGen.generateReport();
     }
 
     public void stopSimulation(){

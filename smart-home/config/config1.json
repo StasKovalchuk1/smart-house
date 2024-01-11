@@ -185,35 +185,42 @@
   },
   "people": [
     {
+      "id": 1,
       "name": "John",
       "atHome": "true",
       "type": "FATHER"
     },
     {
+      "id": 2,
       "name": "Maria",
       "atHome": "true",
       "type": "MOTHER"
     },
     {
+      "id": 3,
       "name": "Egor",
       "atHome": "false",
       "type": "CHILD"
     },
     {
+      "id": 4,
       "name": "Gregory",
       "atHome": "true",
       "type": "CHILD"
     }
   ],
   "pets": [{
+    "id": 5,
     "name": "Barsik",
     "isInShelter": "true",
     "type": "CAT"
   },{
+    "id": 6,
     "name": "Bobik",
     "isInShelter": "false",
     "type": "DOG"
   },{
+    "id": 7,
     "name": "Nemo",
     "isInShelter": "true",
     "type": "GOLDENFISH"

@@ -1,6 +1,7 @@
 package org.example.reports.reportGenerators;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import org.example.devices.Device;
 import org.example.generators.activities.Activity;
 import org.example.generators.events.EventToHandle;
@@ -11,21 +12,23 @@ import org.example.houseResidents.people.Person;
 import org.example.houses.House;
 
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@Data
+//@EqualsAndHashCode(callSuper = true)
+//@Data
 public class ActivityAndUsageReportGenerator extends BaseReportGenerator {
 
-    private Map<HouseResident, Activity> houseResidentsActivitiesMap = new HashMap<>();
-    private Map<HouseResident, Map<Device, Integer>> deviceUsageMap = new HashMap<>();
-    private House house;
+    private final Map<HouseResident, Activity> houseResidentsActivitiesMap = new HashMap<>();
+    private final Map<Integer, Map<Integer, Integer>> deviceUsageMap = new HashMap<>();
+    private final House house;
 
 
     public ActivityAndUsageReportGenerator(House house) {
         this.house = house;
-        this.reportFile = "./src/main/resources/activityAndUsageReport.txt";
+        this.reportFile = "smart-home/src/main/resources/activityAndUsageReport.txt";
         try {
             this.writer = new PrintWriter(new PrintWriter(reportFile));
         } catch (Exception e) {
@@ -39,7 +42,7 @@ public class ActivityAndUsageReportGenerator extends BaseReportGenerator {
     public void generateReport() {
         writer.println("ACTIVITY AND USAGE REPORT");
         writer.println();
-        printHouseResidentsActivities();
+//        printHouseResidentsActivities();
         writer.println();
         printDeviceUsage();
         writer.close();
@@ -56,19 +59,23 @@ public class ActivityAndUsageReportGenerator extends BaseReportGenerator {
         writer.println();
     }
 
+
+
     private void printDeviceUsage(){
         writer.println("DEVICE USAGES:");
-        for (Map.Entry<HouseResident, Map<Device, Integer>> entry : deviceUsageMap.entrySet()) {
-            HouseResident resident = entry.getKey();
-            Map<Device, Integer> deviceUsage = entry.getValue();
+        for (Map.Entry<Integer, Map<Integer, Integer>> entry : deviceUsageMap.entrySet()) {
+            HouseResident resident = getResidentById(entry.getKey());
+            Map<Integer, Integer> deviceUsage = entry.getValue();
 
+            assert resident != null;
             writer.println("House resident " + resident.getType() + " '" + resident.getName()
                     + "' has used devices: ");
 
             int i = 1;
-            for (Map.Entry<Device, Integer> deviceEntry : deviceUsage.entrySet()) {
-                Device device = deviceEntry.getKey();
+            for (Map.Entry<Integer, Integer> deviceEntry : deviceUsage.entrySet()) {
+                Device device = getDeviceById(deviceEntry.getKey());
                 Integer usage = deviceEntry.getValue();
+                assert device != null;
                 writer.println(i + ") " +device.getName() + " " + usage + " times");
                 ++i;
             }
@@ -83,27 +90,50 @@ public class ActivityAndUsageReportGenerator extends BaseReportGenerator {
     }
 
     public void writeDeviceUsage(HouseResident houseResident, Device device){
-        if (deviceUsageMap.containsKey(houseResident)) {
-            Map<Device, Integer> residentDeviceUsage = deviceUsageMap.get(houseResident);
-            if (residentDeviceUsage.containsKey(device)) {
-                int deviceUsage = residentDeviceUsage.get(device);
+        if (deviceUsageMap.containsKey(houseResident.getId())) {
+            Map<Integer, Integer> residentDeviceUsage = deviceUsageMap.get(houseResident.getId());
+            if (residentDeviceUsage.containsKey(device.getId())) {
+                int deviceUsage = residentDeviceUsage.get(device.getId());
                 ++deviceUsage;
-                residentDeviceUsage.put(device, deviceUsage);
+                residentDeviceUsage.put(device.getId(), deviceUsage);
+                deviceUsageMap.put(houseResident.getId(), residentDeviceUsage);
             }
         }
     }
 
     private void fillDeviceUsageMap(List<HouseResident> houseResidents){
         for (HouseResident houseResident : houseResidents) {
-            deviceUsageMap.put(houseResident, new HashMap<>());
-            Map<Device, Integer> residentDeviceUsage = deviceUsageMap.get(houseResident);
+            deviceUsageMap.put(houseResident.getId(), new HashMap<>());
+            Map<Integer, Integer> residentDeviceUsage = deviceUsageMap.get(houseResident.getId());
             for (Floor floor : house.getFloors()) {
                 for (Room room : floor.getRooms()) {
                     for (Device device : room.getDevices()){
-                        residentDeviceUsage.put(device, 0);
+                        residentDeviceUsage.put(device.getId(), 0);
                     }
                 }
             }
         }
+    }
+
+    private HouseResident getResidentById(int id){
+        List<HouseResident> residents = new ArrayList<>();
+        residents.addAll(house.getPeople());
+        residents.addAll(house.getPets());
+        for (HouseResident resident : residents) {
+            if (resident.getId() == id) {
+                return resident;
+            }
+        }
+        return null;
+    }
+
+    private Device getDeviceById(int id){
+        List<Device> devices = house.getDeviceController().getDevices();
+        for (Device device : devices) {
+            if (device.getId() == id){
+                return device;
+            }
+        }
+        return null;
     }
 }

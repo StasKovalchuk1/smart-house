@@ -10,8 +10,8 @@ import org.example.houses.House;
 @Slf4j
 public class Father extends Person{
 
-    public Father(House house, String name) {
-        super(house, name, PersonType.FATHER);
+    public Father(Integer id, House house, String name) {
+        super(id, house, name, PersonType.FATHER);
     }
 
     @Override

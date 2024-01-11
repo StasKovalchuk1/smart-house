@@ -1,30 +1,32 @@
 package org.example.houseResidents;
 
 import lombok.Data;
-import lombok.NoArgsConstructor;
-import org.example.devices.DeviceController;
 import org.example.generators.activities.Activity;
 import org.example.generators.activities.ActivityStrategy;
 import org.example.houses.House;
 import org.example.reports.reportGenerators.ActivityAndUsageReportGenerator;
 
+import java.util.Objects;
+
 @Data
 public abstract class HouseResident {
 
+    protected final Integer id;
     protected ActivityStrategy strategy;
-//    protected final DeviceController deviceController;
     protected ActivityAndUsageReportGenerator activityAndUsageReportGenerator;
     protected final String name;
     protected House house;
     protected final ResidentType type;
 
     public HouseResident() {
+        this.id = null;
         this.name = null;
         this.house = null;
         this.type = null;
     }
 
-    public HouseResident(String name, House house, ResidentType type) {
+    public HouseResident(Integer id, String name, House house, ResidentType type) {
+        this.id = id;
         this.name = name;
         this.house = house;
         this.type = type;
@@ -33,4 +35,17 @@ public abstract class HouseResident {
     protected abstract void doActivity(Activity activity) throws Exception;
 //    protected abstract Device getDeviceByActivity(Activity activity);
     protected abstract ActivityStrategy getStrategyByActivity(Activity activity);
+
+//    @Override
+//    public boolean equals(Object o) {
+//        if (this == o) return true;
+////        if (o == null || getClass() != o.getClass()) return false;
+//        HouseResident that = (HouseResident) o;
+//        return id == that.id;
+//    }
+//
+//    @Override
+//    public int hashCode() {
+//        return id;
+//    }
 }

@@ -229,22 +229,23 @@ public class ConfigBuilder {
         for (JsonNode personNode : node.get("people")) {
             String type = personNode.get("type").asText();
             String name = personNode.get("name").asText();
+            int id = personNode.get("id").asInt();
             boolean atHome = personNode.get("atHome").asBoolean();
 
             switch (type) {
                 case "FATHER" -> {
-                    father = new Father(house, name);
+                    father = new Father(id, house, name);
                     father.setAtHome(atHome);
                     people.add(father);
                 }
                 case "MOTHER" -> {
-                    mother = new Mother(house, name);
+                    mother = new Mother(id, house, name);
                     mother.setAtHome(atHome);
                     people.add(mother);
                 }
                 case "CHILD" -> {
                     if (father != null && mother != null) {
-                        child = new Child(house, name, mother, father);
+                        child = new Child(id, house, name, mother, father);
                         child.setAtHome(atHome);
                         people.add(child);
                     } else {
@@ -270,13 +271,14 @@ public class ConfigBuilder {
         for (JsonNode petNode : node.get("pets")) {
             String type = petNode.get("type").asText();
             String name = petNode.get("name").asText();
+            int id = petNode.get("id").asInt();
             boolean isInShelter = petNode.get("isInShelter").asBoolean();
 
             Shelter shelter = null;
 
             switch (type) {
                 case "DOG" -> {
-                    dog = new Dog(name, house);
+                    dog = new Dog(id, name, house);
                     if (house.getDeviceController().getFreeShelter().isPresent()){
                         dog.setInShelter(isInShelter);
                         shelter = house.getDeviceController().getFreeShelter().get();
@@ -287,7 +289,7 @@ public class ConfigBuilder {
                     pets.add(dog);
                 }
                 case "CAT" -> {
-                    cat = new Cat(name, house);
+                    cat = new Cat(id, name, house);
                     if (house.getDeviceController().getFreeShelter().isPresent()){
                         cat.setInShelter(isInShelter);
                         shelter = house.getDeviceController().getFreeShelter().get();
@@ -297,7 +299,7 @@ public class ConfigBuilder {
                     pets.add(cat);
                 }
                 case "GOLDENFISH" -> {
-                    fish = new GoldenFish(name, house);
+                    fish = new GoldenFish(id, name, house);
                     if (house.getDeviceController().getFreeShelter().isPresent()){
                         fish.setInShelter(isInShelter);
                         shelter = house.getDeviceController().getFreeShelter().get();

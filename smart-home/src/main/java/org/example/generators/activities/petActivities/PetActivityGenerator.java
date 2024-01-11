@@ -18,9 +18,9 @@ public class PetActivityGenerator implements ActivityGenerator {
     private final Random randomNumberGenerator = new Random();
     private ActivityAndUsageReportGenerator activityAndUsageReportGenerator;
 
-    public PetActivityGenerator(List<HouseResident> pets, ActivityAndUsageReportGenerator activityAndUsageReportGenerator) {
+    public PetActivityGenerator(List<HouseResident> pets) {
         this.pets = pets;
-        this.activityAndUsageReportGenerator = activityAndUsageReportGenerator;
+//        this.activityAndUsageReportGenerator = activityAndUsageReportGenerator;
     }
 
     @Override
@@ -28,7 +28,7 @@ public class PetActivityGenerator implements ActivityGenerator {
         Pet pet = (Pet) pickEntity();
         Activity activity = pickActivity();
         pet.doActivity(activity);
-        activityAndUsageReportGenerator.writeActivity(pet, activity);
+//        activityAndUsageReportGenerator.writeActivity(pet, activity);
     }
 
     @Override

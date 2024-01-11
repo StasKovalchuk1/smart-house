@@ -17,7 +17,7 @@ Room BATHROOM has 2 devices
 Room GYM has 0 devices
 ---
 ROOMS ON THE FLOOR 2:
-Room KITCHEN has 8 devices
+Room KITCHEN has 9 devices
 Room LIVING_ROOM has 3 devices
 Room BEDROOM has 3 devices
 Room BEDROOM has 3 devices
@@ -26,33 +26,41 @@ Room BEDROOM has 3 devices
 DEVICES INFO:
 ON THE FLOOR 1
 IN THE ROOM: TOILET
+
 IN THE ROOM: BATHROOM
 1) WashingMachine
 2) WashingMachine
+
 IN THE ROOM: GYM
+
 ---
 ON THE FLOOR 2
 IN THE ROOM: KITCHEN
 1) Grill
 2) Fridge
 3) Fridge
-4) Dishwasher
+4) Fridge
 5) Dishwasher
-6) Microwave
-7) CoffeeMachine
+6) Dishwasher
+7) Microwave
 8) CoffeeMachine
+9) CoffeeMachine
+
 IN THE ROOM: LIVING_ROOM
 1) Shelter
 2) Shelter
 3) Shelter
+
 IN THE ROOM: BEDROOM
 1) Computer
 2) Computer
 3) Computer
+
 IN THE ROOM: BEDROOM
 1) Computer
 2) Computer
 3) Computer
+
 ---
 
 PEOPLE INFO: 
