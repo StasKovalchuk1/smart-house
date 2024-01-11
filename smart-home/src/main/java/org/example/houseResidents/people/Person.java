@@ -33,11 +33,21 @@ public abstract class Person extends HouseResident implements Subscriber{
     public void doActivity(Activity activity) throws Exception {
         if (getDeviceByActivity(activity).isPresent()) {
             Device device = getDeviceByActivity(activity).get();
+
             setStrategy(getStrategyByActivity(activity));
             strategy.performActivity(house.getDeviceController(), device, this);
+
             activityAndUsageReportGenerator.writeDeviceUsage(this, device);
+        } else if (activity.equals(PersonActivity.StartCarRiding) || activity.equals(PersonActivity.StartBikeRiding)
+                || activity.equals(PersonActivity.StartSkiing)){
+            setStrategy(getStrategyByActivity(activity));
+            strategy.performActivity(house.getDeviceController(), null, this);
+
+            // todo надо что-то с этим делать
+//            activityAndUsageReportGenerator.writeDeviceUsage(this, device);
         } else {
             log.info(activity.toString() + " wasn't performed");
+
         }
     }
 
@@ -109,6 +119,10 @@ public abstract class Person extends HouseResident implements Subscriber{
                  FinishGrillingMeet, FinishMakingCoffee,
                  FinishHeatingFood, FinishBakingFood,
                  FinishUsingComputer -> new FinishUsingDeviceStrategy();
+            case StartBikeRiding -> new RideBikeStrategy();
+            case StartSkiing -> new SkiStrategy();
+            case StartCarRiding -> new RideCarStrategy();
+
         };
     }
 
