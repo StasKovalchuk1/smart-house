@@ -175,16 +175,6 @@
       "type": "MOTHER"
     },
     {
-      "name": "Nick",
-      "atHome": "true",
-      "type": "CHILD"
-    },
-    {
-      "name": "Alex",
-      "atHome": "false",
-      "type": "CHILD"
-    },
-    {
       "name": "Egor",
       "atHome": "false",
       "type": "CHILD"

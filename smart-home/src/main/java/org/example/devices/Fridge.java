@@ -2,6 +2,7 @@ package org.example.devices;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.example.states.deviceStates.DeviceRunningState;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,6 +17,7 @@ public class Fridge extends Device{
         setAverageElectricityConsumption(5);
         setAverageWaterConsumption(0);
         setAverageGasConsumption(0);
+        setState(new DeviceRunningState(this));
     }
 
     @Override

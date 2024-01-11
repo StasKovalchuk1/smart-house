@@ -13,7 +13,7 @@ import java.util.Random;
 public class ExpiredFoodStrategy implements EventHandleByPersonStrategy{
     @Override
     public void handle(DeviceController controller) {
-        Optional<Device> fridgeOptional = controller.getDeviceByName("Fridge");
+        Optional<Device> fridgeOptional = controller.getRunningDeviceByName("Fridge");
         Fridge fridge;
         if (fridgeOptional.isPresent()) {
             fridge = (Fridge) fridgeOptional.get();
@@ -24,7 +24,7 @@ public class ExpiredFoodStrategy implements EventHandleByPersonStrategy{
     }
 
     public Food getExpiredFood(DeviceController controller) {
-        Optional<Device> fridgeOptional = controller.getDeviceByName("Fridge");
+        Optional<Device> fridgeOptional = controller.getRunningDeviceByName("Fridge");
         Fridge fridge;
         if (fridgeOptional.isPresent()) {
             fridge = (Fridge) fridgeOptional.get();

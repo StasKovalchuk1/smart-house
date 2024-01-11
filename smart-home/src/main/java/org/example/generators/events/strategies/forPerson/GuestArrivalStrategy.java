@@ -9,8 +9,7 @@ import java.util.Optional;
 public class GuestArrivalStrategy implements EventHandleByPersonStrategy{
     @Override
     public void handle(DeviceController controller) {
-        Optional<Device> coffeeMachineOptional = controller.getDeviceByName("CoffeeMachine");
-        CoffeeMachine coffeeMachine;
+        Optional<Device> coffeeMachineOptional = controller.getOffDeviceByName("CoffeeMachine");
         coffeeMachineOptional.ifPresent(device -> device.getState().turnOn());
     }
 }

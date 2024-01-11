@@ -8,7 +8,6 @@ import org.example.devices.Food;
 import org.example.devices.Fridge;
 import org.example.generators.activities.ActivityStrategy;
 import org.example.houseResidents.HouseResident;
-import org.example.houseResidents.people.Person;
 
 import java.util.Optional;
 import java.util.Random;
@@ -19,7 +18,7 @@ public class GetFoodFromFridgeStrategy implements ActivityStrategy {
 
     @Override
     public void performActivity(DeviceController deviceController, Device device, HouseResident person) throws Exception {
-        Optional<Device> fridgeOptional = deviceController.getDeviceByName("Fridge");
+        Optional<Device> fridgeOptional = deviceController.getRunningDeviceByName("Fridge");
         Food food = pickFood(deviceController);
         Fridge fridge;
         if (fridgeOptional.isPresent()) {
@@ -38,7 +37,7 @@ public class GetFoodFromFridgeStrategy implements ActivityStrategy {
     }
 
     private Food pickFood(DeviceController deviceController){
-        Optional<Device> fridgeOptional = deviceController.getDeviceByName("Fridge");
+        Optional<Device> fridgeOptional = deviceController.getRunningDeviceByName("Fridge");
         Fridge fridge;
         if (fridgeOptional.isPresent()) {
             fridge = (Fridge) fridgeOptional.get();

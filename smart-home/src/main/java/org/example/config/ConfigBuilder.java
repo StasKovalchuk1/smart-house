@@ -109,7 +109,6 @@ public class ConfigBuilder {
             Integer roomId = roomNode.get("id").asInt();
             JsonNode devicesNode = roomNode.get("devices");
             List<Device> devices = (devicesNode != null) ? parseDevicesInRoom(devicesNode) : Collections.emptyList();
-//            deviceController = new DeviceController(devices);
 
             switch (type) {
                 case "KITCHEN" -> {

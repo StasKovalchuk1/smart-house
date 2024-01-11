@@ -3,15 +3,12 @@ package org.example.devices;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.example.generators.events.EventGeneratorForAutomaticHandling;
 import org.example.generators.events.EventToHandle;
 import org.example.generators.events.EventToHandleAutomatically;
-import org.example.generators.events.EventToHandleByPerson;
 import org.example.generators.events.strategies.forController.EventHandleByControllerStrategy;
 import org.example.generators.events.strategies.forController.NothingToDoStrategy;
 import org.example.generators.events.strategies.forController.PowerOutageStrategy;
 import org.example.generators.events.strategies.forController.WaterLeakStrategy;
-import org.example.generators.events.strategies.forPerson.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -68,15 +65,26 @@ public class DeviceController {
         };
     }
 
-    public Optional<Device> getDeviceByName(String name){
+    public Optional<Device> getRunningDeviceByName(String name){
         for (Device device : devices){
-            if (device.getName().equals(name)){
+            if (device.getName().equals(name) && device.isRunning()){
                 return Optional.of(device);
             }
         }
-        log.warn(name + " was not found");
+        log.warn("Running " + name + " was not found");
         return Optional.empty();
     }
+
+    public Optional<Device> getOffDeviceByName(String name){
+        for (Device device : devices){
+            if (device.getName().equals(name) && !device.isRunning()){
+                return Optional.of(device);
+            }
+        }
+        log.warn("Off " + name + " was not found");
+        return Optional.empty();
+    }
+
 
     public Optional<Device> getDeviceByID(int id) {
         for (Device device : devices){

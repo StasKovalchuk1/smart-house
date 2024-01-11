@@ -8,8 +8,8 @@ import java.util.Optional;
 public class WaterLeakStrategy implements EventHandleByControllerStrategy{
     @Override
     public void handle(DeviceController controller) {
-        Optional<Device> washingMachine = controller.getDeviceByName("WashingMachine");
-        Optional<Device> dishWasher = controller.getDeviceByName("Dishwasher");
+        Optional<Device> washingMachine = controller.getRunningDeviceByName("WashingMachine");
+        Optional<Device> dishWasher = controller.getRunningDeviceByName("Dishwasher");
         washingMachine.ifPresent(controller::turnOffDevice);
         dishWasher.ifPresent(controller::turnOffDevice);
     }

@@ -8,7 +8,6 @@ import org.example.devices.Food;
 import org.example.devices.Fridge;
 import org.example.generators.activities.ActivityStrategy;
 import org.example.houseResidents.HouseResident;
-import org.example.houseResidents.people.Person;
 
 import java.util.Optional;
 import java.util.Random;
@@ -16,9 +15,11 @@ import java.util.Random;
 @Data
 @Slf4j
 public class AddFoodToFridgeStrategy implements ActivityStrategy {
+
+    //TODO если нет включенного холодильника, надо взять выключенный и включить его
     @Override
     public void performActivity(DeviceController deviceController, Device device, HouseResident person){
-        Optional<Device> fridgeOptional = deviceController.getDeviceByName("Fridge");
+        Optional<Device> fridgeOptional = deviceController.getRunningDeviceByName("Fridge");
         Food food = pickFood(deviceController);
         Fridge fridge;
         if (fridgeOptional.isPresent()) {
@@ -32,7 +33,7 @@ public class AddFoodToFridgeStrategy implements ActivityStrategy {
     }
 
     private Food pickFood(DeviceController deviceController){
-        Optional<Device> fridgeOptional = deviceController.getDeviceByName("Fridge");
+        Optional<Device> fridgeOptional = deviceController.getRunningDeviceByName("Fridge");
         Food food = pickFood(deviceController);
         Fridge fridge;
         if (fridgeOptional.isPresent()) {

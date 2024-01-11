@@ -2,6 +2,7 @@ package org.example.devices;
 
 import lombok.Data;
 import org.example.states.deviceStates.DeviceOffState;
+import org.example.states.deviceStates.DeviceRunningState;
 import org.example.states.deviceStates.DeviceState;
 
 @Data
@@ -38,5 +39,9 @@ public abstract class Device {
     public abstract void performDeviceAction();
 
     public abstract void stopDeviceAction();
+
+    public boolean isRunning() {
+        return state instanceof DeviceRunningState;
+    }
 
 }
