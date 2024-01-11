@@ -18,10 +18,10 @@ public class DrinkWaterStrategy implements ActivityStrategy {
     public void performActivity(DeviceController deviceController, Device device, HouseResident petName) throws Exception {
         if (device!=null){
             if (((Shelter)device).getWaterAmount()!=0){
-                ((Shelter)device).setWaterAmount(((Shelter)device).getWaterAmount()-10);
-                log.info(String.format("Pet %s drank water", petName));
+                ((Shelter)device).setWaterAmount(((Shelter)device).getWaterAmount()-2);
+                log.info(String.format("Pet %s drank water", petName.getName()));
             } else {
-                //todo: животному нечего пить, надо как-то обработать
+                log.info(String.format("Not enough water to eat in %s", device.toString()));
             }
         }
     }

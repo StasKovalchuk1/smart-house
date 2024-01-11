@@ -33,6 +33,7 @@ public class ConfigBuilder {
     private static JSONObject object;
     private static House house;
     private static DeviceController deviceController;
+    private static List<DeviceManager> managers = new ArrayList<>();
 
     public static House buildHouseFromJson(String jsonFileName) throws IOException {
         ObjectMapper mapper = new ObjectMapper();
@@ -79,9 +80,14 @@ public class ConfigBuilder {
             default -> throw new IllegalArgumentException("Unknown home type: " + type);
         }
 
+        deviceController.setDeviceManagers(managers);
+
         house.setDeviceController(deviceController);
         house.setPeople(parsePeople(jsonFileName, house));
         house.setPets(parsePets(jsonFileName, house));
+
+        house.getPeople().forEach(person -> house.getDeviceController().getDeviceManagers()
+                .forEach(deviceManager -> deviceManager.addSubscriber((Subscriber) person)));
         return house;
     }
 
@@ -157,26 +163,32 @@ public class ConfigBuilder {
             switch (name) {
                 case "Grill" -> {
                     manager = new GrillManager(id, name, documentation);
+                    managers.add(manager);
                     devices.add(manager.collectData());
                 }
                 case "WashingMachine" -> {
                     manager = new WashingMachineManager(id, name, documentation);
+                    managers.add(manager);
                     devices.add(manager.collectData());
                 }
                 case "CoffeeMachine" -> {
                     manager = new CoffeeMachineManager(id, name, documentation);
+                    managers.add(manager);
                     devices.add(manager.collectData());
                 }
                 case "Computer" -> {
                     manager = new ComputerManager(id, name, documentation);
+                    managers.add(manager);
                     devices.add(manager.collectData());
                 }
                 case "Dishwasher" -> {
                     manager = new DishwasherManager(id, name, documentation);
+                    managers.add(manager);
                     devices.add(manager.collectData());
                 }
                 case "Fridge" -> {
                     manager = new FridgeManager(id, name, documentation);
+                    managers.add(manager);
                     Fridge fridge = (Fridge) manager.collectData();
                     JsonNode foodsNode = deviceNode.get("foodInside");
                     List<Food> food = parseFood(foodsNode);
@@ -185,14 +197,17 @@ public class ConfigBuilder {
                 }
                 case "Microwave" -> {
                     manager = new MicrowaveManager(id, name, documentation);
+                    managers.add(manager);
                     devices.add(manager.collectData());
                 }
                 case "Oven" -> {
                     manager = new OvenManager(id, name, documentation);
+                    managers.add(manager);
                     devices.add(manager.collectData());
                 }
                 case "Shelter" -> {
                     manager = new ShelterManager(id, name, documentation);
+                    managers.add(manager);
                     devices.add(manager.collectData());
                 }
                 default -> throw new IllegalArgumentException("Unknown device: " + name);

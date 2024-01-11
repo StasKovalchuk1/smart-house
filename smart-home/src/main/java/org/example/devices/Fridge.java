@@ -22,7 +22,7 @@ public class Fridge extends Device{
 
     @Override
     public String somethingToFix() {
-        if (foodInside!= null && foodInside.size() < 10) return "Not enough food";
+        if (foodInside!= null && foodInside.size() < 4) return "Not enough food";
         return null;
     }
 

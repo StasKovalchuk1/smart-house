@@ -6,9 +6,6 @@ import lombok.NoArgsConstructor;
 @Data
 public class Microwave extends Device{
 
-    private int power;
-    private int timer;
-
     public Microwave(Integer id, String documentation) {
         super(id, "Microwave", documentation);
         setAverageElectricityConsumption(2);

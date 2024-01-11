@@ -6,7 +6,7 @@ import lombok.NoArgsConstructor;
 @Data
 public class Dishwasher extends Device{
 
-    private int detergentAmount;
+    private int detergentAmount = 5;
 
     public Dishwasher(Integer id, String documentation) {
         super(id, "Dishwasher", documentation);

@@ -1,5 +1,7 @@
 package org.example;
 
+import lombok.extern.slf4j.Slf4j;
+import org.example.factory.DeviceManager;
 import org.example.generators.activities.personActivities.PersonActivityGenerator;
 import org.example.generators.activities.petActivities.PetActivityGenerator;
 import org.example.generators.events.EventGeneratorForAutomaticHandling;
@@ -13,6 +15,7 @@ import org.example.reports.reportGenerators.HouseConfigurationReportGenerator;
 import java.util.Timer;
 import java.util.TimerTask;
 
+@Slf4j
 public class Simulation {
 
     private final House house;
@@ -53,21 +56,29 @@ public class Simulation {
         timer.scheduleAtFixedRate(new TimerTask() {
             @Override
             public void run() {
+                log.info("------------Proceed to event for controller------------");
                 eventGenAuto.generateEvent();
-                System.out.println("-----------------------------");
+                System.out.println("---------------------------------");
+                log.info("------------Proceed to event for people------------");
                 eventGenPerson.generateEvent();
-                System.out.println("-----------------------------");
+                System.out.println("---------------------------------");
                 try {
+                    log.info("------------Proceed to person activity------------");
                     personActivityGen.generateActivity();
-                    System.out.println("-----------------------------");
+                    System.out.println("---------------------------------");
+                    log.info("------------Proceed to pet activity------------");
                     petActivityGen.generateActivity();
-                    System.out.println("-----------------------------");
+                    System.out.println("---------------------------------");
                 } catch (Exception e) {
                     throw new RuntimeException(e);
                 }
-
+                log.info("------------Proceed to control consumption------------");
                 house.getDeviceController().controlEnergyConsumption();
-                System.out.println("-----------------------------");
+                System.out.println("---------------------------------");
+                log.info("------------Proceed to receiving notification------------");
+                house.getDeviceController().getDeviceManagers().forEach(DeviceManager::collectData);
+                System.out.println("---------------------------------");
+
                 eventReportGen.generateReport();
                 activityAndUsageReportGen.generateReport();
                 consumptionReportGen.generateReport();

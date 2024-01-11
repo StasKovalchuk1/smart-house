@@ -3,7 +3,7 @@ CONSUMPTION REPORT
 GENERAL CONSUMPTION:
 Total water consumption: 0.0
 Total gas consumption: 0.0
-Total electricity consumption: 2.082047599041274
+Total electricity consumption: 5.471627379920216
 ---
 DEVICES CONSUMPTION:
 Device 'WashingMachine' consumption:
@@ -17,7 +17,7 @@ Electricity: 0.0
 Device 'Grill' consumption:
 Water: 0.0
 Gas: 0.0
-Electricity: 0.0
+Electricity: 5.471627379920216
 Device 'Fridge' consumption:
 Water: 0.0
 Gas: 0.0
@@ -37,7 +37,7 @@ Electricity: 0.0
 Device 'Microwave' consumption:
 Water: 0.0
 Gas: 0.0
-Electricity: 2.082047599041274
+Electricity: 0.0
 Device 'CoffeeMachine' consumption:
 Water: 0.0
 Gas: 0.0

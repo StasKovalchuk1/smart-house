@@ -28,12 +28,8 @@ public abstract class Pet extends HouseResident {
         super(name, house, type);
     }
 
-    //TODO рыбка не совершает активностей
     @Override
     public void doActivity(Activity activity) throws Exception {
-        if (this instanceof GoldenFish && !activity.toString().equals("EatFood")){
-            return;
-        }
         setStrategy(getStrategyByActivity(activity));
         strategy.performActivity(house.getDeviceController(), ((BaseShelterDecorator) petShelter).getWrapper(), this);
         activityAndUsageReportGenerator.writeDeviceUsage(this, ((BaseShelterDecorator) petShelter).getWrapper());

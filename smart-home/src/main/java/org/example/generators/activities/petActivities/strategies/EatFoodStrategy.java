@@ -17,10 +17,10 @@ public class EatFoodStrategy implements ActivityStrategy {
     public void performActivity(DeviceController deviceController, Device device, HouseResident petName) throws Exception {
         if (device!=null){
             if (((Shelter)device).getFoodAmount()!=0){
-                ((Shelter)device).setFoodAmount(((Shelter)device).getFoodAmount()-10);
-                log.info(String.format("Pet %s ate food", petName));
+                ((Shelter)device).setFoodAmount(((Shelter)device).getFoodAmount()-2);
+                log.info(String.format("Pet %s ate food", petName.getName()));
             } else {
-                //todo: животному нечего есть, надо как-то обработать
+                log.info(String.format("Not enough food to eat in %s", device.toString()));
             }
         }
     }

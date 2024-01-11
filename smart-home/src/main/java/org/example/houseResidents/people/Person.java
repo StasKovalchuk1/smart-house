@@ -45,95 +45,49 @@ public abstract class Person extends HouseResident implements Subscriber{
         DeviceController deviceController = house.getDeviceController();
         switch ((PersonActivity) activity) {
             case GetFoodFromFridge, AddFoodToFridge:
-                if (deviceController.getRunningDeviceByName("Fridge").isPresent()) {
-                    return deviceController.getRunningDeviceByName("Fridge");
-                } else {
-                    return Optional.empty();
-                }
+                return deviceController.getRunningDeviceByName("Fridge");
             case StartDoingLaundry:
-                if (deviceController.getOffDeviceByName("WashingMachine").isPresent()) {
-                    return deviceController.getOffDeviceByName("WashingMachine");
-                } else {
-                    return Optional.empty();
-                }
+                return deviceController.getOffDeviceByName("WashingMachine");
+
             case FinishDoingLaundry:
-                if (deviceController.getRunningDeviceByName("WashingMachine").isPresent()) {
-                    return deviceController.getRunningDeviceByName("WashingMachine");
-                } else {
-                    return Optional.empty();
-                }
+                return deviceController.getRunningDeviceByName("WashingMachine");
+
             case StartWashingDishes:
-                if (deviceController.getOffDeviceByName("Dishwasher").isPresent()) {
-                    return deviceController.getOffDeviceByName("Dishwasher");
-                } else {
-                    return Optional.empty();
-                }
+                return deviceController.getOffDeviceByName("Dishwasher");
+
             case FinishWashingDishes:
-                if (deviceController.getRunningDeviceByName("Dishwasher").isPresent()) {
-                    return deviceController.getRunningDeviceByName("Dishwasher");
-                } else {
-                    return Optional.empty();
-                }
+                return deviceController.getRunningDeviceByName("Dishwasher");
+
             case StartGrillingMeet:
-                if (deviceController.getOffDeviceByName("Grill").isPresent()) {
-                    return deviceController.getOffDeviceByName("Grill");
-                } else {
-                    return Optional.empty();
-                }
+                return deviceController.getOffDeviceByName("Grill");
+
             case FinishGrillingMeet:
-                if (deviceController.getRunningDeviceByName("Grill").isPresent()) {
-                    return deviceController.getRunningDeviceByName("Grill");
-                } else {
-                    return Optional.empty();
-                }
+                return deviceController.getRunningDeviceByName("Grill");
+
             case StartMakingCoffee:
-                if (deviceController.getOffDeviceByName("CoffeeMachine").isPresent()) {
-                    return deviceController.getOffDeviceByName("CoffeeMachine");
-                } else {
-                    return Optional.empty();
-                }
+                return deviceController.getOffDeviceByName("CoffeeMachine");
+
             case FinishMakingCoffee:
-                if (deviceController.getRunningDeviceByName("CoffeeMachine").isPresent()) {
-                    return deviceController.getRunningDeviceByName("CoffeeMachine");
-                } else {
-                    return Optional.empty();
-                }
+                return deviceController.getRunningDeviceByName("CoffeeMachine");
+
             case StartHeatingFood:
-                if (deviceController.getOffDeviceByName("Microwave").isPresent()) {
-                    return deviceController.getOffDeviceByName("Microwave");
-                } else {
-                    return Optional.empty();
-                }
+                return deviceController.getOffDeviceByName("Microwave");
+
             case FinishHeatingFood:
-                if (deviceController.getRunningDeviceByName("Microwave").isPresent()) {
-                    return deviceController.getRunningDeviceByName("Microwave");
-                } else {
-                    return Optional.empty();
-                }
+                return deviceController.getRunningDeviceByName("Microwave");
+
             case StartBakingFood:
-                if (deviceController.getOffDeviceByName("Oven").isPresent()) {
-                    return deviceController.getOffDeviceByName("Oven");
-                } else {
-                    return Optional.empty();
-                }
+                return deviceController.getOffDeviceByName("Oven");
+
             case FinishBakingFood:
-                if (deviceController.getRunningDeviceByName("Oven").isPresent()) {
-                    return deviceController.getRunningDeviceByName("Oven");
-                } else {
-                    return Optional.empty();
-                }
+                return deviceController.getRunningDeviceByName("Oven");
+
             case StartUsingComputer:
-                if (deviceController.getOffDeviceByName("Computer").isPresent()) {
-                    return deviceController.getOffDeviceByName("Computer");
-                } else {
-                    return Optional.empty();
-                }
+                return deviceController.getOffDeviceByName("Computer");
+
             case FinishUsingComputer:
-                if (deviceController.getRunningDeviceByName("Computer").isPresent()) {
-                    return deviceController.getRunningDeviceByName("Computer");
-                } else {
-                    return Optional.empty();
-                }
+                return deviceController.getRunningDeviceByName("Computer");
+
             default:
                 return Optional.empty();
         }
@@ -159,10 +113,16 @@ public abstract class Person extends HouseResident implements Subscriber{
     }
 
     @Override
+    public void update(String message) {
+        log.info(toString() + " got the message: " + message);
+    }
+
+    @Override
     public String toString() {
         return "Person{" +
-                "name='" + name + '\'' +
-                "type='" + type + '\'' +
+                " name='" + name + '\'' +
+                " type='" + type + '\'' +
                 '}';
     }
+
 }
