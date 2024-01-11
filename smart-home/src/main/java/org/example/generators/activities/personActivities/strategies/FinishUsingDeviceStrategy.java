@@ -14,7 +14,8 @@ public class FinishUsingDeviceStrategy implements ActivityStrategy {
     @Override
     public void performActivity(DeviceController deviceController, Device device, HouseResident person){
         if (device != null) {
-            if (device.getState().getName().equals("Running")) {
+            if (device.isRunning()) {
+                log.info(person.getName() + " finished using device: " + device.getName());
                 deviceController.turnOffDevice(device);
             } else {
                 log.info(String.format("%s tried to stop using %s, but %s is not being used", person.getName(), device.getName(),device.getName()));

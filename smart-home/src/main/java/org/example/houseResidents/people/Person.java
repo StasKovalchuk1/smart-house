@@ -23,8 +23,8 @@ public abstract class Person extends HouseResident implements Subscriber{
     private boolean atHome;
     private EventHandleByPersonStrategy eventStrategy;
 
-    public Person(House house, String name, PersonType type) {
-        super(name, house, type);
+    public Person(Integer id, House house, String name, PersonType type) {
+        super(id, name, house, type);
     }
 
     public abstract void handleEvent(EventToHandle event);

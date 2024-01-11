@@ -25,6 +25,7 @@ public class Mother extends Person{
             case CHILD_GOT_HURT -> setEventStrategy(new ChildGotHurtStrategy());
             case GUEST_ARRIVAL -> setEventStrategy(new GuestArrivalStrategy());
             case FIRE_ALARM -> setEventStrategy(new FireAlarmStrategy());
+            case NO_EVENT_FOR_PERSON -> setEventStrategy(new PersonNothingToDoStrategy());
         };
     }
 
@@ -38,8 +39,4 @@ public class Mother extends Person{
 //        };
 //    }
 
-    @Override
-    public void update(String message) {
-
-    }
 }

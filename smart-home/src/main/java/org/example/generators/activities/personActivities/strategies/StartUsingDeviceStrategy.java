@@ -19,7 +19,7 @@ public class StartUsingDeviceStrategy implements ActivityStrategy {
                 deviceController.turnOnDevice(device);
                 deviceController.runDevice(device);
             } else {
-                //todo реализовать логику ожидания пока девайс не освободиться
+                log.info(String.format("%s tried to start using %s, but %s is already being used", person.getName(), device.getName(),device.getName()));
             }
         }
     }
