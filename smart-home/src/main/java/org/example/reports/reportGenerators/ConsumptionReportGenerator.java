@@ -4,7 +4,9 @@ import lombok.Data;
 import org.example.devices.Device;
 import org.example.devices.DeviceController;
 
+import java.io.File;
 import java.io.PrintWriter;
+import java.net.URL;
 
 @Data
 public class ConsumptionReportGenerator extends BaseReportGenerator {
@@ -13,7 +15,7 @@ public class ConsumptionReportGenerator extends BaseReportGenerator {
 
     public ConsumptionReportGenerator(DeviceController deviceController) {
         this.deviceController = deviceController;
-        this.reportFile = "./src/main/resources/consumptionReport.txt";
+        this.reportFile = "smart-home/src/main/java/org/example/reports/reports/consumptionReport.txt";
         try {
             this.writer = new PrintWriter(new PrintWriter(reportFile));
         } catch (Exception e) {

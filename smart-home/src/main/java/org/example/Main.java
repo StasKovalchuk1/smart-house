@@ -16,12 +16,10 @@ public class Main {
         File file = new File(resource.getFile());
         String filePath = file.getPath();
 
-        House house1 = ConfigBuilder.buildHouseFromJson(filePath);
-//        House house1 = ConfigBuilder.buildHouseFromJson("config/config1.json");
-//        House house1 = ConfigBuilder.buildHouseFromJson("./config/config1.json");
-//        House house2 = ConfigBuilder.buildHouseFromJson("./config/config2.json");
+        House house = ConfigBuilder.buildHouseFromJson(filePath);
 
-        Simulation simulation = new Simulation(house1);
+
+        Simulation simulation = new Simulation(house);
         simulation.runSimulation();
 
 

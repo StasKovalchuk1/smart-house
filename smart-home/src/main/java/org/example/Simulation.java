@@ -92,6 +92,10 @@ public class Simulation {
                 log.info("------------Proceed to receiving notification------------");
                 house.getDeviceController().getDeviceManagers().forEach(DeviceManager::collectData);
                 System.out.println("---------------------------------");
+                eventReportGen.generateReport();
+                activityAndUsageReportGen.generateReport();
+                consumptionReportGen.generateReport();
+                houseConfigReportGen.generateReport();
             }
         }, 0, 3000);// Repeat every 10 seconds
     }

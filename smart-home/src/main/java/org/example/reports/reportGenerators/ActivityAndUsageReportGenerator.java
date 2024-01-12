@@ -1,19 +1,16 @@
 package org.example.reports.reportGenerators;
 
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.extern.java.Log;
 import lombok.extern.slf4j.Slf4j;
 import org.example.devices.Device;
 import org.example.generators.activities.Activity;
-import org.example.generators.events.EventToHandle;
 import org.example.houseComponents.Floor;
 import org.example.houseComponents.rooms.Room;
 import org.example.houseResidents.HouseResident;
-import org.example.houseResidents.people.Person;
 import org.example.houses.House;
 
+import java.io.File;
 import java.io.PrintWriter;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -31,7 +28,7 @@ public class ActivityAndUsageReportGenerator extends BaseReportGenerator {
 
     public ActivityAndUsageReportGenerator(House house) {
         this.house = house;
-        this.reportFile = "./src/main/resources/activityAndUsageReport.txt";
+        this.reportFile = "smart-home/src/main/java/org/example/reports/reports/activityAndUsageReport.txt";
         try {
             this.writer = new PrintWriter(new PrintWriter(reportFile));
         } catch (Exception e) {

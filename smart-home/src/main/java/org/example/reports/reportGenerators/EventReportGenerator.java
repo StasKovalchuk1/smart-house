@@ -1,12 +1,12 @@
 package org.example.reports.reportGenerators;
 
 import lombok.Data;
-import lombok.NoArgsConstructor;
-import org.example.generators.events.EventGeneratorForHandlingByPerson;
 import org.example.generators.events.EventToHandle;
 import org.example.houseResidents.people.Person;
 
+import java.io.File;
 import java.io.PrintWriter;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -19,7 +19,7 @@ public class EventReportGenerator extends BaseReportGenerator {
     private List<EventToHandle> eventsHandledAutomatically = new ArrayList<>();
 
     public EventReportGenerator() {
-        this.reportFile = "./src/main/resources/eventReport.txt";
+        this.reportFile = "smart-home/src/main/java/org/example/reports/reports/eventReport.txt";
         try {
             this.writer = new PrintWriter(new PrintWriter(reportFile));
         } catch (Exception e) {

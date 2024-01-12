@@ -7,7 +7,9 @@ import org.example.houseResidents.people.Person;
 import org.example.houseResidents.pets.Pet;
 import org.example.houses.House;
 
+import java.io.File;
 import java.io.PrintWriter;
+import java.net.URL;
 
 @Data
 public class HouseConfigurationReportGenerator extends BaseReportGenerator {
@@ -16,7 +18,7 @@ public class HouseConfigurationReportGenerator extends BaseReportGenerator {
 
     public HouseConfigurationReportGenerator(House house) {
         this.house = house;
-        this.reportFile = "./src/main/resources/houseConfigReport.txt";
+        this.reportFile = "smart-home/src/main/java/org/example/reports/reports/houseConfigReport.txt";
         try {
             this.writer = new PrintWriter(new PrintWriter(reportFile));
         } catch (Exception e) {
