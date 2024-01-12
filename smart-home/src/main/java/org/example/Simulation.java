@@ -85,7 +85,7 @@ public class Simulation {
 //                consumptionReportGen.generateReport();
 //                houseConfigReportGen.generateReport();
             }
-        }, 0, 1000);// Repeat every 10 seconds
+        }, 0, 5000);// Repeat every 5 seconds
 
 //        eventReportGen.generateReport();
 //        activityAndUsageReportGen.generateReport();

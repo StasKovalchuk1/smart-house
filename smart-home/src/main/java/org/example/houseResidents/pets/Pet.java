@@ -15,7 +15,6 @@ import org.example.houseResidents.HouseResident;
 import org.example.houses.House;
 
 
-//@EqualsAndHashCode(callSuper = true)
 @EqualsAndHashCode(callSuper = true)
 @Data
 public abstract class Pet extends HouseResident {

@@ -13,7 +13,6 @@ import org.example.houseResidents.people.Person;
 @Slf4j
 public class DrinkWaterStrategy implements ActivityStrategy {
 
-    // TODO пофиксить person аргумент
     @Override
     public void performActivity(DeviceController deviceController, Device device, HouseResident petName) throws Exception {
         if (device!=null){

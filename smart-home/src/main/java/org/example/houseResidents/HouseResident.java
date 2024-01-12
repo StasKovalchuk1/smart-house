@@ -36,16 +36,4 @@ public abstract class HouseResident {
 //    protected abstract Device getDeviceByActivity(Activity activity);
     protected abstract ActivityStrategy getStrategyByActivity(Activity activity);
 
-//    @Override
-//    public boolean equals(Object o) {
-//        if (this == o) return true;
-////        if (o == null || getClass() != o.getClass()) return false;
-//        HouseResident that = (HouseResident) o;
-//        return id == that.id;
-//    }
-//
-//    @Override
-//    public int hashCode() {
-//        return id;
-//    }
 }

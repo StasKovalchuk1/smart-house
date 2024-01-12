@@ -25,8 +25,4 @@ public enum PersonActivity implements Activity {
     StartBikeRiding,
     StartSkiing,
     StartCarRiding
-//    ,
-//    FinishBikeRiding,
-//    FinishSkiing,
-//    FinishCarRiding
 }

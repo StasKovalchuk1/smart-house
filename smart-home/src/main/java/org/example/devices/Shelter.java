@@ -33,7 +33,7 @@ public class Shelter extends Device implements ShelterInterface {
     // TODO
     @Override
     public String somethingToFix() {
-        if (waterAmount < 5 || foodAmount < 3) return "Check food and water in shelter";
+        if (waterAmount < 5 || foodAmount < 3) return "Check food and water in shelter" + "[" + getId() + "]";
         return null;
     }
 

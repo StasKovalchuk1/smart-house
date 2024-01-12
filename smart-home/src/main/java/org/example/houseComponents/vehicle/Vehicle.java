@@ -4,12 +4,18 @@ import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.example.houseResidents.people.Person;
 
+import java.util.Timer;
+import java.util.TimerTask;
+import java.util.concurrent.Semaphore;
+
 @Data
 @Slf4j
 public abstract class Vehicle {
 
     protected final VehicleType type;
     private boolean inUse = false;
+
+    private Semaphore vehicleSemaphore = new Semaphore(1);
 
     public Vehicle(VehicleType type) {
         this.type = type;
@@ -21,29 +27,25 @@ public abstract class Vehicle {
 
     public void useVehicle(Person person) {
         try {
+            vehicleSemaphore.acquire();
             if (isInUse()) {
                 log.info(getType() + " is already in use. " + person.getName() + " should wait.");
             } else {
                 ride(person);
 
-                // Создаем новый поток
-                Thread thread = new Thread(() -> {
-                    try {
-                        // Подождать 5 секунд
-                        Thread.sleep(5000);
-
-                        // Код, который выполнится после задержки
+                Timer timer = new Timer();
+                timer.schedule(new TimerTask() {
+                    @Override
+                    public void run() {
+                        vehicleSemaphore.release();
                         returnToGarage(person);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
                     }
-                });
-
-                // Запустить поток
-                thread.start();
+                }, 3000);
             }
-        } catch (Exception e) {
+        } catch (InterruptedException e) {
             e.printStackTrace();
+        } finally {
+            vehicleSemaphore.release();
         }
     }
 }

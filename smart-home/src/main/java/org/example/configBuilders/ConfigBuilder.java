@@ -23,6 +23,9 @@ import org.json.JSONObject;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
+import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -36,6 +39,8 @@ public class ConfigBuilder {
     private static List<DeviceManager> managers = new ArrayList<>();
 
     public static House buildHouseFromJson(String jsonFileName) throws IOException {
+        URL url = ConfigBuilder.class.getClassLoader().getResource(jsonFileName);
+
         ObjectMapper mapper = new ObjectMapper();
         JsonNode houseNode = mapper.readTree(new File(jsonFileName));
 
