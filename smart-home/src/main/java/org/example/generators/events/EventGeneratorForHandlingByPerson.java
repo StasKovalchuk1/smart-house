@@ -44,7 +44,17 @@ public class EventGeneratorForHandlingByPerson implements EventGenerator{
 
     public Person pickPerson() {
         int index = new Random().nextInt(people.size());
-        log.info(people.get(index).toString() + " was chosen to handle event");
-        return (Person)people.get(index);
+        Person person = (Person) people.get(index);
+        log.info(person.toString() + " was chosen to handle event");
+        if (!person.isAtHome()) {
+            log.info(person.toString() + " is not at home");
+            for (HouseResident nextPerson : people) {
+                if (((Person) nextPerson).isAtHome()) {
+                    log.info(nextPerson.toString() + " was chosen to handle event");
+                    return (Person) nextPerson;
+                }
+            }
+        }
+        return person;
     }
 }

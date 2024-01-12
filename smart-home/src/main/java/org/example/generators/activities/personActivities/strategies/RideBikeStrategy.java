@@ -24,11 +24,17 @@ public class RideBikeStrategy implements ActivityStrategy {
             case SIMPLE, WITH_POOL -> log.info("There is no bike to ride");
             case WITH_GARAGE -> {
                 Optional<Vehicle> bicycle = ((HouseWithGarage) person.getHouse()).getGarage().getVehicleByType(VehicleType.BICYCLE);
-                bicycle.ifPresent(vehicle -> vehicle.useVehicle((Person) person));
+                bicycle.ifPresent(vehicle -> {
+                    log.info(person.toString() + " is gonna use bike");
+                    vehicle.useVehicle((Person) person);
+                });
             }
             case WITH_GARAGE_AND_POOL -> {
                 Optional<Vehicle> bicycle = ((HouseWithGarageAndPool) person.getHouse()).getGarage().getVehicleByType(VehicleType.BICYCLE);
-                bicycle.ifPresent(vehicle -> vehicle.useVehicle((Person) person));
+                bicycle.ifPresent(vehicle -> {
+                    log.info(person.toString() + " is gonna use bike");
+                    vehicle.useVehicle((Person) person);
+                });
             }
         }
     }

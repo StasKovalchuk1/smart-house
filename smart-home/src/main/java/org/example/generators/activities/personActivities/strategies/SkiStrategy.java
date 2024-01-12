@@ -24,11 +24,17 @@ public class SkiStrategy implements ActivityStrategy {
             case SIMPLE, WITH_POOL -> log.info("There is no ski to ride");
             case WITH_GARAGE -> {
                 Optional<Vehicle> ski = ((HouseWithGarage) person.getHouse()).getGarage().getVehicleByType(VehicleType.SKI);
-                ski.ifPresent(vehicle -> vehicle.useVehicle((Person) person));
+                ski.ifPresent(vehicle -> {
+                    log.info(person.toString() + " is gonna use ski");
+                    vehicle.useVehicle((Person) person);
+                });
             }
             case WITH_GARAGE_AND_POOL -> {
                 Optional<Vehicle> ski = ((HouseWithGarageAndPool) person.getHouse()).getGarage().getVehicleByType(VehicleType.SKI);
-                ski.ifPresent(vehicle -> vehicle.useVehicle((Person) person));
+                ski.ifPresent(vehicle -> {
+                    log.info(person.toString() + " is gonna use ski");
+                    vehicle.useVehicle((Person) person);
+                });
             }
         }
     }

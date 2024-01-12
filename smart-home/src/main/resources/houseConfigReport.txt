@@ -1,8 +1,8 @@
 House configuration report.
 
 HOUSE INFO:
-Type Of House: WITH_GARAGE_AND_POOL
-Amount of resident: 6
+Type Of House: WITH_GARAGE
+Amount of resident: 4
 Amount of pets: 3
 Amount of floors: 2
 
@@ -13,11 +13,11 @@ Floor 2) contains 4 rooms
 ROOMS INFO:
 ROOMS ON THE FLOOR 1:
 Room TOILET has 0 devices
-Room BATHROOM has 1 devices
+Room BATHROOM has 2 devices
 Room GYM has 0 devices
 ---
 ROOMS ON THE FLOOR 2:
-Room KITCHEN has 10 devices
+Room KITCHEN has 8 devices
 Room LIVING_ROOM has 3 devices
 Room BEDROOM has 3 devices
 Room BEDROOM has 3 devices
@@ -29,6 +29,7 @@ IN THE ROOM: TOILET
 
 IN THE ROOM: BATHROOM
 1) WashingMachine
+2) WashingMachine
 
 IN THE ROOM: GYM
 
@@ -36,15 +37,13 @@ IN THE ROOM: GYM
 ON THE FLOOR 2
 IN THE ROOM: KITCHEN
 1) Grill
-2) Grill
+2) Fridge
 3) Fridge
-4) Fridge
+4) Dishwasher
 5) Dishwasher
-6) Dishwasher
-7) Dishwasher
-8) Microwave
-9) Microwave
-10) CoffeeMachine
+6) Microwave
+7) CoffeeMachine
+8) CoffeeMachine
 
 IN THE ROOM: LIVING_ROOM
 1) Shelter
@@ -68,8 +67,6 @@ PEOPLE INFO:
 2) MOTHER: Maria
 3) CHILD: Egor
 4) CHILD: Gregory
-5) CHILD: Ladislav
-6) CHILD: Rudolf
 
 PETS INFO: 
 1) CAT: Barsik

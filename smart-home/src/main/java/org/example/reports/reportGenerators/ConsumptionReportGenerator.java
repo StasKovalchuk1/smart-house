@@ -13,7 +13,7 @@ public class ConsumptionReportGenerator extends BaseReportGenerator {
 
     public ConsumptionReportGenerator(DeviceController deviceController) {
         this.deviceController = deviceController;
-        this.reportFile = "smart-home/src/main/resources/consumptionReport.txt";
+        this.reportFile = "./src/main/resources/consumptionReport.txt";
         try {
             this.writer = new PrintWriter(new PrintWriter(reportFile));
         } catch (Exception e) {

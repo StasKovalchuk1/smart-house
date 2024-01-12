@@ -40,7 +40,7 @@ public abstract class Vehicle {
                         vehicleSemaphore.release();
                         returnToGarage(person);
                     }
-                }, 3000);
+                }, 5000);
             }
         } catch (InterruptedException e) {
             e.printStackTrace();

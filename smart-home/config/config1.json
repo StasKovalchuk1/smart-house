@@ -204,18 +204,6 @@
       "name": "Gregory",
       "atHome": "true",
       "type": "CHILD"
-    },
-    {
-      "id": 8,
-      "name": "Ladislav",
-      "atHome": "true",
-      "type": "CHILD"
-    },
-    {
-      "id": 9,
-      "name": "Rudolf",
-      "atHome": "true",
-      "type": "CHILD"
     }
   ],
   "pets": [{

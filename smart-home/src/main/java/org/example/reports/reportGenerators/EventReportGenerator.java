@@ -19,7 +19,7 @@ public class EventReportGenerator extends BaseReportGenerator {
     private List<EventToHandle> eventsHandledAutomatically = new ArrayList<>();
 
     public EventReportGenerator() {
-        this.reportFile = "smart-home/src/main/resources/eventReport.txt";
+        this.reportFile = "./src/main/resources/eventReport.txt";
         try {
             this.writer = new PrintWriter(new PrintWriter(reportFile));
         } catch (Exception e) {

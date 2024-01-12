@@ -93,7 +93,7 @@ public class Simulation {
                 house.getDeviceController().getDeviceManagers().forEach(DeviceManager::collectData);
                 System.out.println("---------------------------------");
             }
-        }, 0, 1000);// Repeat every 10 seconds
+        }, 0, 3000);// Repeat every 10 seconds
     }
 
     public void stopSimulation(){
