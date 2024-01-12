@@ -1,5 +1,5 @@
 {
-  "type": "With Garage",
+  "type": "With Garage and Pool",
   "floors": [
     {
       "level": 1,
@@ -14,15 +14,11 @@
           "id": 2,
           "devices": [
             {
-            "id": 1,
-            "name": "WashingMachine",
-            "documentation": "..."
-            },
-            {
-              "id": 6,
+              "id": 1,
               "name": "WashingMachine",
               "documentation": "..."
-            }]
+            }
+          ]
         },
         {
           "type": "GYM",
@@ -39,9 +35,14 @@
           "id": 4,
           "devices": [
             {
-            "id": 2,
-            "name": "Grill",
-            "documentation": "..."
+              "id": 2,
+              "name": "Grill",
+              "documentation": "..."
+            },
+            {
+              "id": 16,
+              "name": "Grill",
+              "documentation": "..."
             },
             {
               "id": 3,
@@ -89,7 +90,17 @@
               "documentation": "..."
             },
             {
+              "id": 17,
+              "name": "Dishwasher",
+              "documentation": "..."
+            },
+            {
               "id": 16,
+              "name": "Microwave",
+              "documentation": "..."
+            },
+            {
+              "id": 18,
               "name": "Microwave",
               "documentation": "..."
             },
@@ -97,12 +108,8 @@
               "id": 20,
               "name": "CoffeeMachine",
               "documentation": "..."
-            },
-            {
-              "id": 21,
-              "name": "CoffeeMachine",
-              "documentation": "..."
-            }]
+            }
+          ]
         },
         {
           "type": "LIVING_ROOM",
@@ -130,20 +137,21 @@
           "id": 6,
           "devices": [
             {
-            "id": 10,
-            "name": "Computer",
-            "documentation": "..."
+              "id": 10,
+              "name": "Computer",
+              "documentation": "..."
             },
             {
-            "id": 11,
-            "name": "Computer",
-            "documentation": "..."
+              "id": 11,
+              "name": "Computer",
+              "documentation": "..."
             },
             {
-            "id": 12,
-            "name": "Computer",
-            "documentation": "..."
-            }]
+              "id": 12,
+              "name": "Computer",
+              "documentation": "..."
+            }
+          ]
         },
         {
           "type": "BEDROOM",
@@ -163,7 +171,8 @@
               "id": 15,
               "name": "Computer",
               "documentation": "..."
-            }]
+            }
+          ]
         }
       ]
     }
@@ -171,7 +180,7 @@
   "garage": {
     "vehicles": [
       {
-      "type": "SKI"
+        "type": "SKI"
       },
       {
         "type": "CAR"
@@ -196,7 +205,7 @@
     {
       "id": 3,
       "name": "Egor",
-      "atHome": "false",
+      "atHome": "true",
       "type": "CHILD"
     },
     {
@@ -218,20 +227,24 @@
       "type": "CHILD"
     }
   ],
-  "pets": [{
-    "id": 5,
-    "name": "Barsik",
-    "isInShelter": "true",
-    "type": "CAT"
-  },{
-    "id": 6,
-    "name": "Bobik",
-    "isInShelter": "false",
-    "type": "DOG"
-  },{
-    "id": 7,
-    "name": "Nemo",
-    "isInShelter": "true",
-    "type": "GOLDENFISH"
-  }]
+  "pets": [
+    {
+      "id": 5,
+      "name": "Barsik",
+      "isInShelter": "true",
+      "type": "CAT"
+    },
+    {
+      "id": 6,
+      "name": "Bobik",
+      "isInShelter": "false",
+      "type": "DOG"
+    },
+    {
+      "id": 7,
+      "name": "Nemo",
+      "isInShelter": "true",
+      "type": "GOLDENFISH"
+    }
+  ]
 }

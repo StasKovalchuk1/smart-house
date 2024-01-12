@@ -1,7 +1,43 @@
 EVENTS REPORT
 
 EVENTS HANDLED BY PEOPLE:
-1) Event 'NO_EVENT_FOR_PERSON' was handled by person 'CHILD'
+1) Event 'NO_EVENT_FOR_PERSON' was handled by person 'MOTHER'
+2) Event 'GUEST_ARRIVAL' was handled by person 'CHILD'
+3) Event 'NO_EVENT_FOR_PERSON' was handled by person 'CHILD'
+4) Event 'BREAK_DEVICE' was handled by person 'CHILD'
+5) Event 'NO_EVENT_FOR_PERSON' was handled by person 'CHILD'
+6) Event 'BREAK_DEVICE' was handled by person 'CHILD'
+7) Event 'NO_EVENT_FOR_PERSON' was handled by person 'MOTHER'
+8) Event 'NO_EVENT_FOR_PERSON' was handled by person 'CHILD'
+9) Event 'NO_EVENT_FOR_PERSON' was handled by person 'CHILD'
+10) Event 'FIRE_ALARM' was handled by person 'FATHER'
+11) Event 'FIRE_ALARM' was handled by person 'CHILD'
+12) Event 'NO_EVENT_FOR_PERSON' was handled by person 'FATHER'
+13) Event 'CHILD_GOT_HURT' was handled by person 'MOTHER'
+14) Event 'NO_EVENT_FOR_PERSON' was handled by person 'CHILD'
+15) Event 'NO_EVENT_FOR_PERSON' was handled by person 'MOTHER'
+16) Event 'NO_EVENT_FOR_PERSON' was handled by person 'CHILD'
+17) Event 'GUEST_ARRIVAL' was handled by person 'FATHER'
 ---
 EVENTS HANDLED AUTOMATICALLY:
-1) Event 'NOTHING' was handled automatically
+1) Event 'POWER_OUTAGE' was handled automatically
+2) Event 'NOTHING' was handled automatically
+3) Event 'WATER_LEAK' was handled automatically
+4) Event 'NOTHING' was handled automatically
+5) Event 'NOTHING' was handled automatically
+6) Event 'NOTHING' was handled automatically
+7) Event 'WATER_LEAK' was handled automatically
+8) Event 'WATER_LEAK' was handled automatically
+9) Event 'NOTHING' was handled automatically
+10) Event 'NOTHING' was handled automatically
+11) Event 'POWER_OUTAGE' was handled automatically
+12) Event 'NOTHING' was handled automatically
+13) Event 'NOTHING' was handled automatically
+14) Event 'NOTHING' was handled automatically
+15) Event 'NOTHING' was handled automatically
+16) Event 'WATER_LEAK' was handled automatically
+17) Event 'POWER_OUTAGE' was handled automatically
+18) Event 'NOTHING' was handled automatically
+19) Event 'POWER_OUTAGE' was handled automatically
+20) Event 'WATER_LEAK' was handled automatically
+21) Event 'NOTHING' was handled automatically

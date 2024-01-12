@@ -12,8 +12,12 @@ import org.example.reports.reportGenerators.ConsumptionReportGenerator;
 import org.example.reports.reportGenerators.EventReportGenerator;
 import org.example.reports.reportGenerators.HouseConfigurationReportGenerator;
 
+import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 @Slf4j
 public class Simulation {
@@ -34,6 +38,8 @@ public class Simulation {
 
     //Simulation Timer
     private final Timer timer;
+    private boolean simulationRunning = true;
+
 
     public Simulation(House house) {
         this.house = house;
@@ -53,6 +59,13 @@ public class Simulation {
     }
 
     public void runSimulation() {
+        ScheduledExecutorService executorService = Executors.newSingleThreadScheduledExecutor();
+
+        //Program will be working for 20 seconds
+        executorService.schedule(() -> {
+            stopSimulation();
+            executorService.shutdown();
+        }, 20, TimeUnit.SECONDS);
         timer.scheduleAtFixedRate(new TimerTask() {
             @Override
             public void run() {
@@ -79,21 +92,15 @@ public class Simulation {
                 log.info("------------Proceed to receiving notification------------");
                 house.getDeviceController().getDeviceManagers().forEach(DeviceManager::collectData);
                 System.out.println("---------------------------------");
-
-//                eventReportGen.generateReport();
-//                activityAndUsageReportGen.generateReport();
-//                consumptionReportGen.generateReport();
-//                houseConfigReportGen.generateReport();
             }
-        }, 0, 5000);// Repeat every 5 seconds
-
-//        eventReportGen.generateReport();
-//        activityAndUsageReportGen.generateReport();
-//        consumptionReportGen.generateReport();
-//        houseConfigReportGen.generateReport();
+        }, 0, 1000);// Repeat every 10 seconds
     }
 
     public void stopSimulation(){
         timer.cancel();
+        eventReportGen.generateReport();
+        activityAndUsageReportGen.generateReport();
+        consumptionReportGen.generateReport();
+        houseConfigReportGen.generateReport();
     }
 }

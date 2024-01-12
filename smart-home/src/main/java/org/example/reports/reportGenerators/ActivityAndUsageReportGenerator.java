@@ -2,6 +2,8 @@ package org.example.reports.reportGenerators;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.extern.java.Log;
+import lombok.extern.slf4j.Slf4j;
 import org.example.devices.Device;
 import org.example.generators.activities.Activity;
 import org.example.generators.events.EventToHandle;
@@ -19,6 +21,7 @@ import java.util.Map;
 
 //@EqualsAndHashCode(callSuper = true)
 //@Data
+@Slf4j
 public class ActivityAndUsageReportGenerator extends BaseReportGenerator {
 
     private final Map<HouseResident, Activity> houseResidentsActivitiesMap = new HashMap<>();
@@ -42,24 +45,10 @@ public class ActivityAndUsageReportGenerator extends BaseReportGenerator {
     public void generateReport() {
         writer.println("ACTIVITY AND USAGE REPORT");
         writer.println();
-//        printHouseResidentsActivities();
         writer.println();
         printDeviceUsage();
         writer.close();
     }
-
-    private void printHouseResidentsActivities() {
-        writer.println("HOUSE RESIDENT ACTIVITIES:");
-        for (Map.Entry<HouseResident, Activity> entry : houseResidentsActivitiesMap.entrySet()) {
-            HouseResident resident = entry.getKey();
-            Activity activity = entry.getValue();
-            writer.println("House resident " + resident.getType() + " '" + resident.getName()
-                    + "' has done activity '" + activity + "'");
-        }
-        writer.println();
-    }
-
-
 
     private void printDeviceUsage(){
         writer.println("DEVICE USAGES:");
@@ -81,8 +70,6 @@ public class ActivityAndUsageReportGenerator extends BaseReportGenerator {
             }
             writer.println();
         }
-
-
     }
 
     public void writeActivity(HouseResident houseResident, Activity activity){
