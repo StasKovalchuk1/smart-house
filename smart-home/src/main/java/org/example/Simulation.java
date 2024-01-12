@@ -38,8 +38,6 @@ public class Simulation {
 
     //Simulation Timer
     private final Timer timer;
-    private boolean simulationRunning = true;
-
 
     public Simulation(House house) {
         this.house = house;
@@ -92,12 +90,8 @@ public class Simulation {
                 log.info("------------Proceed to receiving notification------------");
                 house.getDeviceController().getDeviceManagers().forEach(DeviceManager::collectData);
                 System.out.println("---------------------------------");
-                eventReportGen.generateReport();
-                activityAndUsageReportGen.generateReport();
-                consumptionReportGen.generateReport();
-                houseConfigReportGen.generateReport();
             }
-        }, 0, 3000);// Repeat every 10 seconds
+        }, 0, 3000);// Repeat every 3 seconds
     }
 
     public void stopSimulation(){

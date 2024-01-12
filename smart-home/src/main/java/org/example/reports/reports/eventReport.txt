@@ -1,7 +1,132 @@
 EVENTS REPORT
 
 EVENTS HANDLED BY PEOPLE:
-1) Event 'NO_EVENT_FOR_PERSON' was handled by person 'MOTHER'
+1) Event 'NO_EVENT_FOR_PERSON' was handled by person 'CHILD'
+2) Event 'GUEST_ARRIVAL' was handled by person 'CHILD'
+3) Event 'NO_EVENT_FOR_PERSON' was handled by person 'CHILD'
+4) Event 'NO_EVENT_FOR_PERSON' was handled by person 'CHILD'
+5) Event 'CHILD_GOT_HURT' was handled by person 'CHILD'
+6) Event 'NO_EVENT_FOR_PERSON' was handled by person 'FATHER'
+7) Event 'BAD_FOOD' was handled by person 'FATHER'
+8) Event 'NO_EVENT_FOR_PERSON' was handled by person 'CHILD'
+9) Event 'NO_EVENT_FOR_PERSON' was handled by person 'CHILD'
+10) Event 'BREAK_DEVICE' was handled by person 'FATHER'
+11) Event 'NO_EVENT_FOR_PERSON' was handled by person 'FATHER'
+12) Event 'CHILD_GOT_HURT' was handled by person 'FATHER'
+13) Event 'BAD_FOOD' was handled by person 'CHILD'
+14) Event 'NO_EVENT_FOR_PERSON' was handled by person 'CHILD'
+15) Event 'NO_EVENT_FOR_PERSON' was handled by person 'MOTHER'
+16) Event 'FIRE_ALARM' was handled by person 'CHILD'
+17) Event 'NO_EVENT_FOR_PERSON' was handled by person 'CHILD'
+18) Event 'BREAK_DEVICE' was handled by person 'MOTHER'
+19) Event 'NO_EVENT_FOR_PERSON' was handled by person 'CHILD'
+20) Event 'NO_EVENT_FOR_PERSON' was handled by person 'CHILD'
+21) Event 'NO_EVENT_FOR_PERSON' was handled by person 'FATHER'
+22) Event 'FIRE_ALARM' was handled by person 'MOTHER'
+23) Event 'NO_EVENT_FOR_PERSON' was handled by person 'CHILD'
+24) Event 'NO_EVENT_FOR_PERSON' was handled by person 'MOTHER'
+25) Event 'NO_EVENT_FOR_PERSON' was handled by person 'FATHER'
+26) Event 'BREAK_DEVICE' was handled by person 'CHILD'
+27) Event 'CHILD_GOT_HURT' was handled by person 'CHILD'
+28) Event 'NO_EVENT_FOR_PERSON' was handled by person 'MOTHER'
+29) Event 'FIRE_ALARM' was handled by person 'MOTHER'
+30) Event 'NO_EVENT_FOR_PERSON' was handled by person 'MOTHER'
+31) Event 'NO_EVENT_FOR_PERSON' was handled by person 'MOTHER'
+32) Event 'NO_EVENT_FOR_PERSON' was handled by person 'FATHER'
+33) Event 'NO_EVENT_FOR_PERSON' was handled by person 'CHILD'
+34) Event 'NO_EVENT_FOR_PERSON' was handled by person 'MOTHER'
+35) Event 'NO_EVENT_FOR_PERSON' was handled by person 'CHILD'
+36) Event 'BAD_FOOD' was handled by person 'CHILD'
+37) Event 'BREAK_DEVICE' was handled by person 'MOTHER'
+38) Event 'NO_EVENT_FOR_PERSON' was handled by person 'MOTHER'
+39) Event 'NO_EVENT_FOR_PERSON' was handled by person 'FATHER'
+40) Event 'FIRE_ALARM' was handled by person 'CHILD'
+41) Event 'CHILD_GOT_HURT' was handled by person 'CHILD'
+42) Event 'BAD_FOOD' was handled by person 'FATHER'
+43) Event 'NO_EVENT_FOR_PERSON' was handled by person 'CHILD'
+44) Event 'BREAK_DEVICE' was handled by person 'MOTHER'
+45) Event 'CHILD_GOT_HURT' was handled by person 'MOTHER'
+46) Event 'BREAK_DEVICE' was handled by person 'FATHER'
+47) Event 'NO_EVENT_FOR_PERSON' was handled by person 'MOTHER'
+48) Event 'BAD_FOOD' was handled by person 'MOTHER'
+49) Event 'GUEST_ARRIVAL' was handled by person 'FATHER'
+50) Event 'NO_EVENT_FOR_PERSON' was handled by person 'MOTHER'
+51) Event 'NO_EVENT_FOR_PERSON' was handled by person 'CHILD'
+52) Event 'NO_EVENT_FOR_PERSON' was handled by person 'FATHER'
+53) Event 'NO_EVENT_FOR_PERSON' was handled by person 'CHILD'
+54) Event 'NO_EVENT_FOR_PERSON' was handled by person 'MOTHER'
+55) Event 'NO_EVENT_FOR_PERSON' was handled by person 'MOTHER'
+56) Event 'FIRE_ALARM' was handled by person 'FATHER'
+57) Event 'CHILD_GOT_HURT' was handled by person 'CHILD'
+58) Event 'NO_EVENT_FOR_PERSON' was handled by person 'FATHER'
+59) Event 'NO_EVENT_FOR_PERSON' was handled by person 'FATHER'
+60) Event 'NO_EVENT_FOR_PERSON' was handled by person 'FATHER'
 ---
 EVENTS HANDLED AUTOMATICALLY:
 1) Event 'NOTHING' was handled automatically
+2) Event 'POWER_OUTAGE' was handled automatically
+3) Event 'NOTHING' was handled automatically
+4) Event 'NOTHING' was handled automatically
+5) Event 'POWER_OUTAGE' was handled automatically
+6) Event 'NOTHING' was handled automatically
+7) Event 'NOTHING' was handled automatically
+8) Event 'NOTHING' was handled automatically
+9) Event 'NOTHING' was handled automatically
+10) Event 'WATER_LEAK' was handled automatically
+11) Event 'NOTHING' was handled automatically
+12) Event 'NOTHING' was handled automatically
+13) Event 'NOTHING' was handled automatically
+14) Event 'POWER_OUTAGE' was handled automatically
+15) Event 'NOTHING' was handled automatically
+16) Event 'POWER_OUTAGE' was handled automatically
+17) Event 'NOTHING' was handled automatically
+18) Event 'POWER_OUTAGE' was handled automatically
+19) Event 'NOTHING' was handled automatically
+20) Event 'NOTHING' was handled automatically
+21) Event 'NOTHING' was handled automatically
+22) Event 'NOTHING' was handled automatically
+23) Event 'WATER_LEAK' was handled automatically
+24) Event 'NOTHING' was handled automatically
+25) Event 'POWER_OUTAGE' was handled automatically
+26) Event 'NOTHING' was handled automatically
+27) Event 'POWER_OUTAGE' was handled automatically
+28) Event 'NOTHING' was handled automatically
+29) Event 'POWER_OUTAGE' was handled automatically
+30) Event 'WATER_LEAK' was handled automatically
+31) Event 'NOTHING' was handled automatically
+32) Event 'NOTHING' was handled automatically
+33) Event 'NOTHING' was handled automatically
+34) Event 'POWER_OUTAGE' was handled automatically
+35) Event 'WATER_LEAK' was handled automatically
+36) Event 'NOTHING' was handled automatically
+37) Event 'NOTHING' was handled automatically
+38) Event 'POWER_OUTAGE' was handled automatically
+39) Event 'WATER_LEAK' was handled automatically
+40) Event 'POWER_OUTAGE' was handled automatically
+41) Event 'POWER_OUTAGE' was handled automatically
+42) Event 'NOTHING' was handled automatically
+43) Event 'NOTHING' was handled automatically
+44) Event 'NOTHING' was handled automatically
+45) Event 'NOTHING' was handled automatically
+46) Event 'NOTHING' was handled automatically
+47) Event 'NOTHING' was handled automatically
+48) Event 'WATER_LEAK' was handled automatically
+49) Event 'NOTHING' was handled automatically
+50) Event 'POWER_OUTAGE' was handled automatically
+51) Event 'NOTHING' was handled automatically
+52) Event 'NOTHING' was handled automatically
+53) Event 'POWER_OUTAGE' was handled automatically
+54) Event 'NOTHING' was handled automatically
+55) Event 'NOTHING' was handled automatically
+56) Event 'NOTHING' was handled automatically
+57) Event 'NOTHING' was handled automatically
+58) Event 'NOTHING' was handled automatically
+59) Event 'POWER_OUTAGE' was handled automatically
+60) Event 'NOTHING' was handled automatically
+61) Event 'WATER_LEAK' was handled automatically
+62) Event 'NOTHING' was handled automatically
+63) Event 'NOTHING' was handled automatically
+64) Event 'NOTHING' was handled automatically
+65) Event 'NOTHING' was handled automatically
+66) Event 'POWER_OUTAGE' was handled automatically
+67) Event 'WATER_LEAK' was handled automatically

@@ -3,20 +3,20 @@ ACTIVITY AND USAGE REPORT
 
 DEVICE USAGES:
 House resident FATHER 'John' has used devices: 
-1) WashingMachine 0 times
+1) WashingMachine 2 times
 2) Grill 0 times
-3) Fridge 0 times
+3) Fridge 3 times
 4) Fridge 0 times
-5) WashingMachine 0 times
-6) Dishwasher 0 times
+5) WashingMachine 1 times
+6) Dishwasher 1 times
 7) Dishwasher 0 times
-8) Computer 0 times
+8) Computer 2 times
 9) Computer 0 times
 10) Computer 0 times
 11) Computer 0 times
 12) Computer 0 times
 13) Computer 0 times
-14) Microwave 0 times
+14) Microwave 4 times
 15) Shelter 0 times
 16) Shelter 0 times
 17) Shelter 0 times
@@ -24,12 +24,12 @@ House resident FATHER 'John' has used devices:
 19) CoffeeMachine 0 times
 
 House resident MOTHER 'Maria' has used devices: 
-1) WashingMachine 0 times
+1) WashingMachine 1 times
 2) Grill 0 times
-3) Fridge 0 times
+3) Fridge 2 times
 4) Fridge 0 times
 5) WashingMachine 0 times
-6) Dishwasher 0 times
+6) Dishwasher 1 times
 7) Dishwasher 0 times
 8) Computer 0 times
 9) Computer 0 times
@@ -66,12 +66,12 @@ House resident CHILD 'Egor' has used devices:
 19) CoffeeMachine 0 times
 
 House resident CHILD 'Gregory' has used devices: 
-1) WashingMachine 0 times
-2) Grill 0 times
-3) Fridge 0 times
+1) WashingMachine 1 times
+2) Grill 1 times
+3) Fridge 3 times
 4) Fridge 0 times
 5) WashingMachine 0 times
-6) Dishwasher 0 times
+6) Dishwasher 2 times
 7) Dishwasher 0 times
 8) Computer 0 times
 9) Computer 0 times
@@ -79,12 +79,12 @@ House resident CHILD 'Gregory' has used devices:
 11) Computer 0 times
 12) Computer 0 times
 13) Computer 0 times
-14) Microwave 0 times
+14) Microwave 1 times
 15) Shelter 0 times
 16) Shelter 0 times
 17) Shelter 0 times
-18) CoffeeMachine 0 times
-19) CoffeeMachine 0 times
+18) CoffeeMachine 2 times
+19) CoffeeMachine 1 times
 
 House resident CAT 'Barsik' has used devices: 
 1) WashingMachine 0 times
@@ -101,7 +101,7 @@ House resident CAT 'Barsik' has used devices:
 12) Computer 0 times
 13) Computer 0 times
 14) Microwave 0 times
-15) Shelter 1 times
+15) Shelter 20 times
 16) Shelter 0 times
 17) Shelter 0 times
 18) CoffeeMachine 0 times
@@ -123,7 +123,7 @@ House resident DOG 'Bobik' has used devices:
 13) Computer 0 times
 14) Microwave 0 times
 15) Shelter 0 times
-16) Shelter 0 times
+16) Shelter 28 times
 17) Shelter 0 times
 18) CoffeeMachine 0 times
 19) CoffeeMachine 0 times
@@ -145,7 +145,7 @@ House resident GOLDENFISH 'Nemo' has used devices:
 14) Microwave 0 times
 15) Shelter 0 times
 16) Shelter 0 times
-17) Shelter 0 times
+17) Shelter 19 times
 18) CoffeeMachine 0 times
 19) CoffeeMachine 0 times
 
